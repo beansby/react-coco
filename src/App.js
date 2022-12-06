@@ -12,7 +12,7 @@ function App() {
       <Header/>
       <Routes>
         {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
-        <Route exact path='/' element={<MainCoco/>}/>
+        {/* <Route exact path='/' element={<MainCoco/>}/> */}
       </Routes>
     </div>
   );

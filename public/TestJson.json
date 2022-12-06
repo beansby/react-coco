@@ -1,0 +1,30 @@
+{
+    "Item": [
+      {
+        "ImageURL" : "https://havecamerawilltravel.com/wp-content/uploads/2020/01/youtube-thumbnails-size-header-1.png" ,
+        "Status": false,
+        "Title": "질문(1) 제목입니다",
+        "Content": "질문(1)의 내용입니다. 질문 내용을 적어주세요.",
+        "CreatedTime": "2022-10-30",
+        "Coin" : 2000
+      },
+      {
+        "ImageURL" : "https://havecamerawilltravel.com/wp-content/uploads/2020/01/youtube-thumbnails-size-header-1.png",
+        "Status": true,
+        "Title": "질문(2) 제목입니다",
+        "Content": "질문(2)의 내용입니다. 질문 내용을 적어주세요.",
+        "CreatedTime": "2022-10-30",
+        "Coin" : 800
+      },
+      {
+        "ImageURL" : "https://havecamerawilltravel.com/wp-content/uploads/2020/01/youtube-thumbnails-size-header-1.png",
+        "Status": false,
+        "Title": "질문(3) 제목입니다",
+        "Content": "질문(3)의 내용입니다. 질문 내용을 적어주세요.",
+        "CreatedTime": "2022-10-30",
+        "Coin" : 1000
+      }
+      
+    ]
+  }
+  

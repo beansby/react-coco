@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+header {
+  align-items: center;
+  margin: 0 auto;
+}
+
+
 .nav-items {
   list-style: none;
   margin: 0 auto;
@@ -24,13 +30,18 @@
   color: rgb(80, 69, 69);
 }
 
-#logo {
+.nav-pageitems {
+  display: inline;
+  padding-left: 30%;
+}
+
+/* #logo {
   color: rgb(67, 139, 233);
   background-color: rgb(80, 69, 69);
   padding: 20px;
   font-size: xx-large;
   font-weight: 600;
-}
+} */
 
 .box {
   display: inline-block;

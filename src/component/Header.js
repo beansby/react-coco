@@ -6,29 +6,31 @@ function Header() {
     const [style, setStyle] = useState({ width:'100%', position:'fixed', left:0, top:0, zIndex:10});
 
     return(
-        <div style={style}>
-            <ul className='nav-items'>
-                <li className='nav-item'>
-                    <Link to={'/'} id="logo"> C </Link>
-                </li>
+        <header style={style} >
+            <div className="nav-items">
+                <Link to={'/'} id="logo" className='nav-item'>  
+                    <img src='btn-home.png' alt=''/>
+                </Link>
 
-                <li className='nav-item'>
-                    <Link to={'/search'} > Search icon </Link>
-                </li>
+                <div className='nav-pageitems'>
+                    <Link to={'/search'} className='nav-item'> 
+                        <img src='btn-search.png' alt=''/>
+                    </Link>
 
-                <li className='nav-item'>
-                    <Link to={'/coco'} > COCO icon </Link>
-                </li>
+                    <Link to={'/coco'} className='nav-item'> 
+                        <img src='btn-coco.png' alt=''/>
+                    </Link>
 
-                <li className='nav-item'>
-                    <Link to={'/questions'} > Question icon </Link>
-                </li>
+                    <Link to={'/question'} className='nav-item'> 
+                        <img src='btn-question.png' alt=''/>
+                    </Link>
+                </div>
 
-                <li className='nav-item'>
-                    <Link to={'/mypage'} > Mypage icon </Link>
-                </li>
-            </ul>
-        </div>
+                <Link to={'/mypage'} className='nav-item'>  
+                    <img src='btn-mypage.png' alt=''/>
+                </Link>
+            </div>
+        </header>
     )
 }
 
