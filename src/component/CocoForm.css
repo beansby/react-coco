@@ -1,0 +1,27 @@
+.form-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 183, 255);
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+#coco-header {
+    text-align: left;
+    padding-left: 15%;
+    font-size: x-large;
+    color: rgb(0, 183, 255);
+    font-weight: normal;
+}
+
+.coco-lang {
+    display: inline;
+    font-size: medium;
+}
+
+.ck-editor__editable { 
+    height: 400px; 
+    
+}
+

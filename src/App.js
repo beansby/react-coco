@@ -3,8 +3,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Routes, Route} from 'react-router-dom';
 
 import Header from './component/Header';
-// import Main_cocoList from './component/Main_cocoList';
-import MainCoco from './component/MainCoco';
+import CocoForm from './component/CocoForm';
+import Footer from './component/Footer';
+
+
 
 function App() {
   return (
@@ -12,9 +14,12 @@ function App() {
       <Header/>
       <Routes>
         {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
-        {/* <Route exact path='/' element={<MainCoco/>}/> */}
+        <Route exact path='/coco' element={<CocoForm/>}/>
       </Routes>
+
+      <Footer/>
     </div>
+
   );
 }
 

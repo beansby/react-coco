@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom';
 
 
 function Header() {
-    const [style, setStyle] = useState({ width:'100%', position:'fixed', left:0, top:0, zIndex:10});
+    const [style, setStyle] = useState({width:'100%', position:'fixed', left:0, top:0, zIndex:10});
 
     return(
-        <header style={style} >
+        <header style={style} id='nav-header' >
             <div className="nav-items">
                 <Link to={'/'} id="logo" className='nav-item'>  
                     <img src='btn-home.png' alt=''/>

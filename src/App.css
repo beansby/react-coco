@@ -2,9 +2,10 @@
   text-align: center;
 }
 
-header {
+#nav-header {
   align-items: center;
   margin: 0 auto;
+  
 }
 
 
@@ -45,4 +46,8 @@ header {
 
 .box {
   display: inline-block;
+}
+
+main {
+  padding-top: 150px;
 }
