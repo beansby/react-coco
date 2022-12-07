@@ -1,0 +1,54 @@
+header {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+span {
+    color: #189FEC;
+}
+
+/* 전체 박스 */
+.container-folder {
+    margin: 0 auto;
+    padding-top: 50px;
+    
+}
+
+/* 타이틀 : 폴더명 */
+.folder-name{
+    display: inline;
+    background-color: #E7E7E7;
+    color: #189FEC;
+    font-weight: bold;
+    padding: 10px;
+    margin: 0px 10%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* 폴더 내용 */
+.folder-content{
+    width: 80%;
+    background-color: #E7E7E7;
+    margin: 0 auto;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 1rem;
+    height: 500px;
+    overflow:auto;
+}
+
+/* 코코 세션 : 폴더 아이템 */
+.folder-item{
+    background-color: #ffffff7b;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    margin: 0.5rem;
+    
+
+}
