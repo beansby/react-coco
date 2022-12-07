@@ -17,7 +17,7 @@ function Header() {
                         <img src='btn-search.png' alt=''/>
                     </Link>
 
-                    <Link to={'/coco'} className='nav-item'> 
+                    <Link to={'/cocoform'} className='nav-item'> 
                         <img src='btn-coco.png' alt=''/>
                     </Link>
 

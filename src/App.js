@@ -17,7 +17,7 @@ function App() {
       <Routes>
         {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
         <Route exact path='/cocoform' element={<CocoForm/>}/>
-        <Route exact path='/coco' element={<CocoMain/>}/>
+        <Route exact path='/' element={<CocoMain/>}/>
         <Route exact path='/test' element={<EditorForm/>}/>
       </Routes>
 
