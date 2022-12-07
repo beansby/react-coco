@@ -3,7 +3,6 @@ import axios from "axios";
 import './CocoForm.css';
 import { useState } from "react";
 import {Form, FormGroup, Input, Label, Button, Col, Fade} from 'reactstrap';
-// import EditorForm from "./EditorForm";
 import Swal from 'sweetalert2';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -14,44 +13,52 @@ function CocoForm() {
     const [cocoContent, setCocoContent] = useState('');
     const [cocoPrice, setCocoPrice] = useState(0);
 
+    // 내용 입력 
+    const changeTitle = (e) => {
+        setCocoTitle(e.target.value);
+    }
+
+    const changePrice = (e) => {
+        setCocoPrice(e.target.value);
+    }
+
+
     // 질문 등록 : DB 데이터 저장 
     const submit = () => {
         // e.preventDefault();
 
-        axios.post('api', null, {params:{title:cocoTitle, content:cocoContent, price:cocoPrice}})
+        axios.post('http://localhost:8080/api/questions', null, {params:{title:cocoTitle, content:cocoContent, price:cocoPrice}})
         .then((response)=>{
-            setCocoContent(this.CKEditor.onChange.data);
+            setCocoContent(this.cocoContent);
             setCocoTitle(this.cocoTitle);
             setCocoPrice(this.cocoPrice);
+            Swal.fire('질문이 등록되었습니다', '', 'success')
+            console.log('질문등록 성공');
             console.log(cocoContent);
             console.log(cocoTitle + cocoPrice);
             // 질문 등록 후 personal coco session 이동
             document.location.href ='/';
         }).catch((err)=>{
             console.log(err);
+            Swal.fire('질문 등록에 실패했습니다', '', 'error')
+            
         })
     }
-
-    
 
     // 질문 등록 확인
     const saveAlert = (e) => {
         Swal.fire({
             title: '등록하시겠습니까?',
-            // showDenyButton: true,
-            showCancelButton: true,
+            showDenyButton: true,
+            // showCancelButton: true,
             confirmButtonText: '확인',
-            cancelButtonText: `취소`,
+            denyButtonText: `취소`,
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-              
-              Swal.fire('질문이 등록되었습니다', '', 'success')
-              Form.submit();
-              console.log('질문등록 성공');
-              
+              submit();
             } else if (result.isDenied) {
-              Swal.fire('등록이 취소되었습니다', '', 'error')
+              Swal.fire('등록이 취소되었습니다', '', 'warning')
             }
           })
     }
@@ -60,19 +67,21 @@ function CocoForm() {
     const cancelAlert = (e) => {
         Swal.fire({
             title: '작성을 취소하시겠습니까?',
-            // showDenyButton: true,
-            showCancelButton: true,
+            showDenyButton: true,
+            // showCancelButton: true,
             confirmButtonText: '확인',
-            cancelButtonText: `취소`,
+            denyButtonText: `취소`,
           }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
               Swal.fire('작성을 취소합니다', '', 'success')
             } else if (result.isDenied) {
-              Swal.fire('취소하지 않습니다', '', 'error')
+              Swal.fire('뒤로 가기', '', 'warning')
             }
           })
     }
+
+    
 
     return(
         <main>
@@ -93,7 +102,7 @@ function CocoForm() {
                             제목
                         </Label> */}
                         <Col sm={8}>
-                            <Input type='text' name='cocoTitle' id='cocoTitle' value={cocoTitle} placeholder="제목을 입력하세요."/>
+                            <Input type='text' name='cocoTitle' id='cocoTitle' value={cocoTitle} placeholder="제목을 입력하세요." onChange={changeTitle}/>
                         </Col>
 
                         <Label for='cocoPrice' sm={1}>
@@ -101,7 +110,7 @@ function CocoForm() {
                             &nbsp; Rewards
                         </Label>
                         <Col sm={3}>      
-                            <Input type="number" name='cocoPrice' id='cocoPrice' value={cocoPrice} placeholder='지급할 코인'/>
+                            <Input type="number" name='cocoPrice' id='cocoPrice' value={cocoPrice} placeholder='지급할 코인' onChange={changePrice}/>
                         </Col>
                     </FormGroup>
 
@@ -204,6 +213,10 @@ function CocoForm() {
                         </div>
                     </div> */}
 
+
+                        {/* //string : 태그 방식으로 가지고 있음
+                        // 이미지 태그 소스로 : 함수등록해서 보여주는 형태
+                        //보여줄때도 반드시 에디터로 보여줘야함 */}
                     <CKEditor
                         editor={ ClassicEditor }
                         data="<p>질문 내용을 입력하세요.</p>"
@@ -213,6 +226,7 @@ function CocoForm() {
                         } }
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
+                            setCocoContent(data);
                             console.log( { event, editor, data } );
                         } }
                         onBlur={ ( event, editor ) => {
