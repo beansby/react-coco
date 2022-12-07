@@ -22,12 +22,14 @@ function CocoForm() {
         setCocoPrice(e.target.value);
     }
 
+    const qUrl = {params:{title:cocoTitle, content:cocoContent, price:cocoPrice}}
+    const encodedQUrl = encodeURIComponent(qUrl);
 
     // 질문 등록 : DB 데이터 저장 
     const submit = () => {
         // e.preventDefault();
 
-        axios.post('http://localhost:8080/api/questions', null, {params:{title:cocoTitle, content:cocoContent, price:cocoPrice}})
+        axios.post('http://localhost:8080/api/questions', null, qUrl)
         .then((response)=>{
             setCocoContent(this.cocoContent);
             setCocoTitle(this.cocoTitle);
@@ -88,7 +90,8 @@ function CocoForm() {
             
             <section> 
                 <header id="coco-header">
-                    <span> COCO Question registration </span>
+                    QUESTION FOR.
+                    <span> COCO </span>
                 </header>
                 <Form className="form-container">
                     
@@ -195,28 +198,10 @@ function CocoForm() {
 
                     </FormGroup>
 
-
-                    {/* <div>
-                        <div className="form-items"> 
-                            <img src="" alt="타이틀 아이콘"/>
-                            
-                        </div>
-
-                        <div className="form-items"> 
-                            <img src="" alt="아이콘"/>
-                            <input type='text' placeholder="제목을 입력하세요."></input>
-                        </div>
-
-                        <div className="form-items"> 
-                            <img src="" alt="코인 아이콘"/>
-                            <input type="number" placeholder="지급할 코인 입력"></input>
-                        </div>
-                    </div> */}
-
-
                         {/* //string : 태그 방식으로 가지고 있음
                         // 이미지 태그 소스로 : 함수등록해서 보여주는 형태
                         //보여줄때도 반드시 에디터로 보여줘야함 */}
+
                     <CKEditor
                         editor={ ClassicEditor }
                         data="<p>질문 내용을 입력하세요.</p>"
@@ -239,9 +224,12 @@ function CocoForm() {
                 </Form>
                 
                 <br/>
-                <Button onClick={(e)=>{saveAlert('저장', 'center')}}> 등록 </Button>
-                &nbsp; &nbsp; 
-                <Button onClick={(e)=>{cancelAlert('취소', 'center')}}> 취소 </Button>
+                <div className="coco-btn">
+                    <Button onClick={(e)=>{saveAlert('저장', 'center')}} > 등록 </Button>
+                    &nbsp; &nbsp; 
+                    <Button onClick={(e)=>{cancelAlert('취소', 'center')}} > 취소 </Button>
+                </div>
+                
                 
                 <br></br>
             </section>

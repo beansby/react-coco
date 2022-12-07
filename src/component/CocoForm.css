@@ -1,24 +1,33 @@
+header {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+span {
+    color: #189FEC;
+}
+
 .form-container {
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(0, 183, 255);
     width: 80%;
     margin: 0 auto;
+    margin-top: 50px;
     padding: 20px;
     border-radius: 50px;
 }
 
-#coco-header {
-    text-align: left;
-    padding-left: 15%;
-    font-size: x-large;
-    color: rgb(0, 183, 255);
-    font-weight: normal;
-}
-
 .coco-lang {
     display: inline;
-    font-size: medium;
+    font-size: small;
 }
+
+.coco-btn {
+    text-align: center;
+    margin: 0 auto;
+}
+
 
 .ck-editor__editable { 
     height: 400px; 
