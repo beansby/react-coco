@@ -1,0 +1,33 @@
+
+#nav-header {
+    align-items: center;
+    margin: 0 auto;
+    
+  }
+
+  .nav-items {
+    list-style: none;
+    margin: 0 auto;
+    /* background-color: black; */
+  }
+  
+  .nav-item {
+    display: inline-block;
+    height: 80px;
+    padding: 0 10px;
+    text-align: center;
+    min-width: 80px;
+    margin: 0 10px;
+    line-height: 80px;
+  }
+  
+  .nav-item > a {
+    font-size: medium;
+    text-decoration: none;
+    color: rgb(80, 69, 69);
+  }
+  
+  .nav-pageitems {
+    display: inline;
+    padding-left: 30%;
+  }
