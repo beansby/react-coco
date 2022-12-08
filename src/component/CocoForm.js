@@ -31,18 +31,18 @@ function CocoForm() {
 
         axios.post('http://localhost:8080/api/questions', null, qUrl)
         .then((response)=>{
-            setCocoContent(this.cocoContent);
+            setCocoContent(cocoContent);
             setCocoTitle(this.cocoTitle);
             setCocoPrice(this.cocoPrice);
-            Swal.fire('질문이 등록되었습니다', '', 'success')
-            console.log('질문등록 성공');
-            console.log(cocoContent);
-            console.log(cocoTitle + cocoPrice);
+            console.log(response.data);
+            Swal.fire('매칭이 등록되었습니다', '', 'success')
+            console.log('매칭등록 성공');
+            console.log(response.data);
             // 질문 등록 후 personal coco session 이동
             document.location.href ='/';
         }).catch((err)=>{
             console.log(err);
-            Swal.fire('질문 등록에 실패했습니다', '', 'error')
+            Swal.fire('등록에 실패했습니다', '', 'error')
             
         })
     }
@@ -95,8 +95,6 @@ function CocoForm() {
                 </header>
                 <Form className="form-container">
                     
-
-
                     {/* 기술 스택 카테고리 */}
                     {/* 제목, 코인 액수 */}
                     <FormGroup row>
@@ -212,7 +210,8 @@ function CocoForm() {
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
                             setCocoContent(data);
-                            console.log( { event, editor, data } );
+                            console.log( { data } );
+                            console.log(cocoContent);
                         } }
                         onBlur={ ( event, editor ) => {
                             console.log( 'Blur.', editor );
