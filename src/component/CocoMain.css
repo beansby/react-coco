@@ -4,7 +4,7 @@ header {
     text-align: center;
 }
 
-span {
+#acc-title {
     color: #189FEC;
 }
 
@@ -45,10 +45,40 @@ span {
     background-color: #ffffff7b;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-radius: 15px;
     margin: 0.5rem;
-    
+}
 
+/* 썸네일 */
+.coco-item-img {
+    display: inline-block;
+    width: 20%;
+    
+}
+
+/* 제목, 내용 */
+.coco-item-text {
+    display: inline-block;
+    width: 80%;
+    padding-left:70px;
+   
+}
+
+
+.coco-title {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.coco-content {
+    color: #484848;
+}
+
+.coco-item-coin {
+    display: inline-block;
+    color: #484848;
+    font-weight: bold;
+    padding-left: 30%;
 }
