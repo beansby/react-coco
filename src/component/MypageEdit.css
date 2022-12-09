@@ -17,3 +17,20 @@
     font-weight: bold;
     color: #189FEC;
 }
+
+a.select-lang::before {
+    display: inline;
+    content: attr(value);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.pf-language {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.pf-tech {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}

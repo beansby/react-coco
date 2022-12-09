@@ -3,12 +3,20 @@ import {Button} from 'reactstrap'
 import axios from "axios";
 import './MypageEdit.css';
 import {Link} from 'react-router-dom';
+import InputTag from "./InputTag";
+import InputTag2 from "./InputTag2";
 
 function MypageEdit() {
 
     const [nickname, setNickname] = useState('');
+    const [lang, setLang] = useState('');
+
     const changeNickname = (e) => {
         setNickname(e.target.value);
+    }
+
+    const inputTag = (e) => {
+        
     }
 
     return (
@@ -80,25 +88,52 @@ function MypageEdit() {
                                 </div>
 
                                 {/* 프로그래밍 언어 */}
-                                <div className="row">
+                                <div className="row pf-language">
                                     <div className="col-md-3">
-                                        <label className="labels" for='#language'> NICKNAME </label>
+                                        <label className="labels" for='#language'> PROGRAMMING LANGUAGE </label>
                                     </div>
 
                                     <div className="col-md-9">
-                                        <div className="react-tagsinput">
+                                        {/* <div className="react-tagsinput">
                                             <span>
-                                                <span className="react-tagsinput-tag bg-info"> </span>
-                                                <input className="react-tagsinput-input" type='text' placeholder='add...'/>
+                                                <span className="react-tagsinput-tag bg-info"> 
+                                                
+                                                    <a className="select-lang" value={lang}> </a>
+                                                </span>
+                                                <input className="react-tagsinput-input" type='text' placeholder='add...' onPointerEnter={inputTag}/>
                                             </span>
-                                        </div>
+                                        </div> */}
+                                        <InputTag/>
                                     </div>
                                 </div>
 
+                                {/* 기술스택 */}
+                                <div className="row pf-tech">
+                                    <div className="col-md-3">
+                                        <label className="labels" for='#techstack'> TECH STACK </label>
+                                    </div>
+
+                                    <div className="col-md-9">
+                                        <InputTag2/>
+                                    </div>
+                                </div>
+
+                                {/* 회원탈퇴 */}
+                                <div className="row">
+                                    <div className="col-md-3">
+                                        <label className="labels" for='#withdrawal'> MEMBER WITHDRAWAL </label>
+                                    </div>
+
+                                    <div className="col-md-9">
+                                        <a href="#"> 회원 탈퇴하기 </a>
+                                    </div>
+                                </div>
 
                                 {/* 저장 */}
                                 <div className="row">
-
+                                    <div>
+                                        <Button> 저장 </Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
