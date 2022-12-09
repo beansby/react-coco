@@ -1,34 +1,42 @@
+/* header {
+  margin-top: 0;
+  padding-top: 0;
+} */
 
+/* 헤더 바 전체 */
 #nav-header {
     align-items: center;
     margin: 0 auto;
     
   }
 
-  .nav-items {
-    list-style: none;
-    margin: 0 auto;
-    /* background-color: black; */
-  }
+/* 헤더 아이템 */
+.nav-items {
+  list-style: none;
+  margin: 0 auto;
+  /* background-color: black; */
+  line-height: 60px;
+}
+
+#logo {
+  display: inline-block;
+  text-align: center;
+  min-width: 100px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  display: inline-block;
+  width: 130px;
+  height: 80px; 
+  /* padding: 0px; */
+  text-align: center;
+  min-width: 100px;
+  margin: 0px;
   
-  .nav-item {
-    display: inline-block;
-    width: 100px;
-    height: 80px;
-    padding: 0 10px;
-    text-align: center;
-    min-width: 80px;
-    margin: 0 10px;
-    line-height: 80px;
-  }
-  
-  .nav-item > a {
-    font-size: medium;
-    text-decoration: none;
-    color: rgb(80, 69, 69);
-  }
-  
-  .nav-pageitems {
-    display: inline;
-    padding-left: 30%;
-  }
+}
+
+.nav-pageitems {
+  display: inline;
+  padding-left: 30%;
+}

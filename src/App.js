@@ -9,6 +9,7 @@ import EditorForm from './component/EditorForm';
 import CocoMain from './component/CocoMain';
 import Mypage from './component/Mypage';
 import QuestionForm from './component/QuestionForm';
+import QuestionSearch from './component/QuestionSearch';
 
 
 import Signup from './component/Signup';
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
         <Route exact path='/' element={<CocoMain/>}/>
+        <Route exact path='/search' element={<QuestionSearch/>}/>
         <Route exact path='/cocoform' element={<CocoForm/>}/>
         <Route exact path='/question' element={<QuestionForm/>}/>
         <Route exact path='/test' element={<EditorForm/>}/>

@@ -1,0 +1,56 @@
+.coco-profile {
+    margin: 0 auto;
+    text-align: center;
+    /* background-color: blue; */
+    padding: 50px;
+    width: 70%;
+    
+
+}
+
+/* 프로필 사진 */
+.pf-img {
+    display: inline;
+    width: 30%;
+}
+
+.pf-img>img {
+    width: 150px;
+}
+
+/* 프로필 내용 */
+.pf-text {
+    display: inline;
+    font-size: xx-large;
+    padding-left: 40px;
+    padding-bottom: 0;
+    width: 70%;
+    /* background-color: black; */
+    
+}
+
+.pf-text>span {
+    color: #484848;
+}
+
+/* 내 코인 현황 */
+.pf-coin {
+    display: inline;
+    padding-left: 7rem;
+}
+
+.pf-coin>span {
+    color:#484848;
+    font-size: medium;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.pf-rating {
+    font-size: small;
+}
+
+table {
+    margin: 0 auto;
+    padding-top: 100px;
+}

@@ -3,10 +3,19 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function EditorForm() {
+
+    const submit = (e) => {
+        // e.preventDefalut();
+
+        console.log('데이터 가져오기');
+        console.log(CKEditor.editor.getData());
+        
+    }
+
  
     return (
         <div>
-            
+            <br/> <br/><br/><br/><br/><br/><br/>
             <CKEditor
                 editor={ ClassicEditor }
                 data="<p>질문 내용을 입력하세요.</p>"
@@ -16,6 +25,7 @@ function EditorForm() {
                 } }
                 onChange={ ( event, editor ) => {
                     const data = editor.getData();
+                    
                     console.log( { event, editor, data } );
                 } }
                 onBlur={ ( event, editor ) => {
@@ -24,7 +34,11 @@ function EditorForm() {
                 onFocus={ ( event, editor ) => {
                     console.log( 'Focus.', editor );
                 } }
-            />
+            >
+                
+            </CKEditor>
+            <button onClick={submit}> submit </button>
+
         </div>
     );
     
