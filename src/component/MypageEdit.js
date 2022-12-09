@@ -12,7 +12,7 @@ function MypageEdit() {
     }
 
     return (
-        <main>
+        <main className="mypage-main">
             <div className="row">
                 {/* 좌측 메뉴 */}
                 <div className="col-md-3 tab-title">
