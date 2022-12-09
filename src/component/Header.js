@@ -33,7 +33,7 @@ function Header() {
     return(
         <header style={style} id='nav-header' >
             <div className="nav-items">
-                <Link to={'/'} id="logo" className='nav-item'>  
+                <Link to={'/'} id="logo" id='logo'>  
                     <img src='btn-home.png' alt=''/>
                 </Link>
 
