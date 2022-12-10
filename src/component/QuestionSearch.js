@@ -61,7 +61,7 @@ function QuestionSearch() {
                     <div className="folder-item">
 
                         {boards.map((questions)=>(
-                            <Link to={'/question/'+questions.question_id} key={questions.question_id}>
+                            <Link to={'/question/'+questions.id} key={questions.id}>
                                 {/* 매칭 상태 변경값 설정 필요 */}
                                 {/* <div className="coco-item-lang">
                                     {`키워드 : ${question.lang}`}
