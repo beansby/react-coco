@@ -1,14 +1,15 @@
-header {
+.title-coco {
     font-size: xx-large;
     font-weight: bold;
     text-align: center;
 }
 
-span {
+.title-accent-coco {
     color: #189FEC;
+    font-size: xx-large;
 }
 
-.form-container {
+.form-container-coco {
     background-color: rgb(255, 255, 255);
     border: 1px solid #189FEC;
     width: 80%;
@@ -23,7 +24,7 @@ span {
     font-size: small;
 }
 
-.coco-btn {
+.btn-form-coco {
     text-align: center;
     margin: 0 auto;
 }

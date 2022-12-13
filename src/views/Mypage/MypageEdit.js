@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {Button} from 'reactstrap'
 import axios from "axios";
-import './MypageEdit.css';
+import '../../css/MypageEdit.css';
 import {Link} from 'react-router-dom';
-import InputTag from "./InputTag";
-import InputTag2 from "./InputTag2";
+import InputTag from "../../components/InputTag";
+import InputTag2 from "../../components/InputTag2";
 
 function MypageEdit() {
 
@@ -28,25 +28,25 @@ function MypageEdit() {
                         <section>
                             <ul role='tablist'> 
                                 <li className="nav-item mypage-nav"> 
-                                    <a href="#" className="nav-link">
+                                    <a href="src/components#" className="nav-link">
                                         My Questions
                                     </a>
                                 </li>
 
                                 <li className="nav-item mypage-nav"> 
-                                    <a href="#" className="nav-link">
+                                    <a href="src/components#" className="nav-link">
                                         My Answers
                                     </a>
                                 </li>
 
                                 <li className="nav-item mypage-nav"> 
-                                    <a href="#" className="nav-link">
+                                    <a href="src/components#" className="nav-link">
                                         My Coin
                                     </a>
                                 </li>
 
                                 <li className="active nav-item mypage-nav"> 
-                                    <a href="#" className="nav-link">
+                                    <a href="src/components#" className="nav-link">
                                         My Profile
                                     </a>
                                 </li>
@@ -125,7 +125,7 @@ function MypageEdit() {
                                     </div>
 
                                     <div className="col-md-9">
-                                        <a href="#"> 회원 탈퇴하기 </a>
+                                        <a href="src/components#"> 회원 탈퇴하기 </a>
                                     </div>
                                 </div>
 

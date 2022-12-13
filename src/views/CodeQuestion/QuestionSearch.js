@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import './CocoMain.css';
+import '../../css/CocoMain.css';
 import {Link} from 'react-router-dom';
 import {UncontrolledDropdown, Dropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 
@@ -22,27 +22,27 @@ function QuestionSearch() {
 
     return(
         <main>
-            <header>
+            <header className='title-coco'>
                 SEARCH.
-                <span id="acc-title"> CODE </span>
+                <span className='title-accent-coco'> CODE </span>
             </header>
 
             
-            <div className="container-folder">
+            <div className="folder-container-coco">
 
                 <div className="folder-bar"> 
-                    <div className="folder-name"> 
+                    <div className="folder-name-coco">
                             Question
                     </div>
 
-                    <div className="question-btn">
+                    <div className="btn-question-add">
                         <Link to={'/question'}> 
-                            <img src="icon-plusq.png" alt="" id="add-question"/>
+                            <img src="icon-plusq.png" alt="" id="question-add"/>
                         </Link>
                     </div>
 
                     {/* 정렬 드롭다운 */}
-                    <div className="folder-sortby">
+                    <div className="btn-sort">
                         <UncontrolledDropdown>
                             <DropdownToggle caret>
                                 Sort by
@@ -57,45 +57,29 @@ function QuestionSearch() {
                 </div>
                 
                
-                <div className="folder-content">
-                    <div className="folder-item">
-
-                        {boards.map((questions)=>(
+                <div className="folder-content-question">
+                    {boards.map((questions)=>(
+                        <div className="folder-item-question">
                             <Link to={'/question/'+questions.question_id} key={questions.question_id}>
                                 {/* 매칭 상태 변경값 설정 필요 */}
                                 {/* <div className="coco-item-lang">
                                     {`키워드 : ${question.lang}`}
                                 </div> */}
 
-                                <div className="coco-item-text">                      
-                                    <span className="coco-title">
+                                <div className="item-text-question">
+                                    <span className="item-title-question">
                                         {`제목 : ${questions.title}`}
                                     </span>
 
-                                    <p className="coco-content">
+                                    <p className="item-content-question">
                                         {`질문 : ${questions.content}`}
                                     </p>
+
+                                    <span> 답변 개수 </span>
                                 </div>
                             </Link>
-                        ))}
-                        {/* <Link to={'/question/{id}'} >
-                            
-                            <div className="coco-item-lang">
-                                
-                            </div>
-
-                            <div className="coco-item-text">                      
-                                <span className="coco-title">
-                                    이것은 제목입니다. 
-                                </span>
-
-                                <p className="coco-content">
-                                    질문 내용입니다. 아무거나 적어주세요. 데이터를 어떻게 받아올지 생각 좀 해봐.
-                                    아무말이나 더 써봐바 이것도 높이 설정 해야 함
-                                </p>
-                            </div>
-                        </Link> */}
-                    </div>
+                        </div>
+                    ))}
                 
                  
 

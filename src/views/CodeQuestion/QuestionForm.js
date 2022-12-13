@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import './CocoForm.css';
+import '../../css/CocoForm.css';
 import { useState } from "react";
 import {Form, FormGroup, Input, Label, Button, Col, Fade} from 'reactstrap';
 import Swal from 'sweetalert2';
@@ -87,11 +87,11 @@ function QuestionForm() {
         <main>
             
             <section> 
-                <header id="coco-header">
+                <header className='title-coco'>
                     ASK TO.
-                    <span> COCO </span>
+                    <span className='title-accent-coco'> COCO </span>
                 </header>
-                <Form className="form-container">
+                <Form className="form-container-coco">
                     
                     {/* 기술 스택 카테고리 */}
                     {/* 제목, 코인 액수 */}
@@ -210,7 +210,7 @@ function QuestionForm() {
                 </Form>
                 
                 <br/>
-                <div className="coco-btn">
+                <div className="btn-form-coco">
                     <Button onClick={(e)=>{saveAlert('저장', 'center')}} > 등록 </Button>
                     &nbsp; &nbsp; 
                     <Button onClick={(e)=>{cancelAlert('취소', 'center')}} > 취소 </Button>
