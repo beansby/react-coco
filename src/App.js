@@ -9,9 +9,8 @@ import CocoMain from './views/CocoQuestion/CocoMain';
 import Mypage from './views/Mypage/Mypage';
 import QuestionForm from './views/CodeQuestion/QuestionForm';
 import QuestionSearch from './views/CodeQuestion/QuestionSearch';
-import Signup from './component/Signup';
-import Login from './component/Login';
-
+import Signup from './components/Signup';
+import Login from './components/Login';
 
 function App() {
   const token = useSelector((state) => state.Auth.token);
@@ -28,7 +27,7 @@ function App() {
         <Route exact path='/test' element={<EditorForm/>}/>
         <Route exact path='/mypage' element={<Mypage/>}/>
         <Route exact path='/login' element={<Login />} />
-        <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/signup' element={<Signup/>} />
       </Routes>
 
       <Footer/>
