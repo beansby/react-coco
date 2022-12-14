@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import '../../css/CocoMain.css';
+import '../../css/CocoMain.scss';
 import {Link} from 'react-router-dom';
 
 function CocoMain() {

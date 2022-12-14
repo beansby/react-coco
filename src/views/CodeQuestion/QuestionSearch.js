@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import '../../css/CocoMain.css';
+import '../../css/CocoMain.scss';
 import {Link} from 'react-router-dom';
 import {UncontrolledDropdown, Dropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 
@@ -79,14 +79,14 @@ function QuestionSearch() {
                                 </div> */}
 
                                     <div className="item-text-question">
-                                    <span className="item-title-question">
-                                        {`${questions.title}`}
-                                    </span>
+                                        <span className="item-title-question">
+                                            {`${questions.title}`}
+                                        </span>
 
-                                        <p className="item-content-question">
+                                        <div className="item-content-question">
                                             {modifyText(questions.content)}
                                             {/*{ReactHtmlParser(questions.content)}*/}
-                                        </p>
+                                        </div>
 
                                         <span> 답변 개수 </span>
                                     </div>
