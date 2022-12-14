@@ -27,7 +27,10 @@ const Login = () => {
                 email,
                 password,
             });
-            dispatch(setToken(data.token));
+            // dispatch(setToken(data.token));
+            dispatch({type:"TOKEN", data:data.token});
+            dispatch({type:"MEMBERID", data:data.memberId});
+            console.log(data.token);
             toast.success(<h3>로그인 성공</h3>, {
                 position: "top-center",
                 autoClose: 2000,
