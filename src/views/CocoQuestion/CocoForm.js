@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import './CocoForm.css';
+import '../../css/CocoForm.css';
 import { useState } from "react";
 import {Form, FormGroup, Input, Label, Button, Col, Fade} from 'reactstrap';
 import Swal from 'sweetalert2';
@@ -8,20 +8,21 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
-function QuestionForm() {
-    const [qTitle, setQTitle] = useState('');
-    const [qContent, setQContent] = useState('');
+function CocoForm() {
+    const [cocoTitle, setCocoTitle] = useState('');
+    const [cocoContent, setCocoContent] = useState('');
+    const [cocoPrice, setCocoPrice] = useState(0);
 
     // 내용 입력 
     const changeTitle = (e) => {
-        setQTitle(e.target.value);
+        setCocoTitle(e.target.value);
     }
 
-    // const changePrice = (e) => {
-    //     setQPrice(e.target.value);
-    // }
+    const changePrice = (e) => {
+        setCocoPrice(e.target.value);
+    }
 
-    const qUrl = {params:{title:qTitle, content:qContent}}
+    const qUrl = {params:{title:cocoTitle, content:cocoContent, price:cocoPrice}}
     const encodedQUrl = encodeURIComponent(qUrl);
 
     // 질문 등록 : DB 데이터 저장 
@@ -30,17 +31,18 @@ function QuestionForm() {
 
         axios.post('http://localhost:8080/api/questions', null, qUrl)
         .then((response)=>{
-            setQContent(qContent);
-            setQTitle(this.qTitle);
+            setCocoContent(cocoContent);
+            setCocoTitle(this.cocoTitle);
+            setCocoPrice(this.cocoPrice);
             console.log(response.data);
-            Swal.fire('질문이 등록되었습니다', '', 'success')
-            console.log('질문 등록 성공');
-           
-            // 질문 등록 후 질문 리스트 or 질문 상세 페이지 이동
+            Swal.fire('매칭이 등록되었습니다', '', 'success')
+            console.log('매칭등록 성공');
+            console.log(response.data);
+            // 질문 등록 후 personal coco session 이동
             document.location.href ='/';
         }).catch((err)=>{
             console.log(err);
-            Swal.fire('질문 등록에 실패했습니다', '', 'error')
+            Swal.fire('등록에 실패했습니다', '', 'error')
             
         })
     }
@@ -87,18 +89,29 @@ function QuestionForm() {
         <main>
             
             <section> 
-                <header id="coco-header">
-                    ASK TO.
-                    <span> COCO </span>
+                <header className='title-coco'>
+                    QUESTION FOR.
+                    <span className='title-accent-coco'> COCO </span>
                 </header>
-                <Form className="form-container">
+                <Form className="form-container-coco">
                     
                     {/* 기술 스택 카테고리 */}
                     {/* 제목, 코인 액수 */}
                     <FormGroup row>
-                        {/* 제목 */}
+                        {/* <Label for='coco-title' sm={2}> 
+                            <img src="" alt="타이틀 아이콘"/>
+                            제목
+                        </Label> */}
                         <Col sm={8}>
-                            <Input type='text' name='qTitle' id='qTitle' value={qTitle} placeholder="제목을 입력하세요." onChange={changeTitle}/>
+                            <Input type='text' name='cocoTitle' id='cocoTitle' value={cocoTitle} placeholder="제목을 입력하세요." onChange={changeTitle}/>
+                        </Col>
+
+                        <Label for='cocoPrice' sm={1}>
+                            <img src="icon-coin.png" alt="코인 아이콘"/>
+                            &nbsp; Rewards
+                        </Label>
+                        <Col sm={3}>      
+                            <Input type="number" name='cocoPrice' id='cocoPrice' value={cocoPrice} placeholder='지급할 코인' onChange={changePrice}/>
                         </Col>
                     </FormGroup>
 
@@ -189,16 +202,17 @@ function QuestionForm() {
 
                     <CKEditor
                         editor={ ClassicEditor }
-                        data="<p>질문 내용을 입력하세요.</p>"
+                        data=""
+                        config={{placeholder:"질문 내용을 입력하세요."}}
                         onReady={ editor => {
                             // You can store the "editor" and use when it is needed.
                             console.log( 'Editor is ready to use!', editor );
                         } }
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
-                            setQContent(data);
+                            setCocoContent(data);
                             console.log( { data } );
-                            console.log(qContent);
+                            console.log(cocoContent);
                         } }
                         onBlur={ ( event, editor ) => {
                             console.log( 'Blur.', editor );
@@ -210,7 +224,7 @@ function QuestionForm() {
                 </Form>
                 
                 <br/>
-                <div className="coco-btn">
+                <div className="btn-form-coco">
                     <Button onClick={(e)=>{saveAlert('저장', 'center')}} > 등록 </Button>
                     &nbsp; &nbsp; 
                     <Button onClick={(e)=>{cancelAlert('취소', 'center')}} > 취소 </Button>
@@ -224,4 +238,4 @@ function QuestionForm() {
 
 }
 
-export default QuestionForm;
+export default CocoForm;

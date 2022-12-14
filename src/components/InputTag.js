@@ -1,5 +1,5 @@
 import { Component } from "react";
-import './InputTag.css';
+import '../css/InputTag.css';
 
 class InputTag extends Component {
     constructor() {
