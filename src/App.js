@@ -1,17 +1,14 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Routes, Route } from 'react-router-dom';
-import {useSelector} from "react-redux";
-import Header from './component/Header';
-import CocoForm from './component/CocoForm';
-import Footer from './component/Footer';
-import EditorForm from './component/EditorForm';
-import CocoMain from './component/CocoMain';
-import Mypage from './component/Mypage';
-import QuestionForm from './component/QuestionForm';
-import QuestionSearch from './component/QuestionSearch';
-
-
+import {Routes, Route} from 'react-router-dom';
+import Header from './components/Headers/Header';
+import CocoForm from './views/CocoQuestion/CocoForm';
+import Footer from './components/Footers/Footer';
+import EditorForm from './components/EditorForm';
+import CocoMain from './views/CocoQuestion/CocoMain';
+import Mypage from './views/Mypage/Mypage';
+import QuestionForm from './views/CodeQuestion/QuestionForm';
+import QuestionSearch from './views/CodeQuestion/QuestionSearch';
 import Signup from './component/Signup';
 import Login from './component/Login';
 

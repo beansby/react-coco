@@ -1,22 +1,22 @@
-header {
+.title-coco {
     font-size: xx-large;
     font-weight: bold;
     text-align: center;
 }
 
-#acc-title {
+.title-accent-coco {
     color: #189FEC;
 }
 
 /* 전체 박스 */
-.container-folder {
+.folder-container-coco {
     margin: 0 auto;
     padding-top: 50px;
     
 }
 
 /* 타이틀 : 폴더명 */
-.folder-name{
+.folder-name-coco {
     display: inline;
     background-color: #E7E7E7;
     color: #189FEC;
@@ -27,8 +27,21 @@ header {
     border-top-right-radius: 10px;
 }
 
-/* 폴더 내용 */
-.folder-content{
+/* 코코 폴더 내용 */
+.folder-content-coco{
+    width: 80%;
+    background-color: #E7E7E7;
+    margin: 0 auto;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 1rem;
+    height: 500px;
+    overflow:auto;
+}
+
+/* 질문 폴더 내용 */
+.folder-content-question{
     width: 80%;
     background-color: #E7E7E7;
     margin: 0 auto;
@@ -41,7 +54,19 @@ header {
 }
 
 /* 코코 세션 : 폴더 아이템 */
-.folder-item{
+.folder-item-coco{
+    background-color: #ffffff7b;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    margin: 0.5rem;
+}
+
+/* 질문 : 폴더 아이템 */
+.folder-item-question{
+    height: 150px;
     background-color: #ffffff7b;
     padding-left: 20px;
     padding-right: 20px;
@@ -52,48 +77,64 @@ header {
 }
 
 /* 썸네일 */
-.coco-item-img {
+.item-img-coco {
     display: inline-block;
     width: 20%;
     
 }
 
-/* 제목, 내용 */
-.coco-item-text {
+/* 코코 제목, 내용 */
+.item-text-coco {
     display: inline-block;
     width: 80%;
     padding-left:70px;
    
 }
 
-
-.coco-title {
+.item-title-coco {
     font-size: x-large;
     font-weight: bold;
 }
 
-.coco-content {
+.item-content-coco {
     color: #484848;
 }
 
-.coco-item-coin {
+.item-coin-coco {
     display: inline-block;
     color: #484848;
     font-weight: bold;
     padding-left: 30%;
 }
 
-.question-btn {
+/* 질문 제목, 내용 */
+.item-text-question {
+    display: inline-block;
+    width: 80%;
+    padding-left:70px;
+
+}
+
+.item-title-question {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.item-content-question {
+    color: #484848;
+}
+
+.btn-question-add {
     display: inline;
     padding-left: 15px;
 }
 
-.folder-sortby {
+.btn-sort {
     display: inline;
     /* float: right; */
     margin-right: 12%;
 }
 
-#add-question {
+#question-add {
     padding: 5px;
 }

@@ -1,0 +1,68 @@
+/*.mypage-main {*/
+/*    margin: 0 auto;*/
+/*    text-align: center;*/
+/*}*/
+
+.wrapper {
+    margin: 0 auto;
+    padding-top: 5%;
+    width: 100%;
+    height: 500px;
+    /*background: #00f2c3;*/
+}
+
+
+/*프로필 탭 전체*/
+.nav-tabs-info {
+    border-right: 3px solid #189FEC;
+}
+
+/*프로필 탭 아이템*/
+.nav-item-mypage {
+    display:inline-block;
+    text-align: center;
+    width: 100%;
+    color: #484848;
+
+}
+
+/*프로필 탭 컨텐츠*/
+.mypage-tab-content {
+    /*width: 100%;*/
+    background: lightgray;
+    height: 500px;
+}
+
+
+
+
+.active {
+    font-weight: bold;
+    color: #189FEC;
+}
+
+.labels {
+    font-weight: normal;
+    padding-left: 20px;
+}
+
+.row-mypage-profile {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.table-questions {
+    text-align: center;
+    color: #189FEC;
+
+}
+
+.table-questions>tbody{
+    color: #484848;
+    font-weight: normal;
+}
+
+#table-question-title {
+    width: 100%;
+    text-align: left;
+}

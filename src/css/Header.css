@@ -1,11 +1,12 @@
-/* header {
-  margin-top: 0;
-  padding-top: 0;
-} */
+/**{*/
+/*  margin-top: 0;*/
+/*  padding-top: 0;*/
+/*}*/
 
 /* 헤더 바 전체 */
 #nav-header {
-    align-items: center;
+    /*align-items: center;*/
+    text-align: center;
     margin: 0 auto;
     
   }
