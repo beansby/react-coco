@@ -5,7 +5,7 @@ import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import "../../css/Signup.scss";
+import "../../css/Login.scss";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -71,15 +71,22 @@ const Signup = () => {
     >
 
       {({ values, handleSubmit, handleChange, errors }) => (
-        <div className="signup-wrapper">
+        <main className="signup-wrapper">
           <ToastContainer />
+            <header className='title-coco'>
+              START WITH.
+              <span className="title-accent-coco"> COCO </span>
+            </header>
+
           <form onSubmit={handleSubmit} autoComplete="off">
-            <br /><br /><br /><br /><br /><br /><br /><br />
-            <h2>START WITH. <span className="signUpCoco">COCO</span> </h2>
+
             <div className="input-forms">
+              {/*이메일*/}
               <div className="input-forms-item">
-                <div className="input-label"></div>
-                <img src="Vector.png" alt='' /> &nbsp;
+                <label className='input-label'>
+                  <img src="Vector.png" alt='' />
+                  &nbsp; EMAIL
+                </label>
                 <TextField
                   value={values.email}
                   name="email"
@@ -90,9 +97,14 @@ const Signup = () => {
                   {errors.email}
                 </div>
               </div>
+
+              {/*닉네임*/}
               <div className="input-forms-item">
-                <div className="input-label"></div>
-                <img src="Vector.png" alt='' /> &nbsp;
+                <label className='input-label'>
+                  <img src="Vector.png" alt='' />
+                  &nbsp; NICKNAME
+                </label>
+                 &nbsp;
                 <TextField
                   value={values.nickname}
                   name="nickname"
@@ -103,9 +115,13 @@ const Signup = () => {
                   {errors.nickname}
                 </div>
               </div>
+
+              {/*패스워드*/}
               <div className="input-forms-item">
-                <div className="input-label"></div>
-                <img src="password.png" alt='' /> &nbsp;
+                <label className='input-label'>
+                  <img src="password.png" alt='' />
+                  &nbsp; PASSWORD
+                </label>
                 <TextField
                   value={values.password}
                   name="password"
@@ -117,9 +133,13 @@ const Signup = () => {
                   {errors.password}
                 </div>
               </div>
+
+              {/*패스워드 체크*/}
               <div className="input-forms-item">
-                <div className="input-label"></div>
-                <img src="password.png" alt='' /> &nbsp;
+                <label className='input-label'>
+                  <img src="password.png" alt='' />
+                  <div> PASSWORD VALIDATE </div>
+                </label>
                 <TextField
                   value={values.password2}
                   name="password2"
@@ -141,7 +161,7 @@ const Signup = () => {
               </Button>
             </div>
           </form>
-        </div>
+        </main>
       )}
     </Formik>
   );

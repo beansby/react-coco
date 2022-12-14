@@ -53,16 +53,23 @@ const Login = () => {
             onSubmit={submit}
         >
             {({ values, handleSubmit, handleChange }) => (
-                <div className="signup-wrapper">
+                <main className="signup-wrapper">
                     <ToastContainer />
 
+                    <header className='title-coco'>
+                        START WITH.
+                        <span className="title-accent-coco"> COCO </span>
+                    </header>
+
                     <form onSubmit={handleSubmit} autoComplete="off">
-                        <br /><br /><br /><br /><br /><br /><br /><br />
-                        <h2>START WITH. <span className="signUpCoco">COCO</span> </h2>
                         <div className="input-forms">
+                            {/*이메일*/}
                             <div className="input-forms-item">
-                                <div className="input-label"></div>
-                                <img src="Vector.png" alt='' /> &nbsp;
+
+                                <label className='input-label'>
+                                    <img src="Vector.png" alt='' />
+                                    &nbsp; EMAIL
+                                </label>
                                 <TextField 
                                     value={values.email}
                                     name="email"
@@ -74,9 +81,15 @@ const Login = () => {
                                     <ErrorMessage name="email" />
                                 </div>
                             </div>
+
+                            {/*패스워드*/}
                             <div className="input-forms-item">
                                 <div className="input-label"></div>
-                                <img src="password.png" alt='' /> &nbsp;
+
+                                <label className='input-label'>
+                                    <img src="password.png" alt='' />
+                                    &nbsp; PASSWORD
+                                </label>
                                 <TextField 
                                     value={values.password}
                                     name="password"
@@ -92,14 +105,15 @@ const Login = () => {
                             <Button
                                 color="primary"
                                 variant="contained"
-                                fullWidth
                                 type="submit"
                             >
                                 로그인
                             </Button>
+                            <a href='/signup' id='link-signup'> 회원이 아니십니까? </a>
                         </div>
                     </form>
-                </div>
+
+                </main>
             )}
         </Formik>
     );
