@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import '../../css/Mypage.css';
 import {Link} from 'react-router-dom';
-import MypageEdit from "./MypageEdit";
+import MyPageEdit from "./MyPageEdit";
 import {Row, Col} from "reactstrap";
 
-function Mypage() {
+function MyPage() {
 
     return (
         <main>
@@ -30,29 +30,29 @@ function Mypage() {
                             </div>
                         </Col>
 
-                    {/*<div className="pf-text">*/}
-                    {/*    <span> Nickname </span>*/}
-                    {/*    */}
-                    {/*    <div className="pf-coin">*/}
-                    {/*        <img src="icon-coin.png" alt=""/>*/}
-                    {/*        <span> 2000 </span>*/}
-                    {/*    </div>*/}
+                        {/*<div className="pf-text">*/}
+                        {/*    <span> Nickname </span>*/}
+                        {/*    */}
+                        {/*    <div className="pf-coin">*/}
+                        {/*        <img src="icon-coin.png" alt=""/>*/}
+                        {/*        <span> 2000 </span>*/}
+                        {/*    </div>*/}
 
-                    {/*    <div className="pf-rating">*/}
-                    {/*        */}
-                    {/*        <span> <strong> 100% </strong> </span>                            */}
-                    {/*    </div>*/}
+                        {/*    <div className="pf-rating">*/}
+                        {/*        */}
+                        {/*        <span> <strong> 100% </strong> </span>                            */}
+                        {/*    </div>*/}
 
-                    {/*    */}
-                    {/*</div>*/}
+                        {/*    */}
+                        {/*</div>*/}
 
                     </Row>
                 </div>
             </section>
-            <MypageEdit/>
-            
+            <MyPageEdit/>
+
         </main>
     )
 }
 
-export default Mypage;
+export default MyPage;

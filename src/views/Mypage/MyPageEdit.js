@@ -30,7 +30,7 @@ import {faUserPen, faLock, faDisplay, faListCheck, faUserSlash} from '@fortaweso
 import TagsInput from "../../components/TagsInput";
 
 
-function MypageEdit() {
+function MyPageEdit() {
 
     const [selectedTab, setSelectedTab] = useState(1);
     const [langTags, setLangTags] = useState([]);
@@ -259,4 +259,4 @@ function MypageEdit() {
     )
 }
 
-export default MypageEdit;
+export default MyPageEdit;

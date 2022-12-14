@@ -6,9 +6,9 @@ import * as Yup from "yup";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setToken } from "../redux/reducers/AuthReducer.js";
+import { setToken } from "../../redux/reducers/AuthReducer.js";
 // SignUp 컴포넌트 scss 이용
-import "./Login.scss";
+import "../../css/Login.scss";
 
 const Login = () => {
     const navigate = useNavigate();
