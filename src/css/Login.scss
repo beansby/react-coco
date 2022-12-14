@@ -24,18 +24,34 @@
     }
   }
   .signup-wrapper {
-    font-family: 'Noto Sans KR', sans-serif;
+    //font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
+    //background-color: black;
   
     .input-forms {
-      background-color: #ffffff;
+      //background-color: #ffffff;
       border-radius: 10px;
       display: flex;
       flex-direction: column;
+
+      .input-forms-item{
+        margin: 15px;
+
+        .input-label{
+          color: #189FEC;
+          font-size: large;
+          font-weight: bold;
+          padding-right: 20px;
+          width: 200px;
         }
+
       }
+
+    }
+  }
+
   .signUpCoco {
     color: #169fec;
   }
@@ -45,4 +61,7 @@
     margin-left: 10px;
   }
 
-  
+  #link-signup {
+    margin: 0 auto;
+    padding: 30px;
+  }
