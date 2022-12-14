@@ -1,12 +1,12 @@
-* {
-    font-family: sans-serif;
-    font-size: 17px;
-  }
-  
-  body {
-    background: #f2f2f2;
-    padding: 20px;
-  }
+/** {*/
+/*    font-family: sans-serif;*/
+/*    font-size: 17px;*/
+/*  }*/
+/*  */
+/*  body {*/
+/*    background: #f2f2f2;*/
+/*    padding: 20px;*/
+/*  }*/
   
   /* .input-tag {
     background: white;
@@ -70,3 +70,174 @@
     flex-grow: 1;
     padding: 0;
   }
+
+
+
+.react-tagsinput {
+  display: inline-block;
+  padding: 4px 6px;
+  max-width: 100%;
+  line-height: 22px;
+}
+
+.react-tagsinput-tag {
+  cursor: pointer;
+  margin: 5px 3px 5px 0;
+  position: relative;
+  padding: 3px 8px;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  display: inline-block;
+  line-height: 1.5em;
+  padding-left: 0.8em;
+}
+.react-tagsinput-tag + .react-tagsinput-tag {
+  margin-left: 3px;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.react-tagsinput-tag a::before {
+  font-family: "Nucleo";
+  content: "\ea48";
+  padding: 0px 2px;
+}
+
+.react-tagsinput-tag a {
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  right: 0px;
+  opacity: 0;
+  background-color: transparent;
+}
+
+.react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  outline: none;
+  padding-left: 5px;
+  width: 80px;
+}
+
+.react-tagsinput .react-tagsinput-tag {
+  -webkit-transition: all 300ms ease 0s;
+  -moz-transition: all 300ms ease 0s;
+  -o-transition: all 300ms ease 0s;
+  -ms-transition: all 300ms ease 0s;
+  transition: all 300ms ease 0s;
+  color: #ffffff;
+  background-color: #344675;
+}
+.react-tagsinput .react-tagsinput-tag:hover {
+  padding-right: 22px;
+}
+.react-tagsinput .react-tagsinput-tag:hover a {
+  opacity: 1;
+  padding-right: 4px;
+}
+a.react-tagsinput .react-tagsinput-tag:hover,
+a.react-tagsinput .react-tagsinput-tag:focus {
+  color: #ffffff;
+  background-color: #243152;
+}
+a.react-tagsinput .react-tagsinput-tag:focus,
+a.react-tagsinput .react-tagsinput-tag.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(52, 70, 117, 0.5);
+}
+.react-tagsinput .react-tagsinput-tag.bg-primary {
+  color: #ffffff;
+  background-color: #e14eca;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-primary:hover,
+a.react-tagsinput .react-tagsinput-tag.bg-primary:focus {
+  color: #ffffff;
+  background-color: #d725bb;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-primary:focus,
+a.react-tagsinput .react-tagsinput-tag.bg-primary.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(225, 78, 202, 0.5);
+}
+.react-tagsinput .react-tagsinput-tag.bg-info {
+  color: #ffffff;
+  background-color: #1d8cf8;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-info:hover,
+a.react-tagsinput .react-tagsinput-tag.bg-info:focus {
+  color: #ffffff;
+  background-color: #0772db;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-info:focus,
+a.react-tagsinput .react-tagsinput-tag.bg-info.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(29, 140, 248, 0.5);
+}
+.react-tagsinput .react-tagsinput-tag.bg-success {
+  color: #ffffff;
+  background-color: #00f2c3;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-success:hover,
+a.react-tagsinput .react-tagsinput-tag.bg-success:focus {
+  color: #ffffff;
+  background-color: #00bf9a;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-success:focus,
+a.react-tagsinput .react-tagsinput-tag.bg-success.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(0, 242, 195, 0.5);
+}
+.react-tagsinput .react-tagsinput-tag.bg-warning {
+  color: #ffffff;
+  background-color: #ff8d72;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-warning:hover,
+a.react-tagsinput .react-tagsinput-tag.bg-warning:focus {
+  color: #ffffff;
+  background-color: #ff643f;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-warning:focus,
+a.react-tagsinput .react-tagsinput-tag.bg-warning.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(255, 141, 114, 0.5);
+}
+.react-tagsinput .react-tagsinput-tag.bg-danger {
+  color: #ffffff;
+  background-color: #fd5d93;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-danger:hover,
+a.react-tagsinput .react-tagsinput-tag.bg-danger:focus {
+  color: #ffffff;
+  background-color: #fc2b71;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-danger:focus,
+a.react-tagsinput .react-tagsinput-tag.bg-danger.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(253, 93, 147, 0.5);
+}
+.react-tagsinput .react-tagsinput-tag.bg-neutral {
+  color: #212529;
+  background-color: #ffffff;
+  color: inherit;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-neutral:hover,
+a.react-tagsinput .react-tagsinput-tag.bg-neutral:focus {
+  color: #212529;
+  background-color: #e6e6e6;
+}
+a.react-tagsinput .react-tagsinput-tag.bg-neutral:focus,
+a.react-tagsinput .react-tagsinput-tag.bg-neutral.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+}

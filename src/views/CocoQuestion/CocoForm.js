@@ -202,7 +202,8 @@ function CocoForm() {
 
                     <CKEditor
                         editor={ ClassicEditor }
-                        data="<p>질문 내용을 입력하세요.</p>"
+                        data=""
+                        config={{placeholder:"질문 내용을 입력하세요."}}
                         onReady={ editor => {
                             // You can store the "editor" and use when it is needed.
                             console.log( 'Editor is ready to use!', editor );

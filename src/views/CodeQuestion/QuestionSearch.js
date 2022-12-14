@@ -4,9 +4,20 @@ import '../../css/CocoMain.css';
 import {Link} from 'react-router-dom';
 import {UncontrolledDropdown, Dropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 
+import ReactHtmlParser from 'react-html-parser';
+
+
+
 function QuestionSearch() {
 
     const [boards, setBoards] = useState([]);
+
+    const modifyText = (string) => {
+        let newText = string.replace(/(<([^>]+)>)/ig, "");
+        newText = newText.replace(/&nbsp;/gi," ");
+        newText = newText.replace(/<br\/>/ig, "\n");
+        return newText;
+    }
 
     // DB 가져오기
     useEffect(()=>{
@@ -58,28 +69,31 @@ function QuestionSearch() {
                 
                
                 <div className="folder-content-question">
-                    {boards.map((questions)=>(
-                        <div className="folder-item-question">
-                            <Link to={'/question/'+questions.question_id} key={questions.question_id}>
-                                {/* 매칭 상태 변경값 설정 필요 */}
-                                {/* <div className="coco-item-lang">
+                    {boards.map((questions)=>{
+                        return(
+                            <div className="folder-item-question">
+                                <Link to={'/question/'+questions.question_id} key={questions.question_id}>
+                                    {/* 매칭 상태 변경값 설정 필요 */}
+                                    {/* <div className="coco-item-lang">
                                     {`키워드 : ${question.lang}`}
                                 </div> */}
 
-                                <div className="item-text-question">
+                                    <div className="item-text-question">
                                     <span className="item-title-question">
-                                        {`제목 : ${questions.title}`}
+                                        {`${questions.title}`}
                                     </span>
 
-                                    <p className="item-content-question">
-                                        {`질문 : ${questions.content}`}
-                                    </p>
+                                        <p className="item-content-question">
+                                            {modifyText(questions.content)}
+                                            {/*{ReactHtmlParser(questions.content)}*/}
+                                        </p>
 
-                                    <span> 답변 개수 </span>
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
+                                        <span> 답변 개수 </span>
+                                    </div>
+                                </Link>
+                            </div>
+                        )
+                    })}
                 
                  
 

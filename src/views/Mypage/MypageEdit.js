@@ -1,147 +1,261 @@
-import React, { useEffect, useState } from "react";
-import {Button} from 'reactstrap'
-import axios from "axios";
-import '../../css/MypageEdit.css';
+import React, {useEffect, useState, useRef} from "react";
+import {
+    Button,
+    Input,
+    CustomInput,
+    Col,
+    Row,
+    Container,
+    TabContent,
+    TabPane,
+    Progress,
+    Form,
+    FormGroup,
+    Label,
+    NavItem,
+    Nav,
+    NavLink,
+    Table
+} from 'reactstrap'
 import {Link} from 'react-router-dom';
-import InputTag from "../../components/InputTag";
-import InputTag2 from "../../components/InputTag2";
+
+import axios from "axios";
+import classnames from "classnames";
+import moment from 'moment';
+
+import '../../css/MypageEdit.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUserPen, faLock, faDisplay, faListCheck, faUserSlash} from '@fortawesome/free-solid-svg-icons';
+
+import TagsInput from "../../components/TagsInput";
+
 
 function MypageEdit() {
 
-    const [nickname, setNickname] = useState('');
-    const [lang, setLang] = useState('');
+    const [selectedTab, setSelectedTab] = useState(1);
+    const [langTags, setLangTags] = useState([]);
+    const [techTags, setTechTags] = useState([]);
 
-    const changeNickname = (e) => {
-        setNickname(e.target.value);
-    }
+    const [boards, setBoards] = useState([]);
 
-    const inputTag = (e) => {
-        
-    }
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/questions')
+            .then((response) => {
+                setBoards(response.data);
+                console.log('데이터 가져오기 성공');
+            }).catch((err) => {
+            console.log(err);
+        })
+
+        axios.get()
+    }, []);
 
     return (
-        <main className="mypage-main">
-            <div className="row">
-                {/* 좌측 메뉴 */}
-                <div className="col-md-3 tab-title">
-                    <div className="section">
-                        <section>
-                            <ul role='tablist'> 
-                                <li className="nav-item mypage-nav"> 
-                                    <a href="src/components#" className="nav-link">
-                                        My Questions
-                                    </a>
-                                </li>
+        <div className='wrapper'>
+            <div className='section'>
+                <Container>
+                    <Row>
+                        <Col md='2'>
+                            <div className='section'>
+                                {/*프로필 변경 탭*/}
+                                <Nav className='flex-column nav-tabs-info' role='tablist'>
+                                    <NavItem className='nav-item-mypage'>
+                                        <NavLink className={classnames({active:selectedTab === 1})}
+                                                 onClick={(e) => {
+                                                     e.preventDefault();
+                                                     setSelectedTab(1);
+                                                 }}
+                                                 href='#'>
+                                            My Questions
+                                        </NavLink>
+                                    </NavItem>
 
-                                <li className="nav-item mypage-nav"> 
-                                    <a href="src/components#" className="nav-link">
-                                        My Answers
-                                    </a>
-                                </li>
+                                    <NavItem className='nav-item-mypage'>
+                                        <NavLink className={classnames({active: selectedTab === 2})}
+                                                 onClick={(e) => {
+                                                     e.preventDefault();
+                                                     setSelectedTab(2);
+                                                 }}
+                                                 href='#'>
+                                            My Answers
+                                        </NavLink>
+                                    </NavItem>
 
-                                <li className="nav-item mypage-nav"> 
-                                    <a href="src/components#" className="nav-link">
-                                        My Coin
-                                    </a>
-                                </li>
+                                    <NavItem className='nav-item-mypage'>
+                                        <NavLink className={classnames({active: selectedTab === 3})}
+                                                 onClick={(e) => {
+                                                     e.preventDefault();
+                                                     setSelectedTab(3);
+                                                 }}
+                                                 href='#'>
+                                            My Coin
+                                        </NavLink>
+                                    </NavItem>
 
-                                <li className="active nav-item mypage-nav"> 
-                                    <a href="src/components#" className="nav-link">
-                                        My Profile
-                                    </a>
-                                </li>
-                            </ul>
-                        </section>
-                    </div>
-                </div>
-                
-                {/* 컨텐츠 */}
-                <div className="col-md-8">
-                    <div className="section">
-                        <div className="tab-content">
-                            <div>
-                                {/* 닉네임 */}
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <label className="labels" for='#nickname'> NICKNAME </label>
-                                    </div>
-
-                                    <div className="col-md-9">
-                                        <div className="form-group">
-                                            <input id="nickname" name="nickname" type='text' value={nickname} onChange={changeNickname} className='form-control'/>
-                                        </div>
-                                        <Button> 중복체크 </Button>
-                                    </div>
-                                </div>
-
-                                {/* 패스워드 */}
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <label className="labels" for='#password'> PASSWORD </label>
-                                    </div>
-
-                                    <div className="col-md-9">
-                                        <div className="form-group">
-                                            <input id="password" name="password" type='password' value='cocopw1234' className='form-control'/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* 프로그래밍 언어 */}
-                                <div className="row pf-language">
-                                    <div className="col-md-3">
-                                        <label className="labels" for='#language'> PROGRAMMING LANGUAGE </label>
-                                    </div>
-
-                                    <div className="col-md-9">
-                                        {/* <div className="react-tagsinput">
-                                            <span>
-                                                <span className="react-tagsinput-tag bg-info"> 
-                                                
-                                                    <a className="select-lang" value={lang}> </a>
-                                                </span>
-                                                <input className="react-tagsinput-input" type='text' placeholder='add...' onPointerEnter={inputTag}/>
-                                            </span>
-                                        </div> */}
-                                        <InputTag/>
-                                    </div>
-                                </div>
-
-                                {/* 기술스택 */}
-                                <div className="row pf-tech">
-                                    <div className="col-md-3">
-                                        <label className="labels" for='#techstack'> TECH STACK </label>
-                                    </div>
-
-                                    <div className="col-md-9">
-                                        <InputTag2/>
-                                    </div>
-                                </div>
-
-                                {/* 회원탈퇴 */}
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <label className="labels" for='#withdrawal'> MEMBER WITHDRAWAL </label>
-                                    </div>
-
-                                    <div className="col-md-9">
-                                        <a href="src/components#"> 회원 탈퇴하기 </a>
-                                    </div>
-                                </div>
-
-                                {/* 저장 */}
-                                <div className="row">
-                                    <div>
-                                        <Button> 저장 </Button>
-                                    </div>
-                                </div>
+                                    <NavItem className='nav-item-mypage'>
+                                        <NavLink className={classnames({active: selectedTab === 4})}
+                                                 onClick={(e) => {
+                                                     e.preventDefault();
+                                                     setSelectedTab(4);
+                                                 }}
+                                                 href='#'>
+                                            My Profile
+                                        </NavLink>
+                                    </NavItem>
+                                </Nav>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+                        </Col>
 
+                        <Col md='9' className='ml-auto mypage-tab-content'>
+                            <div className='section'>
+                                <TabContent activeTab={"profile" + selectedTab}>
+                                    {/*My Questions 탭*/}
+                                    <TabPane tabId='profile1'>
+                                        <Table className='align-items-center table-questions'>
+                                            <thead>
+                                            <tr>
+                                                <th scope='col'> Coin</th>
+                                                <th scope='col'> Title</th>
+                                                <th scope='col'> Date</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {boards.map((questions) => (
+                                                    <tr key={questions.question_id}>
+                                                        <td>
+                                                            <span className='title-block'> {questions.price} </span>
+                                                        </td>
+
+                                                        <td id='table-quesiton-title'>
+                                                            <Link to='#' className='title-block'> {questions.title} </Link>
+                                                        </td>
+
+                                                        <td>
+                                                            <span> {moment(questions.createdTime).format('YYYY.MM.DD')} </span>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )}
+
+                                            </tbody>
+                                        </Table>
+                                    </TabPane>
+
+                                    {/*My Profile 탭*/}
+                                    <TabPane tabId='profile4'>
+                                        <div>
+                                            {/*닉네임*/}
+                                            <Row className='row-mypage-profile'>
+                                                <Col className='align-self-center' md='4'>
+                                                    <label className='labels' htmlFor='#nickname'>
+                                                        <FontAwesomeIcon icon={faUserPen}/>
+                                                        &nbsp;
+                                                        NICKNAME
+                                                    </label>
+                                                </Col>
+
+                                                <Col className='align-self-center' md='6'>
+                                                    <FormGroup>
+                                                        <Input type='text' defaultValue='받아온 데이터' id='nickname'
+                                                               name='nickname' required/>
+                                                    </FormGroup>
+                                                </Col>
+
+                                                <Col className='align-self-center' md='2'>
+                                                    <Button> 중복체크 </Button>
+                                                </Col>
+                                            </Row>
+
+                                            {/*패스워드*/}
+                                            <Row className='row-mypage-profile'>
+                                                <Col className='align-self-center' md='4'>
+                                                    <label className='labels' htmlFor='#password'>
+                                                        <FontAwesomeIcon icon={faLock}/>
+                                                        <span> &nbsp; PASSWORD </span>
+                                                    </label>
+                                                </Col>
+
+                                                <Col className='align-self-center' md='8'>
+                                                    <FormGroup>
+                                                        <Input type='password' defaultValue='' id='password'
+                                                               name='password' required/>
+                                                    </FormGroup>
+                                                </Col>
+                                            </Row>
+
+                                            {/*프로그래밍 언어*/}
+                                            <Row className='row-mypage-profile'>
+                                                <Col className='align-self-center' md='4'>
+                                                    <label className='labels'>
+                                                        <FontAwesomeIcon icon={faDisplay}/>
+                                                        <span> &nbsp; PROGRAMMING LANGUAGE </span>
+                                                    </label>
+                                                </Col>
+
+                                                <Col className='align-self-center' md='8'>
+                                                    <TagsInput
+                                                        tagProps={{
+                                                            className: "react-tagsinput-tag bg-info"
+                                                        }}
+                                                        value={langTags}
+                                                        onChange={(value) => setLangTags(value)}
+                                                        onlyUnique
+                                                    />
+                                                </Col>
+                                            </Row>
+
+                                            {/*기술 스택*/}
+                                            <Row className='row-mypage-profile'>
+                                                <Col className='align-self-center' md='4'>
+                                                    <label className='labels'>
+                                                        <FontAwesomeIcon icon={faListCheck}/>
+                                                        <span> &nbsp; TECH STACK </span>
+                                                    </label>
+                                                </Col>
+
+                                                <Col className='align-self-center' md='8'>
+                                                    <TagsInput
+                                                        tagProps={{
+                                                            className: "react-tagsinput-tag bg-info"
+                                                        }}
+                                                        value={techTags}
+                                                        onChange={(value) => setTechTags(value)}
+                                                        onlyUnique
+                                                    />
+                                                </Col>
+                                            </Row>
+
+                                            {/*회원탈퇴*/}
+                                            <Row className='row-mypage-profile'>
+                                                <Col className='align-self-center' md='4'>
+                                                    <label className='labels' htmlFor='#withdrawal'>
+                                                        <FontAwesomeIcon icon={faUserSlash}/>
+                                                        <span> &nbsp; MEMBER WITHDRAWAL </span>
+                                                    </label>
+                                                </Col>
+
+                                                <Col className='align-self-center' md='8'>
+                                                    <a href='#'> 회원 탈퇴하기 </a>
+                                                </Col>
+                                            </Row>
+
+                                            {/*버튼*/}
+                                            <Row className='mt-4 row-mypage-profile'>
+                                                <Col className='align-content-end' md='6'>
+                                                    <Button color='#189FEC' type='button'> 저장 </Button>
+                                                    <Button color='#189FEC' type='button'> 취소 </Button>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    </TabPane>
+
+                                </TabContent>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        </div>
     )
 }
 
