@@ -1,10 +1,22 @@
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import '../../css/Header.css';
+import {UncontrolledDropdown, Nav, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import {useSelector, useDispatch} from 'react-redux';
+import '../../css/Header.scss';
 
 
 function Header() {
     const [style, setStyle] = useState({width:'100%', position:'fixed', left:0, top:0, zIndex:10});
+
+    const token = useSelector(state => state.Authorization);
+    const memberId = useSelector(state => state.MemberId);
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch({type:"TOKEN", data:''});
+        dispatch({type:"MEMBERID", data:''});
+        document.location.href="/";
+    }
 
     const hoverSearch = (e) => {
         e.target.src = 'btn-search-k.png';
@@ -51,9 +63,34 @@ function Header() {
                     </Link>
                 </div>
 
-                <Link to={'/mypage'} className='nav-item'>  
-                    <img src='btn-mypage.png' alt=''/>
-                </Link>
+                {/*마이페이지/로그인&로그아웃 토글*/}
+                <UncontrolledDropdown nav>
+                    <DropdownToggle color="default" nav className='nav-item'>
+                        <img src='btn-mypage.png' alt=''/>
+                    </DropdownToggle>
+
+                    <DropdownMenu className='dropdown-items'>
+                        {/*로그인 안 한 상태*/}
+                        {/*{memberId === '' && (*/}
+                        {/*    <DropdownItem to="/login" tag={Link}>*/}
+                        {/*        Login*/}
+                        {/*    </DropdownItem>*/}
+                        {/*)}*/}
+
+                        <DropdownItem className='dropdown-item'>
+                            {token === '' && <Link to={'/login'}> Login </Link> }
+                            {memberId != '' && <Link onClick={logout}> Logout </Link>}
+                        </DropdownItem>
+
+                        {/*로그인 한 상태*/}
+                        {memberId != '' && (
+                            <DropdownItem className='dropdown-item'>
+                                <Link to={'/mypage'}> MyPage </Link>
+                            </DropdownItem>
+                        )}
+                    </DropdownMenu>
+                </UncontrolledDropdown>
+
             </div>
         </header>
     )

@@ -42,6 +42,15 @@
 }
 
 .dropdown-items {
-  position:absolute;
-  
+
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    color: #9A9A9A;
+    padding: 0.25rem 1.5rem;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: inherit;
+    white-space: nowrap;
+  }
 }
