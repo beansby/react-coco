@@ -15,9 +15,7 @@
 .nav-items {
   list-style: none;
   margin: 0 auto;
-  /* background-color: black; */
   line-height: 60px;
-  background-color: #f2f2f2;
 }
 
 #logo {
