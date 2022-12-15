@@ -1,14 +1,48 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import '../../css/CocoForm.css';
-import { useState } from "react";
 import {Form, FormGroup, Input, Label, Button, Col, Fade} from 'reactstrap';
 import Swal from 'sweetalert2';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {useDispatch, useSelector} from "react-redux";
+import {useCookies} from "react-cookie";
+import {requestToken} from "../../redux/requestToken";
 
 
 function QuestionForm() {
+    // 토큰 보내기 시작
+    const token = useSelector(state => state.Authorization);
+    const memberId = useSelector(state => state.MemberId);
+    const dispatch = useDispatch();
+
+    const [member, setMember] = useState([]);
+    const [cookie, setCookie] = useCookies([]);
+
+    const requestUser = async () => {
+        try {
+            const res = await axios.post('http://localhost:8080/api/members/profile', null,
+                {
+                    headers:{Authorization: token},
+                    params:{id:memberId}
+                })
+            setMember(res.data);
+        } catch(err){
+            if(err.request.data === 401){
+                const rescode = err.response.data.rescode;
+
+                if(rescode === 100){
+                    requestToken(token, dispatch, cookie, setCookie);
+                }
+            }
+        }
+    }
+
+    useEffect(()=>{
+        requestUser();
+    }, [token]);
+    // 토큰 보내기 끝
+
     const [qTitle, setQTitle] = useState('');
     const [qContent, setQContent] = useState('');
 
@@ -17,11 +51,7 @@ function QuestionForm() {
         setQTitle(e.target.value);
     }
 
-    // const changePrice = (e) => {
-    //     setQPrice(e.target.value);
-    // }
-
-    const qUrl = {params:{title:qTitle, content:qContent}}
+    const qUrl = {params:{title:qTitle, content:qContent, id:memberId}}
     const encodedQUrl = encodeURIComponent(qUrl);
 
     // 질문 등록 : DB 데이터 저장 

@@ -26,6 +26,7 @@ function QuestionSearch() {
         .then((response)=>{
             setBoards(response.data);
             console.log('데이터 가져오기 성공');
+            console.log(response.data);
         }).catch((err)=>{
             console.log(err);
         })
@@ -39,6 +40,7 @@ function QuestionSearch() {
                 <span className='title-accent-coco'> CODE </span>
             </header>
 
+            {/*검색창*/}
             <SearchBar/>
             
             <div className="folder-container-coco">
@@ -83,6 +85,9 @@ function QuestionSearch() {
                                     <div className="item-text-question">
                                         <span className="item-title-question">
                                             {`${questions.title}`}
+                                        </span>
+                                        <span className='item-author-question'>
+                                            {questions.author.nickname}
                                         </span>
 
                                         <div className="item-content-question">

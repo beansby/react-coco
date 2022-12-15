@@ -9,6 +9,7 @@ import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
 
 function MyPage() {
+    // 토큰 보내기 시작
     const token = useSelector(state => state.Authorization);
     const memberId = useSelector(state => state.MemberId);
     const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function MyPage() {
     useEffect(()=>{
         requestUser();
     }, [token]);
+    // 토큰 보내기 끝
 
     return (
         <main>
