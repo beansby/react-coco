@@ -23,7 +23,7 @@ import axios from "axios";
 import classnames from "classnames";
 import moment from 'moment';
 
-import '../../css/MypageEdit.css';
+import '../../css/MypageEdit.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserPen, faLock, faDisplay, faListCheck, faUserSlash} from '@fortawesome/free-solid-svg-icons';
 
@@ -60,7 +60,7 @@ function MyPageEdit() {
                                 {/*프로필 변경 탭*/}
                                 <Nav className='flex-column nav-tabs-info' role='tablist'>
                                     <NavItem className='nav-item-mypage'>
-                                        <NavLink className={classnames({active:selectedTab === 1})}
+                                        <NavLink className={classnames('inactive', {active:selectedTab === 1})} activeClassName='active'
                                                  onClick={(e) => {
                                                      e.preventDefault();
                                                      setSelectedTab(1);
@@ -71,7 +71,7 @@ function MyPageEdit() {
                                     </NavItem>
 
                                     <NavItem className='nav-item-mypage'>
-                                        <NavLink className={classnames({active: selectedTab === 2})}
+                                        <NavLink className={classnames('inactive', {active: selectedTab === 2})}
                                                  onClick={(e) => {
                                                      e.preventDefault();
                                                      setSelectedTab(2);
@@ -82,7 +82,7 @@ function MyPageEdit() {
                                     </NavItem>
 
                                     <NavItem className='nav-item-mypage'>
-                                        <NavLink className={classnames({active: selectedTab === 3})}
+                                        <NavLink className={classnames('inactive', {active: selectedTab === 3})}
                                                  onClick={(e) => {
                                                      e.preventDefault();
                                                      setSelectedTab(3);
@@ -93,7 +93,7 @@ function MyPageEdit() {
                                     </NavItem>
 
                                     <NavItem className='nav-item-mypage'>
-                                        <NavLink className={classnames({active: selectedTab === 4})}
+                                        <NavLink className={classnames('inactive', {active: selectedTab === 4})}
                                                  onClick={(e) => {
                                                      e.preventDefault();
                                                      setSelectedTab(4);
@@ -110,7 +110,7 @@ function MyPageEdit() {
                             <div className='section'>
                                 <TabContent activeTab={"profile" + selectedTab}>
                                     {/*My Questions 탭*/}
-                                    <TabPane tabId='profile1'>
+                                    <TabPane tabId='profile1' className='mypage-tab-item'>
                                         <Table className='align-items-center table-questions'>
                                             <thead>
                                             <tr>
@@ -142,7 +142,7 @@ function MyPageEdit() {
                                     </TabPane>
 
                                     {/*My Profile 탭*/}
-                                    <TabPane tabId='profile4'>
+                                    <TabPane tabId='profile4' className='mypage-tab-item'>
                                         <div>
                                             {/*닉네임*/}
                                             <Row className='row-mypage-profile'>
