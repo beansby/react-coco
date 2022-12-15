@@ -4,6 +4,10 @@ import {UncontrolledDropdown, Nav, DropdownToggle, DropdownMenu, DropdownItem} f
 import {useSelector, useDispatch} from 'react-redux';
 import '../../css/Header.scss';
 
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCircleUser, faRightFromBracket, faRightToBracket} from '@fortawesome/free-solid-svg-icons';
+
+
 
 function Header() {
     const [style, setStyle] = useState({width:'100%', position:'fixed', left:0, top:0, zIndex:10});
@@ -44,53 +48,76 @@ function Header() {
 
     return(
         <header style={style} id='nav-header' >
-            <div className="nav-items">
-                <Link to={'/'} id="logo" id='logo'>  
-                    <img src='btn-home.png' alt=''/>
-                </Link>
-
-                <div className='nav-pageitems'>
-                    <Link to={'/search'} className='nav-item'> 
-                        <img src='btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>
+            <div className='nav-bar'>
+                <div className="nav-items">
+                    <Link to={'/'} id="logo" id='logo'>
+                        <img src='btn-home.png' alt=''/>
                     </Link>
 
-                    <Link to={'/cocoform'} className='nav-item'> 
-                        <img src='btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>
-                    </Link>
+                    <div className='nav-pageitems'>
+                        <Link to={'/search'} className='nav-item'>
+                            <img src='btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>
+                        </Link>
 
-                    <Link to={'/question'} className='nav-item'> 
-                        <img src='btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>
-                    </Link>
+                        <Link to={'/cocoform'} className='nav-item'>
+                            <img src='btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>
+                        </Link>
+
+                        <Link to={'/question'} className='nav-item'>
+                            <img src='btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>
+                        </Link>
+                    </div>
+
+                    {/*마이페이지/로그인&로그아웃 토글*/}
+                    <UncontrolledDropdown nav >
+                        <DropdownToggle color="default" nav className='nav-item'>
+                            <img src='btn-mypage.png' alt=''/>
+                        </DropdownToggle>
+
+                        <DropdownMenu className='dropdown-items'>
+                            {/*<DropdownItem className='dropdown-item'>*/}
+                            {/*    {token === '' && <Link to={'/login'}> Login </Link> }*/}
+                            {/*    {memberId != '' && <Link onClick={logout}> Logout </Link>}*/}
+                            {/*</DropdownItem>*/}
+
+                            {/*로그인 안 한 상태*/}
+                            {token === '' && (
+                                <Link to={'/login'} style={{textDecoration:'none'}}>
+                                    <DropdownItem className='dropdown-item'>
+                                        <FontAwesomeIcon icon={faRightToBracket} />
+                                        &nbsp; Login
+                                    </DropdownItem>
+                                </Link>
+                            )}
+
+                            {/*로그인 한 상태*/}
+                            {memberId != '' && (
+                                <Link onClick={logout} style={{textDecoration:'none'}}>
+                                    <DropdownItem className='dropdown-item'>
+                                        <FontAwesomeIcon icon={faRightFromBracket} />
+                                        &nbsp; Logout
+                                    </DropdownItem>
+                                </Link>
+                            )}
+
+                            {memberId != '' && (
+                                <Link to={'/mypage'} style={{textDecoration:'none'}}>
+                                    <DropdownItem className='dropdown-item'>
+                                        <FontAwesomeIcon icon={faCircleUser} />
+                                        &nbsp; MyPage
+                                    </DropdownItem>
+                                </Link>
+                            )}
+
+                            {/*{memberId != '' && (*/}
+                            {/*    <DropdownItem className='dropdown-item'>*/}
+                            {/*        <Link to={'/mypage'}> MyPage </Link>*/}
+                            {/*    </DropdownItem>*/}
+                            {/*)}*/}
+                        </DropdownMenu>
+                    </UncontrolledDropdown>
+
                 </div>
-
-                {/*마이페이지/로그인&로그아웃 토글*/}
-                <UncontrolledDropdown nav>
-                    <DropdownToggle color="default" nav className='nav-item'>
-                        <img src='btn-mypage.png' alt=''/>
-                    </DropdownToggle>
-
-                    <DropdownMenu className='dropdown-items'>
-                        {/*로그인 안 한 상태*/}
-                        {/*{memberId === '' && (*/}
-                        {/*    <DropdownItem to="/login" tag={Link}>*/}
-                        {/*        Login*/}
-                        {/*    </DropdownItem>*/}
-                        {/*)}*/}
-
-                        <DropdownItem className='dropdown-item'>
-                            {token === '' && <Link to={'/login'}> Login </Link> }
-                            {memberId != '' && <Link onClick={logout}> Logout </Link>}
-                        </DropdownItem>
-
-                        {/*로그인 한 상태*/}
-                        {memberId != '' && (
-                            <DropdownItem className='dropdown-item'>
-                                <Link to={'/mypage'}> MyPage </Link>
-                            </DropdownItem>
-                        )}
-                    </DropdownMenu>
-                </UncontrolledDropdown>
-
             </div>
         </header>
     )

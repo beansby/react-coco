@@ -6,23 +6,37 @@
 /* 헤더 바 전체 */
 #nav-header {
     /*align-items: center;*/
-    text-align: center;
-    margin: 0 auto;
+    //display: flex;
+    //width: 100%;
+    //text-align: center;
+    //justify-content: space-between;
+    //margin: 0 auto;
     
   }
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //height: 6rem;
+}
 
 /* 헤더 아이템 */
 .nav-items {
   list-style: none;
   margin: 0 auto;
   line-height: 60px;
+  justify-content: space-between;
+  position: relative;
+  display: flex;
+  width: 100%;
 }
 
 #logo {
-  display: inline-block;
+  //display: inline-block;
   text-align: center;
   min-width: 100px;
-  margin: 0 auto;
+  margin-left: 10%;
 }
 
 .nav-item {
@@ -32,25 +46,27 @@
   /* padding: 0px; */
   text-align: center;
   min-width: 100px;
-  margin: 0px;
+  padding-right: 10rem;
   
 }
 
 .nav-pageitems {
   display: inline;
-  padding-left: 30%;
+  //padding-left: 30%;
 }
 
 .dropdown-items {
+  width: 50px;
 
   .dropdown-item {
     display: block;
     width: 100%;
     color: #9A9A9A;
-    padding: 0.25rem 1.5rem;
+    //padding: 0.25rem 1.5rem;
     font-weight: 400;
-    font-size: 12px;
-    text-align: inherit;
-    white-space: nowrap;
+    font-size: 16px;
+    text-align: center;
+    //white-space: nowrap;
   }
+
 }
