@@ -15,6 +15,7 @@ import Login from './views/Auth/Login';
 import {persistStore} from "redux-persist";
 import store from "./redux/reducers/PersistStore";
 import {PersistGate} from "redux-persist/integration/react";
+import AnswerForm from './views/CodeAnswer/AnswerForm';
 
 let persistor = persistStore(store);
 
@@ -35,6 +36,7 @@ function App() {
                             <Route exact path='/mypage' element={<MyPage/>}/>
                             <Route exact path='/login' element={<Login/>}/>
                             <Route exact path='/signup' element={<Signup/>}/>
+                            <Route exact path='/answer' element={<AnswerForm/>}/>
                         </Routes>
 
                         <Footer/>
