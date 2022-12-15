@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {UncontrolledDropdown, Dropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
 
 import ReactHtmlParser from 'react-html-parser';
+import SearchBar from "../../components/SearchBar";
 
 
 
@@ -38,6 +39,7 @@ function QuestionSearch() {
                 <span className='title-accent-coco'> CODE </span>
             </header>
 
+            <SearchBar/>
             
             <div className="folder-container-coco">
 
