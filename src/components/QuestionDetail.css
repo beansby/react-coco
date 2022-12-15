@@ -1,0 +1,21 @@
+.questiondetail_header {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.header_coco{
+    color: #189FEC;
+}
+
+.questiondetail-form-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #189FEC;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+
