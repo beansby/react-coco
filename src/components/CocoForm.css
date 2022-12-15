@@ -1,0 +1,37 @@
+.title-coco {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.title-accent-coco {
+    color: #189FEC;
+    font-size: xx-large;
+}
+
+.form-container-coco {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #189FEC;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+.coco-lang {
+    display: inline;
+    font-size: small;
+}
+
+.btn-form-coco {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.ck-editor__editable { 
+    height: 400px; 
+    
+}
+

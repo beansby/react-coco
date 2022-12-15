@@ -1,0 +1,43 @@
+/* header {
+  margin-top: 0;
+  padding-top: 0;
+} */
+
+/* 헤더 바 전체 */
+#nav-header {
+    align-items: center;
+    margin: 0 auto;
+    
+  }
+
+/* 헤더 아이템 */
+.nav-items {
+  list-style: none;
+  margin: 0 auto;
+  /* background-color: black; */
+  line-height: 60px;
+  background-color: #f2f2f2;
+}
+
+#logo {
+  display: inline-block;
+  text-align: center;
+  min-width: 100px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  display: inline-block;
+  width: 130px;
+  height: 80px; 
+  /* padding: 0px; */
+  text-align: center;
+  min-width: 100px;
+  margin: 0px;
+  
+}
+
+.nav-pageitems {
+  display: inline;
+  padding-left: 30%;
+}
