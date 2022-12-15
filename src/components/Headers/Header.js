@@ -81,7 +81,7 @@ function Header() {
                             {/*</DropdownItem>*/}
 
                             {/*로그인 안 한 상태*/}
-                            {token === '' && (
+                            {token == '' && (
                                 <Link to={'/login'} style={{textDecoration:'none'}}>
                                     <DropdownItem className='dropdown-item'>
                                         <FontAwesomeIcon icon={faRightToBracket} />

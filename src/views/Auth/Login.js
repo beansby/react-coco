@@ -9,8 +9,10 @@ import { useDispatch } from "react-redux";
 import { setToken } from "../../redux/reducers/AuthReducer.js";
 // SignUp 컴포넌트 scss 이용
 import "../../css/Login.scss";
+import {useCookies} from "react-cookie";
 
 const Login = () => {
+  const [cookie, setCookie] = useCookies([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
@@ -34,10 +36,18 @@ const Login = () => {
       dispatch({ type: "MEMBERID", data: data.email });
       console.log(data.accessToken);
       console.log(data.email);
+
+      const expires = new Date();
+      expires.setDate(expires.getDate()+1);
+      setCookie('refreshToken', data.refreshToken, {
+        url:'/', expires
+      })
+
       toast.success(<h3>로그인 성공</h3>, {
         position: "top-center",
         autoClose: 2000,
       });
+      document.location.href='/'
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
       toast.error(e.response.data.message + "😭", {
