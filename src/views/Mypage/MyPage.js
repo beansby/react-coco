@@ -7,7 +7,6 @@ import {Row, Col, Progress, Container, UncontrolledTooltip} from "reactstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
-import Profile from "./Profile";
 import TagsInput from "../../components/TagsInput";
 
 function MyPage() {
@@ -18,7 +17,7 @@ function MyPage() {
     const memberId = useSelector(state => state.MemberId);
     const dispatch = useDispatch();
 
-    const [member, setMember] = useState([]);
+    const [member, setMember] = useState({});
     const [cookie, setCookie] = useCookies([]);
 
     const requestUser = async () => {
@@ -29,6 +28,8 @@ function MyPage() {
                     params:{id:memberId}
                 })
             setMember(res.data);
+            console.log(res.data);
+            // dispatch({type:"MEMBERINFO", data:res.data})
         } catch(err){
             if(err.request.status == 401){
                 const rescode = err.response.data.rescode;

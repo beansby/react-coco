@@ -54,7 +54,7 @@ function MyPageEdit() {
             <div className='section'>
                 <Container>
                     <Row>
-                        <Col md='2'>
+                        <Col md='2' >
                             <div className='section'>
                                 {/*프로필 변경 탭*/}
                                 <Nav className='flex-column nav-tabs-info' role='tablist'>
@@ -126,11 +126,11 @@ function MyPageEdit() {
                                                         </td>
 
                                                         <td id='table-quesiton-title'>
-                                                            <Link to='#' className='title-block'> {questions.title} </Link>
+                                                            <Link to='#' className='title-block' style={{textDecoration:"none", color:"#484848"}}> {questions.title} </Link>
                                                         </td>
 
                                                         <td>
-                                                            <span> {moment(questions.createdTime).format('YYYY.MM.DD')} </span>
+                                                            <span style={{color:"#484848"}}> {moment(questions.createdTime).format('YYYY.MM.DD')} </span>
                                                         </td>
                                                     </tr>
                                                 )
@@ -142,7 +142,7 @@ function MyPageEdit() {
 
                                     {/*My Profile 탭*/}
                                     <TabPane tabId='profile4' className='mypage-tab-item'>
-                                        <MyProfileTab/>
+                                        <MyProfileTab />
                                     </TabPane>
 
                                 </TabContent>
