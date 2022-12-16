@@ -2,13 +2,80 @@ import {Button, Col, FormGroup, Input, Row} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDisplay, faListCheck, faLock, faUserPen, faUserSlash} from "@fortawesome/free-solid-svg-icons";
 import TagsInput from "../../components/TagsInput";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useCookies} from "react-cookie";
+import axios from "axios";
+import {requestToken} from "../../redux/requestToken";
 
 
 function MyProfileTab(){
+    // 토큰 보내기 시작
+    const token = useSelector(state => state.Authorization);
+    const memberId = useSelector(state => state.MemberId);
+    const dispatch = useDispatch();
+
+    const [member, setMember] = useState({});
+    const [cookie, setCookie] = useCookies([]);
+
+    const requestUser = async () => {
+        try {
+            const res = await axios.post('http://localhost:8080/api/members/profile', null,
+                {
+                    headers:{Authorization: token},
+                    params:{id:memberId}
+                })
+            setMember(res.data);
+            console.log(res.data);
+            // dispatch({type:"MEMBERINFO", data:res.data})
+        } catch(err){
+            if(err.request.status == 401){
+                const rescode = err.response.data.rescode;
+
+                if(rescode == 100){
+                    requestToken(token, dispatch, cookie, setCookie);
+                }
+            }
+        }
+    }
+
+    useEffect(()=>{
+        requestUser();
+    }, [token]);
+    // 토큰 보내기 끝
+
 
     const [langTags, setLangTags] = useState([]);
     const [techTags, setTechTags] = useState([]);
+
+    const [nickname, setNickname] = useState(member.nickname);
+
+    const changeNickname = (e) => {
+        setNickname(e.target.value);
+    }
+
+
+
+    const saveChange = () => {
+
+
+        axios.put("http://localhost:8080/api/members/profile", null,
+            {
+                params:{nickname:nickname, id:memberId}
+            }
+        ).then((response)=>{
+            console.log(typeof(member.nickname));
+            setNickname(nickname);
+            alert(response.data.message);
+            document.location.href='/mypage';
+        }).catch((err)=>{
+            console.log(err);
+            alert(err.response.data.message);
+        })
+
+    }
+
+
     return(
         <div>
             {/*닉네임*/}
@@ -23,8 +90,8 @@ function MyProfileTab(){
 
                 <Col className='align-self-center' md='6'>
                     <FormGroup>
-                        <Input type='text' defaultValue='받아온 데이터' id='nickname'
-                               name='nickname' required/>
+                        <Input type='text' id='nickname' name='nickname'
+                               value={nickname} onChange={changeNickname} required/>
                     </FormGroup>
                 </Col>
 
@@ -109,7 +176,7 @@ function MyProfileTab(){
             {/*버튼*/}
             <Row className='mt-4 row-mypage-profile'>
                 <Col className='align-content-end' md='6'>
-                    <Button color='#189FEC' type='button'> 저장 </Button>
+                    <Button color='#189FEC' type='submit' onClick={saveChange}> 저장 </Button>
                     <Button color='#189FEC' type='button'> 취소 </Button>
                 </Col>
             </Row>

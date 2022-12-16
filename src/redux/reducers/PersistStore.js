@@ -11,7 +11,8 @@ function AuthReducer(currentState, action){
     if(currentState === undefined){
         return({
             Authorization:'',
-            MemberId:''
+            MemberId:'',
+            // MemberInfo:{}
         })
     }
 
@@ -20,6 +21,8 @@ function AuthReducer(currentState, action){
         case "TOKEN" : newState.Authorization = action.data;
         break;
         case "MEMBERID" : newState.MemberId = action.data;
+        break;
+        // case "MEMBERINFO" : newState.MemberInfo = action.data;
     }
     return newState;
 }
