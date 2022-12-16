@@ -1,0 +1,46 @@
+.coco-profile {
+
+    /* 프로필 사진 */
+    .pf-img {
+        img {
+            width: 150px;
+        }
+    }
+
+    .pf-text {
+
+        .pf-nickname {
+            font-size: xx-large;
+            padding-left: 40px;
+        }
+
+        .pf-coin {
+
+            .member-coin {
+                color: #484848;
+                font-weight: bold;
+            }
+        }
+
+        //만족도 점수
+        .pf-progress {
+            padding-left: 40px;
+        }
+
+        .pf-progress-per {
+            color: #189FEC;
+            font-size: 16px;
+
+            #accent-value {
+                font-size: 24px;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+table {
+    margin: 0 auto;
+    padding-top: 100px;
+}
