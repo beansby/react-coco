@@ -76,7 +76,7 @@ function QuestionSearch() {
                     {boards.map((questions)=>{
                         return(
                             <div className="folder-item-question">
-                                <Link to={'/question/'+questions.question_id} key={questions.question_id}>
+                                <Link to={'/question/'+questions.questionId} key={questions.questionId}>
                                     {/* 매칭 상태 변경값 설정 필요 */}
                                     {/* <div className="coco-item-lang">
                                     {`키워드 : ${question.lang}`}
@@ -95,7 +95,7 @@ function QuestionSearch() {
                                             {/*{ReactHtmlParser(questions.content)}*/}
                                         </div>
 
-                                        <span> 답변 개수 </span>
+                                        <span> 답변 {questions.answerList.length} </span>
                                     </div>
                                 </Link>
                             </div>
