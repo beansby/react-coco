@@ -4,22 +4,32 @@ import '../../css/AnswerList.css';
 
 function AnswerList() {
 
+
+    const [member, setMember] = useState([]);
+
     return (
-        <main>
-            <section>
-                <header>
-                    질문 제목입니다.
-                </header>
+        <div>
+            {/*닉네임*/}
+            <Row className='row-mypage-profile'>
+                <Col className='align-self-center' md='4'>
+                    <label className='labels' htmlFor='#nickname'>
+                        <FontAwesomeIcon icon={faUserPen}/>
+                        &nbsp;
+                        NICKNAME
+                    </label>
+                </Col>
 
-                <Form className="answerlist-form">
+                <Col className='align-self-center' md='6'>
+                    <FormGroup>
+                        <Input type='text' defaultValue='받아온 데이터' id='nickname'
+                               name='nickname' required/>
+                    </FormGroup>
+                </Col>
 
-
-                </Form>
-            </section>
-        </main>
-
-
-    )
-}
+                <Col className='align-self-center' md='2'>
+                    <Button> 중복체크 </Button>
+                </Col>
+            </Row>
+        </div>
 
 export default AnswerList;
