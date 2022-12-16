@@ -87,7 +87,7 @@ function QuestionSearch() {
                                             {`${questions.title}`}
                                         </span>
                                         <span className='item-author-question'>
-                                            {questions.author.nickname}
+                                            {questions.questionAuthor.nickname}
                                         </span>
 
                                         <div className="item-content-question">
