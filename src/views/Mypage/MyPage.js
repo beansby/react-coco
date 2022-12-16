@@ -7,7 +7,6 @@ import {Row, Col, Progress, Container, UncontrolledTooltip} from "reactstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
-import Profile from "./Profile";
 import TagsInput from "../../components/TagsInput";
 
 function MyPage() {

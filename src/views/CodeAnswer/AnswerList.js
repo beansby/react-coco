@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import '../../css/AnswerList.css';
+import { Button, Col, FormGroup, Input, Row } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPen } from "@fortawesome/free-solid-svg-icons";
 
 function AnswerList() {
 
@@ -31,5 +34,7 @@ function AnswerList() {
                 </Col>
             </Row>
         </div>
+    )
+}
 
 export default AnswerList;
