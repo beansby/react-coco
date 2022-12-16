@@ -3,7 +3,7 @@ import axios from "axios";
 import '../../css/AnswerList.css';
 import { Button, Col, FormGroup, Input, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPen } from "@fortawesome/free-solid-svg-icons";
+import { faUserNinja, faUserPen } from "@fortawesome/free-solid-svg-icons";
 
 function AnswerList() {
 
@@ -11,29 +11,37 @@ function AnswerList() {
     const [member, setMember] = useState([]);
 
     return (
-        <div>
-            {/*닉네임*/}
-            <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
-                    <label className='labels' htmlFor='#nickname'>
-                        <FontAwesomeIcon icon={faUserPen}/>
-                        &nbsp;
-                        NICKNAME
-                    </label>
-                </Col>
+            
+            <div className='container container-question-detail'>
+                {/* 제목 */}
+                <div className='row h-75'>
+                    <div className='col-12 my-auto text-start my-auto q-detail-title'>
+                        가져온 질문 제목입니다
+                    </div>
+                </div>
 
-                <Col className='align-self-center' md='6'>
-                    <FormGroup>
-                        <Input type='text' defaultValue='받아온 데이터' id='nickname'
-                               name='nickname' required/>
-                    </FormGroup>
-                </Col>
+                {/* 닉네임, 작성 날짜 */}
+                <div className='row q-detail-info'>
+                    {/* 작성자 프로필*/}
+                    <div className="col-8">
+                        <img src="" alt=""/>
+                        <span id="quser-nickname"> user nickname </span>
+                    </div>
+                    {/* 작성 날짜 */}
+                    <div className="col-4 text-end">
+                        written date
+                    </div>
+                </div>
 
-                <Col className='align-self-center' md='2'>
-                    <Button> 중복체크 </Button>
-                </Col>
-            </Row>
-        </div>
+                {/* 컨텐츠 내용 */}
+                <div className="row q-detail-content">
+                    <div className="col-12 text-start q-detail-text">
+                        innerhtml 사용해서 내용 뿌려주기
+                    </div>
+                    
+                </div>
+            </div>
+        
     )
 }
 
