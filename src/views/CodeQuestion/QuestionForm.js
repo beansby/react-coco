@@ -92,6 +92,7 @@ function QuestionForm() {
         });
     };
 
+    // 질문 등록 취소
     const cancel = (e) => {
         e.preventDefault();
         confirmAlert({

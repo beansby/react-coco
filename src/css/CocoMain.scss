@@ -66,7 +66,7 @@
 
 /* 질문 : 폴더 아이템 */
 .folder-item-question{
-    height: 150px;
+    height: 165px;
     background-color: #ffffff7b;
     padding-left: 20px;
     padding-right: 20px;
@@ -84,14 +84,23 @@
         .item-title-question {
             font-size: x-large;
             font-weight: bold;
+            width: 50px;
+            height: 10px;
+        }
+
+        .item-author-question {
+            color: #484848;
+            padding-left: 10px;
+            font-size: 12px;
         }
 
         .item-content-question {
             color: #484848;
             //background-color: #00bf9a;
             width: 100%;
-            height: 65px;
+            height: 68px;
             overflow: clip;
+            font-size: 15px;
         }
     }
 }
