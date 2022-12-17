@@ -185,7 +185,7 @@ function MyProfileTab(){
                 <Col className='align-self-center' md='8'>
                     <TagsInput
                         tagProps={{
-                            className: "react-tagsinput-tag bg-info"
+                            className: "react-tagsinput-tag bg-accent"
                         }}
                         value={techTags}
                         onChange={(value) => setTechTags(value)}

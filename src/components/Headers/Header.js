@@ -50,21 +50,21 @@ function Header() {
         <header style={style} id='nav-header' >
             <div className='nav-bar'>
                 <div className="nav-items">
-                    <Link to={'/'} id="logo" id='logo'>
+                    <Link to={'/'} id="logo">
                         <img src='btn-home.png' alt=''/>
                     </Link>
 
                     <div className='nav-pageitems'>
                         <Link to={'/search'} className='nav-item'>
-                            <img src='btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>
+                            <img src='/btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>
                         </Link>
 
                         <Link to={'/cocoform'} className='nav-item'>
-                            <img src='btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>
+                            <img src='/btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>
                         </Link>
 
                         <Link to={'/question'} className='nav-item'>
-                            <img src='btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>
+                            <img src='/btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>
                         </Link>
                     </div>
 
