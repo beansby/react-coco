@@ -9,6 +9,7 @@
     font-size: xx-large;
 }
 
+/*질문 작성*/
 .form-container-coco {
     background-color: rgb(255, 255, 255);
     border: 1px solid #189FEC;
@@ -31,7 +32,6 @@
 
 
 .ck-editor__editable { 
-    height: 400px; 
-    
+    height: 30rem;
 }
 
