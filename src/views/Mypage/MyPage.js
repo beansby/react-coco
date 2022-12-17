@@ -71,7 +71,13 @@ function MyPage() {
 
                         <div className='row'>
                             <div className='col-7 pf-progress my-auto'>
-                                <Progress max="100" value="60" id='pf-rating'/>
+                                <Progress max="100" value="60" id='pf-rating' className='progress-info'/>
+                                {/*<div className="progress" id='pf-rating'>*/}
+                                {/*    <div className="progress-bar bg-info" role="progressbar"*/}
+                                {/*         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">*/}
+                                {/*        qoffbdfasdnkl*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
                                 <UncontrolledTooltip delay={0}  target='pf-rating' style={{backgroundColor:"#b9bec4",color:'white'}}>
                                     만족도 점수는 60% 입니다. <br/> 코칭을 통해 만족도를 올려보세요.
                                 </UncontrolledTooltip>
