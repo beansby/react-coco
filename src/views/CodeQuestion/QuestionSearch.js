@@ -76,11 +76,8 @@ function QuestionSearch() {
                     {boards.map((questions) => {
                         return (
                             <div className="folder-item-question">
-<<<<<<< HEAD
-                                <Link to={'/question/'+questions.questionId} key={questions.questionId}>
-=======
                                 <Link to={'/question/' + questions.questionId} key={questions.questionId}>
->>>>>>> bang
+
                                     {/* 매칭 상태 변경값 설정 필요 */}
                                     {/* <div className="coco-item-lang">
                                     {`키워드 : ${question.lang}`}
@@ -90,14 +87,8 @@ function QuestionSearch() {
                                         <span className="item-title-question">
                                             {`${questions.title}`}
                                         </span>
-<<<<<<< HEAD
-
-                                        <span className='item-author-question' >
-                                            {questions.author.nickname}
-=======
                                         <span className='item-author-question'>
                                             {questions.questionAuthor.nickname}
->>>>>>> bang
                                         </span>
 
                                         <div className="item-content-question">
