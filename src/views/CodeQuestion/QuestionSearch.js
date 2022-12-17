@@ -86,8 +86,9 @@ function QuestionSearch() {
                                         <span className="item-title-question">
                                             {`${questions.title}`}
                                         </span>
-                                        <span className='item-author-question'>
-                                            {questions.questionAuthor.nickname}
+
+                                        <span className='item-author-question' >
+                                            {questions.author.nickname}
                                         </span>
 
                                         <div className="item-content-question">
