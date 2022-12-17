@@ -51,7 +51,7 @@ function Header() {
             <div className='nav-bar'>
                 <div className="nav-items">
                     <Link to={'/'} id="logo">
-                        <img src='btn-home.png' alt=''/>
+                        <img src='/btn-home.png' alt=''/>
                     </Link>
 
                     <div className='nav-pageitems'>
@@ -71,7 +71,7 @@ function Header() {
                     {/*마이페이지/로그인&로그아웃 토글*/}
                     <UncontrolledDropdown nav >
                         <DropdownToggle color="default" nav className='nav-item'>
-                            <img src='btn-mypage.png' alt=''/>
+                            <img src='/btn-mypage.png' alt=''/>
                         </DropdownToggle>
 
                         <DropdownMenu className='dropdown-items'>
@@ -81,7 +81,7 @@ function Header() {
                             {/*</DropdownItem>*/}
 
                             {/*로그인 안 한 상태*/}
-                            {token == '' && (
+                            {memberId == '' && (
                                 <Link to={'/login'} style={{textDecoration:'none'}}>
                                     <DropdownItem className='dropdown-item'>
                                         <FontAwesomeIcon icon={faRightToBracket} />
