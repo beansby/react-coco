@@ -54,11 +54,7 @@ function MyProfileTab(){
         setNickname(e.target.value);
     }
 
-
-
     const saveChange = () => {
-
-
         axios.put("http://localhost:8080/api/members/profile", null,
             {
                 params:{nickname:nickname, id:memberId}
@@ -72,8 +68,22 @@ function MyProfileTab(){
             console.log(err);
             alert(err.response.data.message);
         })
-
     }
+
+    const withdrawal = () => {
+        axios.delete("http://localhost:8080/api/members/delete", null,
+            {
+                params:{id:memberId}
+            }
+        ).then((response)=>{
+            alert(response.data.message);
+            document.location.href='/';
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
+
 
 
     return(
@@ -169,7 +179,7 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center' md='8'>
-                    <a href='#'> 회원 탈퇴하기 </a>
+                    <a href='#' onClick={withdrawal}> 회원 탈퇴하기 </a>
                 </Col>
             </Row>
 
