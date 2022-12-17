@@ -64,18 +64,28 @@
     margin-bottom: 20px;
 }
 
+//내 질문 목록 탭
 .table-questions {
     text-align: center;
-    color: #189FEC;
 
+    .table-questions-col{
+        color: #189FEC;
+    }
+
+    tbody {
+        color: #484848;
+        font-weight: normal;
+    }
 }
 
-.table-questions>tbody{
-    color: #484848;
-    font-weight: normal;
-}
 
-#table-question-title {
+.table-question-title {
     width: 100%;
     text-align: left;
+
 }
+
+//.title-block:hover{
+//    color: #1d8cf8;
+//    transform: scale(1.1);
+//}
