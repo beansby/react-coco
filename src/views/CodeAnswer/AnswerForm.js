@@ -9,17 +9,17 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 function AnswerForm() {
-  
+
     const [qContent, setQContent] = useState('');
 
     // 내용 입력 
-  
+
 
     // const changePrice = (e) => {
     //     setQPrice(e.target.value);
     // }
 
-    const qUrl = { params: {content: qContent } }
+    const qUrl = { params: { content: qContent } }
     const encodedQUrl = encodeURIComponent(qUrl);
 
     // 질문 등록 : DB 데이터 저장 
@@ -78,22 +78,15 @@ function AnswerForm() {
         })
     }
 
-    let [like, setLike] = useState(0);
-    let [comment, setcomment] = useState(0);
-
     return (
         <main>
 
             <section>
-                <header id="coco-header">
-                    COCO.
-                    <span> Answer Form </span>
-                </header>
                 <Form className="form-container">
 
                     {/* 기술 스택 카테고리 */}
                     {/* 제목, 코인 액수 */}
-             
+
 
                     {/* //string : 태그 방식으로 가지고 있음
                         // 이미지 태그 소스로 : 함수등록해서 보여주는 형태
@@ -101,7 +94,8 @@ function AnswerForm() {
 
                     <CKEditor
                         editor={ClassicEditor}
-                        data="<p>답변 내용을 입력하세요.</p>"
+                        data=""
+                        config={{ placeholder:"답변 내용을 입력하세요." }}
                         onReady={editor => {
                             // You can store the "editor" and use when it is needed.
                             console.log('Editor is ready to use!', editor);
@@ -119,11 +113,6 @@ function AnswerForm() {
                             console.log('Focus.', editor);
                         }}
                     />
-
-                    <div className="like-btn">
-                        <span onClick={() => { setLike(like + 1) }}> 👍🏻 </span> {like} &nbsp; 
-                        <span onClick={() => { setcomment(comment + 1) }}> 💬 </span> {comment}
-                    </div>
 
                 </Form>
 

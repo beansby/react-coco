@@ -1,17 +1,22 @@
-.answerlist-form {
+.a-form-container {
     background-color: rgb(255, 255, 255);
-    border: 1px solid #189FEC;
-    width: 80%;
+    border: 1px solid white;
+    width: 100%;
     margin: 0 auto;
-    margin-top: 50px;
-    padding: 20px;
-    border-radius: 50px;
+    padding: 30px;
+    border-radius: 30px;
 }
 
-.question-profile {
-    margin: 0 auto;
-    text-align: center;
-    /* background-color: blue; */
-    padding: 50px;
-    width: 70%;
+.a-detail-content {
+    background-color: white;
+    border: solid 1px  #169fec;
+    border-radius: 30px;
+    height: 100px;
 }
+
+.a-detail-text {
+    padding: 20px;
+}
+
+
+

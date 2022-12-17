@@ -1,22 +1,17 @@
 .form-container {
     background-color: rgb(255, 255, 255);
     border: 1px solid #189FEC;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     margin-top: 50px;
     padding: 20px;
-    border-radius: 50px;
+    border-radius: 30px;
 }
 
 span {
     color: #189FEC;
 }
 
-header {
-    font-size: xx-large;
-    font-weight: bold;
-    text-align: center;
-}
 
 .coco-lang {
     display: inline;

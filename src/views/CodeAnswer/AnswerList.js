@@ -1,39 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../css/AnswerList.css';
-import { Button, Col, FormGroup, Input, Row } from "reactstrap";
+import { Form, boards } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPen } from "@fortawesome/free-solid-svg-icons";
+import AnswerForm from "../CodeAnswer/AnswerForm";
+import { useParams } from "react-router-dom";
+import { ErrorResponse } from "@remix-run/router";
+import { borderRadius } from "@mui/system";
 
 function AnswerList() {
 
 
-    const [member, setMember] = useState([]);
+    const [answers, setAnswers] = useState([]);
+    const { id } = useParams();
+
+    let [like, setLike] = useState(3);
+    let [comment, setcomment] = useState(2);
+    let [realated, setRealted] = useState('');
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/questions/${id}/answers`)
+            .then((res) => {
+                const answers = res.data;
+                setAnswers(answers)
+                console.log(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            }, [])
+    }, [])
+
 
     return (
-        <div>
-            {/*닉네임*/}
-            <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
-                    <label className='labels' htmlFor='#nickname'>
-                        <FontAwesomeIcon icon={faUserPen}/>
-                        &nbsp;
-                        NICKNAME
-                    </label>
-                </Col>
+        <Form className="form-container">
+            <div className="folder-content-answer">
+                {answers.map((answers) => {
+                    console.log(answers)
+                    return (
+                        <div className="row a-detail-info">
+                            <div classname="col-8">
+                                <img src="" alt="" />
+                                <span className='a-user-nickname'>
+                                    {answers.answerAuthor.nickname}
+                                </span>
 
-                <Col className='align-self-center' md='6'>
-                    <FormGroup>
-                        <Input type='text' defaultValue='받아온 데이터' id='nickname'
-                               name='nickname' required/>
-                    </FormGroup>
-                </Col>
+                                <span className='col-4 text-end'>
+                                    {answers.date}
+                                </span>
 
-                <Col className='align-self-center' md='2'>
-                    <Button> 중복체크 </Button>
-                </Col>
-            </Row>
-        </div>
+                                <div className="row a-detail-content">
+                                    <div className="col-12 text-start a-detail-text">
+                                        {answers.content}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+
+            <div className="like-btn">
+                <span onClick={() => { setLike(like + 1) }}> 👍🏻 </span> {like} &nbsp;
+                <span onClick={() => { setcomment(comment + 1) }}> 💬 </span> {comment}
+            </div>
+        </Form>
     )
 }
 

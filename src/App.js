@@ -17,6 +17,7 @@ import store from "./redux/reducers/PersistStore";
 import {PersistGate} from "redux-persist/integration/react";
 import AnswerForm from './views/CodeAnswer/AnswerForm';
 import AnswerList from './views/CodeAnswer/AnswerList';
+import QuestionDetail from './views/CodeQuestion/QuestionDetail';
 
 let persistor = persistStore(store);
 
@@ -38,7 +39,7 @@ function App() {
                             <Route exact path='/login' element={<Login/>}/>
                             <Route exact path='/signup' element={<Signup/>}/>
                             <Route exact path='/answer' element={<AnswerForm/>}/>
-                            <Route exact path='/answerlist' element={<AnswerList/>}/>
+                            <Route exact path='/question/:id' element={<QuestionDetail/>}/>
                         </Routes>
 
                         <Footer/>
