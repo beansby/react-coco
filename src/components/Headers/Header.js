@@ -23,34 +23,34 @@ function Header() {
     }
 
     const hoverSearch = (e) => {
-        e.target.src = 'btn-search-k.png';
+        e.target.src = '/btn-search-k.png';
     } 
 
     const unhoverSearch = (e) => {
-        e.target.src = 'btn-search.png';
+        e.target.src = '/btn-search.png';
     } 
 
     const hoverCoco = (e) => {
-        e.target.src = 'btn-coco-k.png';
+        e.target.src = '/btn-coco-k.png';
     } 
 
     const unhoverCoco = (e) => {
-        e.target.src = 'btn-coco.png';
+        e.target.src = '/btn-coco.png';
     } 
 
     const hoverQ = (e) => {
-        e.target.src = 'btn-question-k.png';
+        e.target.src = '/btn-question-k.png';
     } 
 
     const unhoverQ = (e) => {
-        e.target.src = 'btn-question.png';
+        e.target.src = '/btn-question.png';
     } 
 
     return(
         <header style={style} id='nav-header' >
             <div className='nav-bar'>
                 <div className="nav-items">
-                    <Link to={'/'} id="logo" id='logo'>
+                    <Link to={'/'} id="logo">
                         <img src='btn-home.png' alt=''/>
                     </Link>
 
