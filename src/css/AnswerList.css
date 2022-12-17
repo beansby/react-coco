@@ -1,22 +1,26 @@
-.a-form-container {
-    background-color: rgb(255, 255, 255);
-    border: 1px solid white;
-    width: 100%;
+.container-answer-detail {
     margin: 0 auto;
-    padding: 30px;
-    border-radius: 30px;
+    padding-top: 10rem;
 }
+
+.a-detail-info {
+    padding: 20px;
+
+}
+
+.a-user-nickname {
+    color: #169fec;
+}
+
+
 
 .a-detail-content {
     background-color: white;
-    border: solid 1px  #169fec;
+    border: solid 1px #169fec;
     border-radius: 30px;
     height: 100px;
 }
 
 .a-detail-text {
-    padding: 20px;
+    padding: 30px;
 }
-
-
-

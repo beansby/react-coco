@@ -96,7 +96,7 @@ function QuestionSearch() {
                                             {/*{ReactHtmlParser(questions.content)}*/}
                                         </div>
 
-                                        <span> 답변 {questions.answerList.length} </span>
+                                        {/* <span> 답변 {questions.answerList.length} </span>ß */}
                                     </div>
                                 </Link>
                             </div>

@@ -18,21 +18,25 @@ function AnswerList() {
     let [comment, setcomment] = useState(2);
     let [realated, setRealted] = useState('');
 
-    useEffect(() => {
+    const fetchData = () => {
         axios.get(`http://localhost:8080/api/questions/${id}/answers`)
             .then((res) => {
                 const answers = res.data;
-                setAnswers(answers)
+                setAnswers([...answers])
                 console.log(res.data)
             })
             .catch((error) => {
                 console.log(error)
             }, [])
-    }, [])
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [answers]);
 
 
     return (
-        <Form className="a-form-container">
+        <Form className="container container-answer-detail">
             <div className="folder-content-answer">
                 {answers.map((answers) => {
                     console.log(answers)
@@ -43,16 +47,18 @@ function AnswerList() {
                                 <span className='a-user-nickname'>
                                     {answers.answerAuthor.nickname}
                                 </span>
-
-                                <span className='col-4 text-end'>
-                                    {answers.date}
+                            </div>
+                            <div className='col-4 text-end'>
+                                <span>
+                                    {answers.createdTime}
                                 </span>
+                            </div>
 
-                                <div className="row a-detail-content">
-                                    <div className="col-12 text-start a-detail-text">
-                                        {answers.content}
-                                    </div>
+                            <div className="row a-detail-content">
+                                <div className="col-12 text-start a-detail-text">
+                                    {answers.content}
                                 </div>
+
                             </div>
                         </div>
                     )

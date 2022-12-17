@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import '../../css/AnswerForm.css';
 import { useState } from "react";
@@ -6,11 +6,47 @@ import { Form, FormGroup, Input, Label, Button, Col } from 'reactstrap';
 import Swal from 'sweetalert2';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useCookies } from "react-cookie";
+import { requestToken } from "../../redux/requestToken";
 
 
 function AnswerForm() {
 
-    const [qContent, setQContent] = useState('');
+      // 토큰 보내기 시작
+      const token = useSelector(state => state.Authorization);
+      const memberId = useSelector(state => state.MemberId);
+      const dispatch = useDispatch();
+  
+      const [member, setMember] = useState({});
+      const [cookie, setCookie] = useCookies([]);
+  
+      const requestUser = async () => {
+          try {
+              const res = await axios.post('http://localhost:8080/api/members/profile', null,
+                  {
+                      headers:{Authorization: token},
+                      params:{id:memberId}
+                  })
+              setMember(res.data);
+              console.log(res.data);
+              // dispatch({type:"MEMBERINFO", data:res.data})
+          } catch(err){
+              if(err.request.status == 401){
+                  const rescode = err.response.data.rescode;
+  
+                  if(rescode == 100){
+                      requestToken(token, dispatch, cookie, setCookie);
+                  }
+              }
+          }
+      }
+  
+      useEffect(()=>{
+          requestUser();
+      }, [token]);
+      // 토큰 보내기 끝
 
     // 내용 입력 
 
@@ -18,23 +54,23 @@ function AnswerForm() {
     // const changePrice = (e) => {
     //     setQPrice(e.target.value);
     // }
-
-    const qUrl = { params: { content: qContent } }
-    const encodedQUrl = encodeURIComponent(qUrl);
+    const [aContent,setAContent] = useState('');
+    const aUrl = { params: { content: aContent, id:memberId } }
+    // const encodedQUrl = encodeURIComponent(qUrl);
+    const { id } = useParams();
 
     // 질문 등록 : DB 데이터 저장 
     const submit = () => {
         // e.preventDefault();
 
-        axios.post('http://localhost:8080/api/questions', null, qUrl)
+        axios.post(`http://localhost:8080/api/questions/${id}/answers`, null, aUrl)
             .then((response) => {
-                setQContent(qContent);
+                setAContent(aContent);
                 console.log(response.data);
                 Swal.fire('답변이 등록되었습니다', '', 'success')
                 console.log('답변 등록 성공');
 
                 // 질문 등록 후 질문 리스트 or 질문 상세 페이지 이동
-                document.location.href = '/';
             }).catch((err) => {
                 console.log(err);
                 Swal.fire('답변 등록에 실패했습니다', '', 'error')
@@ -95,16 +131,16 @@ function AnswerForm() {
                     <CKEditor
                         editor={ClassicEditor}
                         data=""
-                        config={{ placeholder:"답변 내용을 입력하세요." }}
+                        config={{ placeholder: "답변 내용을 입력하세요." }}
                         onReady={editor => {
                             // You can store the "editor" and use when it is needed.
                             console.log('Editor is ready to use!', editor);
                         }}
                         onChange={(event, editor) => {
                             const data = editor.getData();
-                            setQContent(data);
+                            setAContent(data);
                             console.log({ data });
-                            console.log(qContent);
+                            console.log(aContent);
                         }}
                         onBlur={(event, editor) => {
                             console.log('Blur.', editor);

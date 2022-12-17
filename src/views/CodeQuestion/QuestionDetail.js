@@ -68,37 +68,47 @@ function QuestionDetail() {
 
     return (
 
-        <div className='container container-question-detail'>
-            {/* 제목 */}
-            <div className='row h-75'>
-                <div className='col-12 my-auto text-start my-auto q-detail-title'>
-                    {title}
-                </div>
-            </div>
+        <main>
+            <section>
+                <header className='title-coco'>
+                    QUESTION &
+                    <span className='title-accent-coco'> ANSWER </span>
+                </header>
 
-            {/* 닉네임, 작성 날짜 */}
-            <div className='row q-detail-info'>
-                {/* 작성자 프로필*/}
-                <div className="col-8">
-                    <img src="" alt="" />
-                    <span id="quser-nickname"> {nickname} </span>
-                </div>
-                {/* 작성 날짜 */}
-                <div className="col-4 text-end">
-                    {date}
-                </div>
-            </div>
+                <div className='container container-question-detail'>
 
-            {/* 컨텐츠 내용 */}
-            <div className="row q-detail-content">
-                <div className="col-12 text-start q-detail-text">
-                    {content}
-                </div>
 
-            </div>
-            <AnswerList />
-            <AnswerForm />
-        </div>
+                    {/* 제목 */}
+                    <div className='row h-75'>
+                        <div className='col-12 my-auto text-start my-auto q-detail-title'>
+                            <h3>{title}</h3>
+                        </div>
+                    </div>
+
+                    {/* 닉네임, 작성 날짜 */}
+                    <div className='row q-detail-info'>
+                        {/* 작성자 프로필*/}
+                        <div className="col-8">
+                            <img src="" alt="" />
+                            <span id="quser-nickname"> {nickname} </span>
+                        </div>
+                        {/* 작성 날짜 */}
+                        <div className="col-4 text-end">
+                            {date}
+                        </div>
+                    </div>
+
+                    {/* 컨텐츠 내용 */}
+                    <div className="row q-detail-content">
+                        <div className="col-12 text-start q-detail-text">
+                            {content}
+                        </div>
+                    </div>
+                    <AnswerList />
+                    <AnswerForm />
+                </div>
+            </section>
+        </main>
     )
 }
 
