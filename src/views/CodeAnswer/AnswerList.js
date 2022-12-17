@@ -32,7 +32,7 @@ function AnswerList() {
 
 
     return (
-        <Form className="form-container">
+        <Form className="a-form-container">
             <div className="folder-content-answer">
                 {answers.map((answers) => {
                     console.log(answers)
