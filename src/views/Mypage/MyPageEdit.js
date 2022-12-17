@@ -29,25 +29,12 @@ import {faUserPen, faLock, faDisplay, faListCheck, faUserSlash} from '@fortaweso
 
 import TagsInput from "../../components/TagsInput";
 import MyProfileTab from "./MyProfileTab";
+import MyQuestionsTab from "./MyQuestionsTab";
 
 
 function MyPageEdit() {
 
     const [selectedTab, setSelectedTab] = useState(1);
-
-    const [boards, setBoards] = useState([]);
-
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/questions')
-            .then((response) => {
-                setBoards(response.data);
-                console.log('데이터 가져오기 성공');
-            }).catch((err) => {
-            console.log(err);
-        })
-
-        axios.get()
-    }, []);
 
     return (
         <div className='wrapper'>
@@ -110,34 +97,7 @@ function MyPageEdit() {
                                 <TabContent activeTab={"profile" + selectedTab}>
                                     {/*My Questions 탭*/}
                                     <TabPane tabId='profile1' className='mypage-tab-item'>
-                                        <Table className='align-items-center table-questions'>
-                                            <thead>
-                                            <tr>
-                                                <th scope='col'> Coin</th>
-                                                <th scope='col'> Title</th>
-                                                <th scope='col'> Date</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {boards.map((questions) => (
-                                                    <tr key={questions.question_id}>
-                                                        <td>
-                                                            <span className='title-block'> {questions.price} </span>
-                                                        </td>
-
-                                                        <td id='table-quesiton-title'>
-                                                            <Link to='#' className='title-block' style={{textDecoration:"none", color:"#484848"}}> {questions.title} </Link>
-                                                        </td>
-
-                                                        <td>
-                                                            <span style={{color:"#484848"}}> {moment(questions.createdTime).format('YYYY.MM.DD')} </span>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            )}
-
-                                            </tbody>
-                                        </Table>
+                                        <MyQuestionsTab/>
                                     </TabPane>
 
                                     {/*My Profile 탭*/}
