@@ -23,27 +23,27 @@ function Header() {
     }
 
     const hoverSearch = (e) => {
-        e.target.src = 'btn-search-k.png';
+        e.target.src = '/btn-search-k.png';
     } 
 
     const unhoverSearch = (e) => {
-        e.target.src = 'btn-search.png';
+        e.target.src = '/btn-search.png';
     } 
 
     const hoverCoco = (e) => {
-        e.target.src = 'btn-coco-k.png';
+        e.target.src = '/btn-coco-k.png';
     } 
 
     const unhoverCoco = (e) => {
-        e.target.src = 'btn-coco.png';
+        e.target.src = '/btn-coco.png';
     } 
 
     const hoverQ = (e) => {
-        e.target.src = 'btn-question-k.png';
+        e.target.src = '/btn-question-k.png';
     } 
 
     const unhoverQ = (e) => {
-        e.target.src = 'btn-question.png';
+        e.target.src = '/btn-question.png';
     } 
 
     return(
@@ -56,15 +56,15 @@ function Header() {
 
                     <div className='nav-pageitems'>
                         <Link to={'/search'} className='nav-item'>
-                            <img src='btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>
+                            <img src='/btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>
                         </Link>
 
                         <Link to={'/cocoform'} className='nav-item'>
-                            <img src='btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>
+                            <img src='/btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>
                         </Link>
 
                         <Link to={'/question'} className='nav-item'>
-                            <img src='btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>
+                            <img src='/btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>
                         </Link>
                     </div>
 
