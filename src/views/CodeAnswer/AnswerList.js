@@ -32,7 +32,7 @@ function AnswerList() {
 
     useEffect(() => {
         fetchData();
-    }, [answers]);
+    }, []);
 
 
     return (
