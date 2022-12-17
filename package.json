@@ -26,6 +26,7 @@
     "node-sass": "^7.0.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-confirm-alert": "^3.0.6",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-html-parser": "^2.0.2",
@@ -36,7 +37,6 @@
     "reactstrap": "^9.1.5",
     "redux-persist": "^6.0.0",
     "sass": "^1.56.1",
-    "sweetalert2": "^11.6.15",
     "sweetalert2": "^11.6.15",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"

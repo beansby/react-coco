@@ -2,13 +2,14 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import '../../css/CocoForm.css';
 import {Form, FormGroup, Input, Label, Button, Col, Fade} from 'reactstrap';
-import Swal from 'sweetalert2';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
 
+import {confirmAlert} from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function QuestionForm() {
     // 토큰 보내기 시작
@@ -57,61 +58,57 @@ function QuestionForm() {
     // 질문 등록 : DB 데이터 저장 
     const submit = () => {
         // e.preventDefault();
-
         axios.post('http://localhost:8080/api/questions', null, qUrl)
         .then((response)=>{
             setQContent(qContent);
-            setQTitle(this.qTitle);
+            setQTitle(qTitle);
             console.log(response.data);
-            Swal.fire('질문이 등록되었습니다', '', 'success')
             console.log('질문 등록 성공');
-           
+            alert("질문을 등록했습니다.")
             // 질문 등록 후 질문 리스트 or 질문 상세 페이지 이동
-            document.location.href ='/';
+            document.location.href ='/search';
         }).catch((err)=>{
             console.log(err);
-            Swal.fire('질문 등록에 실패했습니다', '', 'error')
             
         })
     }
 
     // 질문 등록 확인
-    const saveAlert = (e) => {
-        Swal.fire({
+    const saveConfirm = (e) => {
+        e.preventDefault();
+        confirmAlert({
             title: '등록하시겠습니까?',
-            showDenyButton: true,
-            // showCancelButton: true,
-            confirmButtonText: '확인',
-            denyButtonText: `취소`,
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              submit();
-            } else if (result.isDenied) {
-              Swal.fire('등록이 취소되었습니다', '', 'warning')
-            }
-          })
-    }
+            message: '작성하기로 돌아가려면 취소를 눌러주세요.',
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {submit();}
+                },
+                {
+                    label: '취소',
+                    onClick: () => {}
+                }
+            ]
+        });
+    };
 
-    // 질문 등록 취소
-    const cancelAlert = (e) => {
-        Swal.fire({
-            title: '작성을 취소하시겠습니까?',
-            showDenyButton: true,
-            // showCancelButton: true,
-            confirmButtonText: '확인',
-            denyButtonText: `취소`,
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire('작성을 취소합니다', '', 'success')
-            } else if (result.isDenied) {
-              Swal.fire('뒤로 가기', '', 'warning')
-            }
-          })
+    const cancel = (e) => {
+        e.preventDefault();
+        confirmAlert({
+            title: '작성을 취소하시겠습니다?',
+            message: '작성하기로 돌아가려면 취소를 눌러주세요.',
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {alert("작성을 취소합니다."); document.location.href='/';}
+                },
+                {
+                    label: '취소',
+                    onClick: () => {}
+                }
+            ]
+        });
     }
-
-    
 
     return(
         <main>
@@ -242,9 +239,9 @@ function QuestionForm() {
                 
                 <br/>
                 <div className="btn-form-coco">
-                    <Button onClick={(e)=>{saveAlert('저장', 'center')}} > 등록 </Button>
+                    <Button onClick={saveConfirm} > 등록 </Button>
                     &nbsp; &nbsp; 
-                    <Button onClick={(e)=>{cancelAlert('취소', 'center')}} > 취소 </Button>
+                    <Button onClick={cancel} > 취소 </Button>
                 </div>
                 
                 
