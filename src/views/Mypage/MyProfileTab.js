@@ -7,6 +7,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import axios from "axios";
 import {requestToken} from "../../redux/requestToken";
+import {Link} from "react-router-dom";
+import {confirmAlert} from "react-confirm-alert";
 
 
 function MyProfileTab(){
@@ -70,17 +72,40 @@ function MyProfileTab(){
         })
     }
 
+    // 회원 탈퇴
     const withdrawal = () => {
-        axios.delete("http://localhost:8080/api/members/delete", null,
+        axios.post("http://localhost:8080/api/members/delete", null,
             {
                 params:{id:memberId}
             }
         ).then((response)=>{
+
             alert(response.data.message);
-            document.location.href='/';
+            document.location.href='/search';
+            dispatch({type:"TOKEN", data:''});
+            dispatch({type:"MEMBERID", data:''});
         }).catch((err)=>{
             console.log(err);
+            alert(err.response.data.message);
         })
+    }
+
+    const deleteConfirm = (e) => {
+        e.preventDefault();
+        confirmAlert({
+            title: '회원 탈퇴를 진행하시겠습니까?',
+            message: '회원 탈퇴시 더 이상 서비스를 이용하실 수 없습니다.',
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {withdrawal();}
+                },
+                {
+                    label: '취소',
+                    onClick: () => {}
+                }
+            ]
+        });
     }
 
 
@@ -105,13 +130,13 @@ function MyProfileTab(){
                     </FormGroup>
                 </Col>
 
-                <Col className='align-self-center' md='2'>
+                {/*<Col className='align-self-center' md='2'>
                     <Button> 중복체크 </Button>
-                </Col>
+                </Col>*/}
             </Row>
 
             {/*패스워드*/}
-            <Row className='row-mypage-profile'>
+            {/*<Row className='row-mypage-profile'>
                 <Col className='align-self-center' md='4'>
                     <label className='labels' htmlFor='#password'>
                         <FontAwesomeIcon icon={faLock}/>
@@ -125,7 +150,7 @@ function MyProfileTab(){
                                name='password' required/>
                     </FormGroup>
                 </Col>
-            </Row>
+            </Row>*/}
 
             {/*프로그래밍 언어*/}
             <Row className='row-mypage-profile'>
@@ -179,7 +204,7 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center' md='8'>
-                    <a href='#' onClick={withdrawal}> 회원 탈퇴하기 </a>
+                    <Link onClick={deleteConfirm}> 회원 탈퇴하기 </Link>
                 </Col>
             </Row>
 
