@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../css/CocoMain.scss';
-import {Link} from 'react-router-dom';
-import {UncontrolledDropdown, Dropdown, DropdownToggle, DropdownItem, DropdownMenu} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { UncontrolledDropdown, Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from 'reactstrap';
 
 import ReactHtmlParser from 'react-html-parser';
 import SearchBar from "../../components/SearchBar";
@@ -15,25 +15,25 @@ function QuestionSearch() {
 
     const modifyText = (string) => {
         let newText = string.replace(/(<([^>]+)>)/ig, "");
-        newText = newText.replace(/&nbsp;/gi," ");
+        newText = newText.replace(/&nbsp;/gi, " ");
         newText = newText.replace(/<br\/>/ig, "\n");
         return newText;
     }
 
     // DB 가져오기
-    useEffect(()=>{
+    useEffect(() => {
         axios.get('http://localhost:8080/api/questions')
-        .then((response)=>{
-            setBoards(response.data);
-            console.log('데이터 가져오기 성공');
-            console.log(response.data);
-        }).catch((err)=>{
-            console.log(err);
-        })
+            .then((response) => {
+                setBoards(response.data);
+                console.log('데이터 가져오기 성공');
+                console.log(response.data);
+            }).catch((err) => {
+                console.log(err);
+            })
     }, []);
 
 
-    return(
+    return (
         <main>
             <header className='title-coco'>
                 SEARCH.
@@ -41,18 +41,18 @@ function QuestionSearch() {
             </header>
 
             {/*검색창*/}
-            <SearchBar/>
-            
+            <SearchBar />
+
             <div className="folder-container-coco">
 
-                <div className="folder-bar"> 
+                <div className="folder-bar">
                     <div className="folder-name-coco">
-                            Question
+                        Question
                     </div>
 
                     <div className="btn-question-add">
-                        <Link to={'/question'}> 
-                            <img src="icon-plusq.png" alt="" id="question-add"/>
+                        <Link to={'/question'}>
+                            <img src="icon-plusq.png" alt="" id="question-add" />
                         </Link>
                     </div>
 
@@ -65,18 +65,18 @@ function QuestionSearch() {
                             <DropdownMenu dark>
                                 <DropdownItem> 최신순 </DropdownItem>
                                 <DropdownItem> 인기순 </DropdownItem>
-                            
+
                             </DropdownMenu>
                         </UncontrolledDropdown>
                     </div>
                 </div>
-                
-               
+
+
                 <div className="folder-content-question">
-                    {boards.map((questions)=>{
-                        return(
+                    {boards.map((questions) => {
+                        return (
                             <div className="folder-item-question">
-                                <Link to={'/question/'+questions.question_id} key={questions.question_id}>
+                                <Link to={'/question/' + questions.questionId} key={questions.questionId}>
                                     {/* 매칭 상태 변경값 설정 필요 */}
                                     {/* <div className="coco-item-lang">
                                     {`키워드 : ${question.lang}`}
@@ -87,7 +87,7 @@ function QuestionSearch() {
                                             {`${questions.title}`}
                                         </span>
                                         <span className='item-author-question'>
-                                            {questions.author.nickname}
+                                            {questions.questionAuthor.nickname}
                                         </span>
 
                                         <div className="item-content-question">
@@ -101,8 +101,8 @@ function QuestionSearch() {
                             </div>
                         )
                     })}
-                
-                 
+
+
 
                 </div>
 

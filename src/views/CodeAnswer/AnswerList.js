@@ -1,47 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../css/AnswerList.css';
-import { Button, Col, FormGroup, Input, Row } from "reactstrap";
+import { Form, boards } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserNinja, faUserPen } from "@fortawesome/free-solid-svg-icons";
+import AnswerForm from "../CodeAnswer/AnswerForm";
+import { useParams } from "react-router-dom";
+import { ErrorResponse } from "@remix-run/router";
+import { borderRadius } from "@mui/system";
 
 function AnswerList() {
 
 
-    const [member, setMember] = useState([]);
+    const [answers, setAnswers] = useState([]);
+    const { id } = useParams();
+
+    let [like, setLike] = useState(3);
+    let [comment, setcomment] = useState(2);
+    let [realated, setRealted] = useState('');
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/api/questions/${id}/answers`)
+            .then((res) => {
+                const answers = res.data;
+                setAnswers(answers)
+                console.log(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            }, [])
+    }, [])
+
 
     return (
-            
-            <div className='container container-question-detail'>
-                {/* 제목 */}
-                <div className='row h-75'>
-                    <div className='col-12 my-auto text-start my-auto q-detail-title'>
-                        가져온 질문 제목입니다
-                    </div>
-                </div>
+        <Form className="form-container">
+            <div className="folder-content-answer">
+                {answers.map((answers) => {
+                    console.log(answers)
+                    return (
+                        <div className="row a-detail-info">
+                            <div classname="col-8">
+                                <img src="" alt="" />
+                                <span className='a-user-nickname'>
+                                    {answers.answerAuthor.nickname}
+                                </span>
 
-                {/* 닉네임, 작성 날짜 */}
-                <div className='row q-detail-info'>
-                    {/* 작성자 프로필*/}
-                    <div className="col-8">
-                        <img src="" alt=""/>
-                        <span id="quser-nickname"> user nickname </span>
-                    </div>
-                    {/* 작성 날짜 */}
-                    <div className="col-4 text-end">
-                        written date
-                    </div>
-                </div>
+                                <span className='col-4 text-end'>
+                                    {answers.date}
+                                </span>
 
-                {/* 컨텐츠 내용 */}
-                <div className="row q-detail-content">
-                    <div className="col-12 text-start q-detail-text">
-                        innerhtml 사용해서 내용 뿌려주기
-                    </div>
-                    
-                </div>
+                                <div className="row a-detail-content">
+                                    <div className="col-12 text-start a-detail-text">
+                                        {answers.content}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
-        
+
+            <div className="like-btn">
+                <span onClick={() => { setLike(like + 1) }}> 👍🏻 </span> {like} &nbsp;
+                <span onClick={() => { setcomment(comment + 1) }}> 💬 </span> {comment}
+            </div>
+        </Form>
     )
 }
 
