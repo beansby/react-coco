@@ -84,7 +84,7 @@ function MyAnswersTab(){
                         </td>
 
                         <td className='table-quesiton-title'>
-                            <Link to={'/question/'+answers.questionId} style={{textDecoration:"none", color:"#484848"}}>
+                            <Link to={'/question/'+answers.question.questionId} style={{textDecoration:"none", color:"#484848"}}>
                                 <div style={{color:'#189FEC'}}> <strong> {answers.question.title} </strong> </div>
                                 {modifyText(answers.content)}
                             </Link>
