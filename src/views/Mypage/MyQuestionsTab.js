@@ -25,7 +25,8 @@ function MyQuestionsTab(){
                     params:{id:memberId}
                 })
             setMember(res.data);
-            console.log(res.data);
+            console.log('프로필탭 가져오기 성공')
+            // console.log(res.data);
             // dispatch({type:"MEMBERINFO", data:res.data})
         } catch(err){
             if(err.request.status == 401){
@@ -45,16 +46,18 @@ function MyQuestionsTab(){
 
     const [boards, setBoards] = useState([]);
 
+    // 질문 리스트 요청
     useEffect(() => {
-        axios.get('http://localhost:8080/api/questions')
+        axios.get('http://localhost:8080/api/members/questions', {
+            params:{id:memberId}
+        })
             .then((response) => {
                 setBoards(response.data);
-                console.log('데이터 가져오기 성공');
+                console.log('질문 리스트 가져오기 성공');
+                console.log(response.data);
             }).catch((err) => {
             console.log(err);
         })
-
-        axios.get()
     }, []);
 
     return(
