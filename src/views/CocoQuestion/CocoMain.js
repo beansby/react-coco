@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../css/CocoMain.scss';
 import {Link} from 'react-router-dom';
+import {Button} from "reactstrap";
 
 function CocoMain() {
 
@@ -15,6 +16,16 @@ function CocoMain() {
             console.log(err);
         })
     }, []);
+
+
+    const [isHovering, setIsHovering] = useState(false);
+    const handleMouseOver = () => {
+        setIsHovering(true);
+    }
+
+    const handelMouseOut = () => {
+        setIsHovering(false);
+    }
 
 
     return(
@@ -32,7 +43,7 @@ function CocoMain() {
                 </div>
                
                 <div className="folder-content-coco">
-                    <div className="folder-item-coco">
+                    <div className="folder-item-coco" onMouseOver={handleMouseOver} onMouseOut={handelMouseOut}>
                         <Link to={'#'} >
                             {/* 매칭 상태 변경값 설정 필요 */}
                             <div className="item-img-coco">
@@ -54,6 +65,11 @@ function CocoMain() {
                                     아무말이나 더 써봐바 이것도 높이 설정 해야 함
                                 </p>
                             </div>
+
+                            {isHovering && (
+                                <Button className='text-end'> 신청하기 </Button>
+                            )}
+
 
                             
                         </Link>
