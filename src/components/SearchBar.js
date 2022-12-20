@@ -18,8 +18,8 @@ function SearchBar(){
         //         </form>
         //     </div>
         // </div>
-        <div className='search-container'>
-            <div className="search-wrapper">
+        <div className='search-container row'>
+            <div className="search-wrapper col-8 text-end">
                 {/*검색 키워드 선택(기술 스택)*/}
                 <div className='search-keyword'>
                     <UncontrolledDropdown>
@@ -58,10 +58,12 @@ function SearchBar(){
 
             </div>
 
-            <button type="submit" className="search-button">
-                <div> SEARCH &nbsp; </div>
-                <FontAwesomeIcon icon={faMagnifyingGlass} className='fa'/>
-            </button>
+            <div className='col-4 text-start'>
+                <button type="submit" className="search-button">
+                    <div> SEARCH &nbsp; </div>
+                    <FontAwesomeIcon icon={faMagnifyingGlass} className='fa'/>
+                </button>
+            </div>
         </div>
     )
 }
