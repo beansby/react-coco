@@ -1,14 +1,49 @@
-import React from "react";
+import React, {useEffect} from "react";
 import axios from "axios";
 import '../../css/CocoForm.css';
 import { useState } from "react";
 import {Form, FormGroup, Input, Label, Button, Col, Fade} from 'reactstrap';
-import Swal from 'sweetalert2';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {useDispatch, useSelector} from "react-redux";
+import {useCookies} from "react-cookie";
+import {requestToken} from "../../redux/requestToken";
+import {confirmAlert} from "react-confirm-alert";
 
 
 function CocoForm() {
+    // 토큰 보내기 시작
+    const token = useSelector(state => state.Authorization);
+    const memberId = useSelector(state => state.MemberId);
+    const dispatch = useDispatch();
+
+    const [member, setMember] = useState([]);
+    const [cookie, setCookie] = useCookies([]);
+
+    const requestUser = async () => {
+        try {
+            const res = await axios.post('http://localhost:8080/api/members/profile', null,
+                {
+                    headers:{Authorization: token},
+                    params:{id:memberId}
+                })
+            setMember(res.data);
+        } catch(err){
+            if(err.request.data === 401){
+                const rescode = err.response.data.rescode;
+
+                if(rescode === 100){
+                    requestToken(token, dispatch, cookie, setCookie);
+                }
+            }
+        }
+    }
+
+    useEffect(()=>{
+        requestUser();
+    }, [token]);
+    // 토큰 보내기 끝
+
     const [cocoTitle, setCocoTitle] = useState('');
     const [cocoContent, setCocoContent] = useState('');
     const [cocoPrice, setCocoPrice] = useState(0);
@@ -22,65 +57,63 @@ function CocoForm() {
         setCocoPrice(e.target.value);
     }
 
-    const qUrl = {params:{title:cocoTitle, content:cocoContent, price:cocoPrice}}
-    const encodedQUrl = encodeURIComponent(qUrl);
+    const qUrl = {params:{title:cocoTitle, content:cocoContent, price:cocoPrice, id:memberId}}
 
     // 질문 등록 : DB 데이터 저장 
     const submit = () => {
         // e.preventDefault();
 
-        axios.post('http://localhost:8080/api/questions', null, qUrl)
+        axios.post('http://localhost:8080/api/cocos', null, qUrl)
         .then((response)=>{
             setCocoContent(cocoContent);
-            setCocoTitle(this.cocoTitle);
-            setCocoPrice(this.cocoPrice);
+            setCocoTitle(cocoTitle);
+            // setCocoPrice(this.cocoPrice);
             console.log(response.data);
-            Swal.fire('매칭이 등록되었습니다', '', 'success')
-            console.log('매칭등록 성공');
-            console.log(response.data);
+            console.log('매칭 등록 성공');
+            alert("매칭을 등록했습니다.")
             // 질문 등록 후 personal coco session 이동
-            document.location.href ='/';
+            // document.location.href ='/';
         }).catch((err)=>{
             console.log(err);
-            Swal.fire('등록에 실패했습니다', '', 'error')
-            
         })
     }
 
-    // 질문 등록 확인
-    const saveAlert = (e) => {
-        Swal.fire({
-            title: '등록하시겠습니까?',
-            showDenyButton: true,
-            // showCancelButton: true,
-            confirmButtonText: '확인',
-            denyButtonText: `취소`,
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              submit();
-            } else if (result.isDenied) {
-              Swal.fire('등록이 취소되었습니다', '', 'warning')
-            }
-          })
-    }
+    // 매칭 등록 확인
+    const saveConfirm = (e) => {
+        e.preventDefault();
+        confirmAlert({
+            title: '매칭을 시작하시겠습니까?',
+            message: '작성하기로 돌아가려면 취소를 눌러주세요.',
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {submit();}
+                },
+                {
+                    label: '취소',
+                    onClick: () => {}
+                }
+            ]
+        });
+    };
 
-    // 질문 등록 취소
-    const cancelAlert = (e) => {
-        Swal.fire({
-            title: '작성을 취소하시겠습니까?',
-            showDenyButton: true,
-            // showCancelButton: true,
-            confirmButtonText: '확인',
-            denyButtonText: `취소`,
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire('작성을 취소합니다', '', 'success')
-            } else if (result.isDenied) {
-              Swal.fire('뒤로 가기', '', 'warning')
-            }
-          })
+    // 매칭 등록 취소
+    const cancelConfirm = (e) => {
+        e.preventDefault();
+        confirmAlert({
+            title: '작성을 취소하시겠습니다?',
+            message: '작성하기로 돌아가려면 취소를 눌러주세요.',
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {alert("작성을 취소합니다."); document.location.href='/';}
+                },
+                {
+                    label: '취소',
+                    onClick: () => {}
+                }
+            ]
+        });
     }
 
     
@@ -225,9 +258,9 @@ function CocoForm() {
                 
                 <br/>
                 <div className="btn-form-coco">
-                    <Button onClick={(e)=>{saveAlert('저장', 'center')}} > 등록 </Button>
+                    <Button onClick={saveConfirm} > 등록 </Button>
                     &nbsp; &nbsp; 
-                    <Button onClick={(e)=>{cancelAlert('취소', 'center')}} > 취소 </Button>
+                    <Button onClick={cancelConfirm} > 취소 </Button>
                 </div>
                 
                 

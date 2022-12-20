@@ -3,15 +3,57 @@ import axios from "axios";
 import '../../css/CocoMain.scss';
 import {Link} from 'react-router-dom';
 import {Button} from "reactstrap";
+import {useDispatch, useSelector} from "react-redux";
+import {useCookies} from "react-cookie";
+import {requestToken} from "../../redux/requestToken";
 
 function CocoMain() {
+    // 토큰 보내기 시작
+    const token = useSelector(state => state.Authorization);
+    const memberId = useSelector(state => state.MemberId);
+    const dispatch = useDispatch();
 
-    const [boards, setBoards] = useState([]);
+    const [member, setMember] = useState([]);
+    const [cookie, setCookie] = useCookies([]);
+
+    const requestUser = async () => {
+        try {
+            const res = await axios.post('http://localhost:8080/api/members/profile', null,
+                {
+                    headers:{Authorization: token},
+                    params:{id:memberId}
+                })
+            setMember(res.data);
+        } catch(err){
+            if(err.request.data === 401){
+                const rescode = err.response.data.rescode;
+
+                if(rescode === 100){
+                    requestToken(token, dispatch, cookie, setCookie);
+                }
+            }
+        }
+    }
 
     useEffect(()=>{
-        axios.get('api')
+        requestUser();
+    }, [token]);
+    // 토큰 보내기 끝
+
+    const [boards, setBoards] = useState([]);
+    const modifyText = (string) => {
+        let newText = string.replace(/(<([^>]+)>)/ig, "");
+        newText = newText.replace(/&nbsp;/gi, " ");
+        newText = newText.replace(/<br\/>/ig, "\n");
+        return newText;
+    }
+
+    useEffect(()=>{
+        axios.get('http://localhost:8080/api/cocos')
         .then((response)=>{
             setBoards(response.data);
+            console.log('매칭 리스트 가져오기 성공');
+            console.log(response.data);
         }).catch((err)=>{
             console.log(err);
         })
@@ -43,37 +85,38 @@ function CocoMain() {
                 </div>
                
                 <div className="folder-content-coco">
-                    <div className="folder-item-coco" onMouseOver={handleMouseOver} onMouseOut={handelMouseOut}>
-                        <Link to={'#'} >
-                            {/* 매칭 상태 변경값 설정 필요 */}
-                            <div className="item-img-coco">
-                                <img src="thumb-waiting.png" alt=""/>
-                            </div>
+                    {boards.map((cocos)=>{
+                        return (
+                            <div className="folder-item-coco" onMouseOver={handleMouseOver} onMouseOut={handelMouseOut}>
 
-                            <div className="item-text-coco">
-                                <span className="item-title-coco">
-                                    이것은 제목입니다. 
-                                </span>
-                                
-                                <div className="item-coin-coco">
-                                    <img src="icon-coin.png" alt=""/>
-                                    &nbsp; 받아온 코인값 2000
+                                {/* 매칭 상태 변경값 설정 필요 */}
+                                <div className="item-img-coco">
+                                    <img src="thumb-waiting.png" alt=""/>
                                 </div>
 
-                                <p className="item-content-coco">
-                                    질문 내용입니다. 아무거나 적어주세요. 데이터를 어떻게 받아올지 생각 좀 해봐.
-                                    아무말이나 더 써봐바 이것도 높이 설정 해야 함
-                                </p>
+                                <div className="item-text-coco">
+                                    <span className="item-title-coco">
+                                        {cocos.title}
+                                    </span>
+
+                                    <div className="item-coin-coco">
+                                        <img src="icon-coin.png" alt=""/>
+                                        &nbsp; {cocos.price}
+                                    </div>
+
+                                    <p className="item-content-coco">
+                                        {modifyText(cocos.content)}
+                                    </p>
+                                </div>
+
+                                {isHovering && (
+                                    <Button className='text-end'> 신청하기 </Button>
+                                )}
+
                             </div>
+                        )
+                    })}
 
-                            {isHovering && (
-                                <Button className='text-end'> 신청하기 </Button>
-                            )}
-
-
-                            
-                        </Link>
-                    </div>
                 
                  
 
