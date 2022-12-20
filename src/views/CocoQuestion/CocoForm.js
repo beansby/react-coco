@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import axios from "axios";
 import '../../css/CocoForm.css';
 import { useState } from "react";
@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
 import {confirmAlert} from "react-confirm-alert";
+import {Editor} from "@toast-ui/react-editor";
 
 
 function CocoForm() {
@@ -55,6 +56,13 @@ function CocoForm() {
 
     const changePrice = (e) => {
         setCocoPrice(e.target.value);
+    }
+
+    // 토스트 에디터
+    const editorRef = useRef();
+    const change = () => {
+        const data = editorRef.current.getInstance().getHTML();
+        setCocoContent(data);
     }
 
     const qUrl = {params:{title:cocoTitle, content:cocoContent, price:cocoPrice, id:memberId}}
@@ -233,27 +241,16 @@ function CocoForm() {
                         // 이미지 태그 소스로 : 함수등록해서 보여주는 형태
                         //보여줄때도 반드시 에디터로 보여줘야함 */}
 
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data=""
-                        config={{placeholder:"질문 내용을 입력하세요."}}
-                        onReady={ editor => {
-                            // You can store the "editor" and use when it is needed.
-                            console.log( 'Editor is ready to use!', editor );
-                        } }
-                        onChange={ ( event, editor ) => {
-                            const data = editor.getData();
-                            setCocoContent(data);
-                            console.log( { data } );
-                            console.log(cocoContent);
-                        } }
-                        onBlur={ ( event, editor ) => {
-                            console.log( 'Blur.', editor );
-                        } }
-                        onFocus={ ( event, editor ) => {
-                            console.log( 'Focus.', editor );
-                        } }
+                    <Editor
+                        ref={editorRef}
+                        // placeholder='enter your question'
+                        data=''
+                        height="600px"
+                        initialEditType="markdown"
+                        useCommandShortcut={true}
+                        onChange={change}
                     />
+
                 </Form>
                 
                 <br/>
