@@ -16,12 +16,12 @@ function AnswerList() {
 
     let [like, setLike] = useState(3);
     let [comment, setcomment] = useState(2);
-    let [realated, setRealted] = useState('');
 
     const fetchData = () => {
         axios.get(`http://localhost:8080/api/questions/${id}/answers`)
             .then((res) => {
                 const answers = res.data;
+                console.log(answers.answerId)
                 setAnswers([...answers])
                 console.log(res.data)
             })
@@ -32,11 +32,25 @@ function AnswerList() {
 
     useEffect(() => {
         fetchData();
-    }, [answers]);
+    }, []);
+
+    // const answerId = useParams();
+    const deleteBtn = answerId => {
+        axios.delete(`http://localhost:8080/api/answers/${answerId}/delete/`)
+            .then(response => {
+                 setAnswers(answers.filter(answer => answer.id !== answerId))
+                const msg = response.data;
+                alert(msg);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
 
 
     return (
-        <Form className="container container-answer-detail">
+        <Form className="a-list-form-container">
             <div className="folder-content-answer">
                 {answers.map((answers) => {
                     console.log(answers)
@@ -58,17 +72,21 @@ function AnswerList() {
                                 <div className="col-12 text-start a-detail-text">
                                     {answers.content}
                                 </div>
-
                             </div>
+                            <span className='write_option_span'>
+                                <input type='button' value='수정' />
+                                <input type='button' value='삭제' onClick={deleteBtn} />
+                            </span>
                         </div>
                     )
                 })}
             </div>
 
-            <div className="like-btn">
+            <span className="like-btn">
                 <span onClick={() => { setLike(like + 1) }}> 👍🏻 </span> {like} &nbsp;
                 <span onClick={() => { setcomment(comment + 1) }}> 💬 </span> {comment}
-            </div>
+            </span>
+
         </Form>
     )
 }

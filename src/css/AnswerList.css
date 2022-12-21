@@ -1,6 +1,7 @@
-.container-answer-detail {
+.a-list-form-container {
     margin: 0 auto;
     padding-top: 10rem;
+    width: 80%;
 }
 
 .a-detail-info {

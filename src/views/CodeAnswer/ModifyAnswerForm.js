@@ -10,13 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { requestToken } from "../../redux/requestToken";
 import 'react-confirm-alert/src/react-confirm-alert.css';
-
-
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
-function AnswerForm() {
+function ModifyAnswerForm() {
 
       // 토큰 보내기 시작
       const token = useSelector(state => state.Authorization);
@@ -80,9 +78,21 @@ function AnswerForm() {
             })
     }
 
-    
-    // 질문 등록 확인
-    const saveConfirm = (e) => {
+    const save = (e) => {
+        e.preventDefault();
+        axios.put(`http://localhost:8080/api/answers/${id}`,null,
+            {params:{content: aContent}})
+        .then((response)=> {
+            alert(response.data);
+            document.location.href = '/';
+        })
+        .catch((error)=> {
+            console.log(error);
+        });
+    }
+
+      // 질문 등록 확인
+      const saveConfirm = (e) => {
         e.preventDefault();
         confirmAlert({
             title: '등록하시겠습니까?',
@@ -90,7 +100,7 @@ function AnswerForm() {
             buttons: [
                 {
                     label: '확인',
-                    onClick: () => {submit();}
+                    onClick: () => {save();}
                 },
                 {
                     label: '취소',
@@ -118,7 +128,7 @@ function AnswerForm() {
                     <CKEditor
                         editor={ClassicEditor}
                         data=""
-                        config={{ placeholder: "답변 내용을 입력하세요." }}
+                        config={{ placeholder: {aContent} }}
                         onReady={editor => {
                             // You can store the "editor" and use when it is needed.
                             console.log('Editor is ready to use!', editor);
@@ -139,14 +149,13 @@ function AnswerForm() {
 
                 </Form>
                 <br/>
-                <div className="btn-form-coco">
-                    <Button onClick={saveConfirm} > 등록 </Button>
+                <div className="btn-modifyanswerform-coco">
+                    <Button onClick={saveConfirm} > 저장 </Button>
                 </div>
                 <br></br>
             </section>
         </main>
     )
-
 }
 
-export default AnswerForm;
+export default ModifyAnswerForm;

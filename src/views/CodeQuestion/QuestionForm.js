@@ -69,7 +69,6 @@ function QuestionForm() {
             document.location.href ='/search';
         }).catch((err)=>{
             console.log(err);
-            
         })
     }
 
