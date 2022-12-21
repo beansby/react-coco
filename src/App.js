@@ -5,7 +5,6 @@ import {Provider} from "react-redux";
 import Header from './components/Headers/Header';
 import CocoForm from './views/CocoQuestion/CocoForm';
 import Footer from './components/Footers/Footer';
-import EditorForm from './components/EditorForm';
 import CocoMain from './views/CocoQuestion/CocoMain';
 import MyPage from './views/Mypage/MyPage';
 import QuestionForm from './views/CodeQuestion/QuestionForm';
@@ -19,6 +18,7 @@ import AnswerForm from './views/CodeAnswer/AnswerForm';
 import QuestionDetail from './views/CodeQuestion/QuestionDetail';
 import ModifyAnswerForm from './views/CodeAnswer/ModifyAnswerForm';
 import ModifyQuestionForm from './views/CodeQuestion/ModifyQuestionForm';
+import ChangeTab from "./components/ChangeTab";
 
 let persistor = persistStore(store);
 
@@ -29,13 +29,13 @@ function App() {
                 <PersistGate persistor={persistor}>
                     <BrowserRouter>
                         <Header/>
+                        {/*<ChangeTab/>*/}
                         <Routes>
                             {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
                             <Route exact path='/' element={<CocoMain/>}/>
                             <Route exact path='/search' element={<QuestionSearch/>}/>
                             <Route exact path='/cocoform' element={<CocoForm/>}/>
                             <Route exact path='/question' element={<QuestionForm/>}/>
-                            <Route exact path='/test' element={<EditorForm/>}/>
                             <Route exact path='/mypage' element={<MyPage/>}/>
                             <Route exact path='/login' element={<Login/>}/>
                             <Route exact path='/signup' element={<Signup/>}/>

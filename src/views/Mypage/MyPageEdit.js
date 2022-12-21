@@ -30,6 +30,7 @@ import {faUserPen, faLock, faDisplay, faListCheck, faUserSlash} from '@fortaweso
 import TagsInput from "../../components/TagsInput";
 import MyProfileTab from "./MyProfileTab";
 import MyQuestionsTab from "./MyQuestionsTab";
+import MyAnswersTab from "./MyAnswersTab";
 
 
 function MyPageEdit() {
@@ -98,6 +99,10 @@ function MyPageEdit() {
                                     {/*My Questions 탭*/}
                                     <TabPane tabId='profile1' className='mypage-tab-item'>
                                         <MyQuestionsTab/>
+                                    </TabPane>
+
+                                    <TabPane tabId='profile2' className='mypage-tab-item'>
+                                        <MyAnswersTab/>
                                     </TabPane>
 
                                     {/*My Profile 탭*/}

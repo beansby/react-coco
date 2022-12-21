@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import '../../css/CocoForm.css';
 import {Form, FormGroup, Input, Label, Button, Col, Fade} from 'reactstrap';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
 
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import {Editor} from "@toast-ui/react-editor";
 
 function QuestionForm() {
     // 토큰 보내기 시작
@@ -47,9 +47,16 @@ function QuestionForm() {
     const [qTitle, setQTitle] = useState('');
     const [qContent, setQContent] = useState('');
 
-    // 내용 입력 
+    // 제목 내용 입력
     const changeTitle = (e) => {
         setQTitle(e.target.value);
+    }
+
+    // 토스트 에디터
+    const editorRef = useRef();
+    const change = () => {
+        const data = editorRef.current.getInstance().getHTML();
+        setQContent(data);
     }
 
     const qUrl = {params:{title:qTitle, content:qContent, id:memberId}}
@@ -71,6 +78,8 @@ function QuestionForm() {
             console.log(err);
         })
     }
+
+
 
     // 질문 등록 확인
     const saveConfirm = (e) => {
@@ -210,31 +219,42 @@ function QuestionForm() {
 
                     </FormGroup>
 
+                    <Editor
+                        ref={editorRef}
+                        // placeholder='enter your question'
+                        data=''
+                        height="600px"
+                        initialEditType="markdown"
+                        useCommandShortcut={true}
+                        onChange={change}
+                    />
+
+
                         {/* //string : 태그 방식으로 가지고 있음
                         // 이미지 태그 소스로 : 함수등록해서 보여주는 형태
                         //보여줄때도 반드시 에디터로 보여줘야함 */}
 
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data=""
-                        config={{placeholder:"질문 내용을 입력하세요."}}
-                        onReady={ editor => {
-                            // You can store the "editor" and use when it is needed.
-                            console.log( 'Editor is ready to use!', editor );
-                        } }
-                        onChange={ ( event, editor ) => {
-                            const data = editor.getData();
-                            setQContent(data);
-                            console.log( { data } );
-                            console.log(qContent);
-                        } }
-                        onBlur={ ( event, editor ) => {
-                            console.log( 'Blur.', editor );
-                        } }
-                        onFocus={ ( event, editor ) => {
-                            console.log( 'Focus.', editor );
-                        } }
-                    />
+                    {/*<CKEditor*/}
+                    {/*    editor={ ClassicEditor }*/}
+                    {/*    data=""*/}
+                    {/*    config={{placeholder:"질문 내용을 입력하세요."}}*/}
+                    {/*    onReady={ editor => {*/}
+                    {/*        // You can store the "editor" and use when it is needed.*/}
+                    {/*        console.log( 'Editor is ready to use!', editor );*/}
+                    {/*    } }*/}
+                    {/*    onChange={ ( event, editor ) => {*/}
+                    {/*        const data = editor.getData();*/}
+                    {/*        setQContent(data);*/}
+                    {/*        console.log( { data } );*/}
+                    {/*        console.log(qContent);*/}
+                    {/*    } }*/}
+                    {/*    onBlur={ ( event, editor ) => {*/}
+                    {/*        console.log( 'Blur.', editor );*/}
+                    {/*    } }*/}
+                    {/*    onFocus={ ( event, editor ) => {*/}
+                    {/*        console.log( 'Focus.', editor );*/}
+                    {/*    } }*/}
+                    {/*/>*/}
                 </Form>
                 
                 <br/>

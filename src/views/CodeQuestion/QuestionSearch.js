@@ -45,19 +45,19 @@ function QuestionSearch() {
 
             <div className="folder-container-coco">
 
-                <div className="folder-bar">
-                    <div className="folder-name-coco">
+                <div className="row folder-bar">
+                    <div className="col-1 text-center folder-name-coco">
                         Question
                     </div>
 
-                    <div className="btn-question-add">
+                    <div className="col-1 my-auto btn-question-add">
                         <Link to={'/question'}>
                             <img src="icon-plusq.png" alt="" id="question-add" />
                         </Link>
                     </div>
 
                     {/* 정렬 드롭다운 */}
-                    <div className="btn-sort">
+                    <div className="col-1 text-end btn-sort">
                         <UncontrolledDropdown>
                             <DropdownToggle caret>
                                 Sort by

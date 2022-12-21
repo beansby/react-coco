@@ -21,7 +21,8 @@
     background-color: #E7E7E7;
     color: #189FEC;
     font-weight: bold;
-    padding: 10px;
+    padding: 8px;
+    width: 100px;
     margin-left:10%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -62,6 +63,24 @@
     padding-bottom: 20px;
     border-radius: 15px;
     margin: 0.5rem;
+    height: 200px;
+}
+
+.folder-item-coco:hover{
+    background-color: rgba(0, 0, 0, 0.26);
+    height: 300px;
+
+    .item-title-coco{
+        color: white;
+    }
+
+    .item-coin-coco{
+        color: #e7e7e7;
+    }
+
+    .item-content-coco{
+        color: #e7e7e7;
+    }
 }
 
 /* 질문 : 폴더 아이템 */
@@ -104,6 +123,23 @@
         }
     }
 }
+
+.folder-item-question:hover{
+    background-color: rgba(0, 0, 0, 0.26);
+
+    .item-title-question {
+        color: white;
+    }
+
+    .item-author-question{
+        color: #e7e7e7;
+    }
+
+    .item-content-question{
+        color: #e7e7e7;
+    }
+}
+
 
 /* 썸네일 */
 .item-img-coco {
