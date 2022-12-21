@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
 import {confirmAlert} from "react-confirm-alert";
+import '@toast-ui/editor/dist/toastui-editor.css';
 import {Editor} from "@toast-ui/react-editor";
 
 

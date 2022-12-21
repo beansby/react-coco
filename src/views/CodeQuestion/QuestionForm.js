@@ -8,8 +8,8 @@ import {requestToken} from "../../redux/requestToken";
 
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
 import {Editor} from "@toast-ui/react-editor";
-import ToastEditor from "../../components/ToastEditor";
 
 function QuestionForm() {
     // 토큰 보내기 시작
