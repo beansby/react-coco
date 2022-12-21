@@ -9,6 +9,7 @@ import axios from "axios";
 import {requestToken} from "../../redux/requestToken";
 import {Link} from "react-router-dom";
 import {confirmAlert} from "react-confirm-alert";
+import {Select} from "@mui/material";
 
 
 function MyProfileTab(){
@@ -50,8 +51,8 @@ function MyProfileTab(){
     const [langTags, setLangTags] = useState([]);
     const [techTags, setTechTags] = useState([]);
 
+    // 닉네임 변경
     const [nickname, setNickname] = useState(member.nickname);
-
     const changeNickname = (e) => {
         setNickname(e.target.value);
     }
@@ -108,6 +109,38 @@ function MyProfileTab(){
         });
     }
 
+    // 프로그래밍 언어
+    const [langs, setLangs] = useState([]);
+
+    // 언어 추가
+    const [lang, setLang] = useState('select lang');
+    const selectLang = (e) => {
+        setLang(e.target.value);
+    }
+
+    const addLang = () => {
+        axios.post('http://localhost:8080/api/languages', null, {
+            params:{language:lang, id:memberId}
+        }).then((res)=>{
+            setLangs([...langs, {language:lang}]);
+            console.log('언어 추가 성공');
+            console.log(typeof(res.data));
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    useEffect(()=>{
+        axios.get('http://localhost:8080/api/languages',{
+            params:{id:memberId}
+        }).then((res)=>{
+            setLangs(res.data);
+            console.log('언어 리스트 가져오기 성공');
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }, []);
+
 
 
 
@@ -115,7 +148,7 @@ function MyProfileTab(){
         <div>
             {/*닉네임*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels' htmlFor='#nickname'>
                         <FontAwesomeIcon icon={faUserPen}/>
                         &nbsp;
@@ -123,16 +156,17 @@ function MyProfileTab(){
                     </label>
                 </Col>
 
-                <Col className='align-self-center' md='6'>
+                <Col className='align-self-center' md='7'>
                     <FormGroup>
                         <Input type='text' id='nickname' name='nickname'
                                value={nickname} onChange={changeNickname} required/>
                     </FormGroup>
                 </Col>
 
-                {/*<Col className='align-self-center' md='2'>
-                    <Button> 중복체크 </Button>
-                </Col>*/}
+                <Col className='align-self-center' md='2'>
+                    <Button type='submit' onClick={saveChange}> 변경 </Button>
+                </Col>
+
             </Row>
 
             {/*패스워드*/}
@@ -154,28 +188,40 @@ function MyProfileTab(){
 
             {/*프로그래밍 언어*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels'>
                         <FontAwesomeIcon icon={faDisplay}/>
                         <span> &nbsp; PROGRAMMING LANGUAGE </span>
                     </label>
                 </Col>
 
-                <Col className='align-self-center' md='8'>
-                    <TagsInput
-                        tagProps={{
-                            className: "react-tagsinput-tag bg-info"
-                        }}
-                        value={langTags}
-                        onChange={(value) => setLangTags(value)}
-                        onlyUnique
-                    />
+                <Col className='align-self-center pf-tab-content' md='5'>
+                    {langs.map((language)=>{
+                        return (
+                            <span className='lang-tag text-center'> {language.language} </span>
+                        )
+                    })}
+                </Col>
+
+                <Col className='align-self-center pf-tab-content' md='2'>
+
+                    <select name="lang" id="lang" value={lang} onChange={selectLang} >
+                        <option> JAVA </option>
+                        <option> JAVASCRIPT </option>
+                        <option> PYTHON </option>
+                        <option> C++ </option>
+                    </select>
+
+                </Col>
+
+                <Col className='align-self-center' md='2'>
+                    <Button type='submit' onClick={addLang}> 추가 </Button>
                 </Col>
             </Row>
 
             {/*기술 스택*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center' md='3'>
                     <label className='labels'>
                         <FontAwesomeIcon icon={faListCheck}/>
                         <span> &nbsp; TECH STACK </span>
@@ -196,7 +242,7 @@ function MyProfileTab(){
 
             {/*회원탈퇴*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center' md='3'>
                     <label className='labels' htmlFor='#withdrawal'>
                         <FontAwesomeIcon icon={faUserSlash}/>
                         <span> &nbsp; MEMBER WITHDRAWAL </span>
@@ -209,12 +255,12 @@ function MyProfileTab(){
             </Row>
 
             {/*버튼*/}
-            <Row className='mt-4 row-mypage-profile'>
-                <Col className='align-content-end' md='6'>
-                    <Button color='#189FEC' type='submit' onClick={saveChange}> 저장 </Button>
-                    <Button color='#189FEC' type='button'> 취소 </Button>
-                </Col>
-            </Row>
+            {/*<Row className='mt-4 row-mypage-profile'>*/}
+            {/*    <Col className='align-content-end' md='6'>*/}
+            {/*        <Button color='#189FEC' type='submit' onClick={saveChange}> 변경 </Button>*/}
+            {/*        <Button color='#189FEC' type='button'> 취소 </Button>*/}
+            {/*    </Col>*/}
+            {/*</Row>*/}
         </div>
     )
 }
