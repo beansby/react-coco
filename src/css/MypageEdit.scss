@@ -59,9 +59,40 @@
     padding-left: 20px;
 }
 
+
 .row-mypage-profile {
     margin-top: 10px;
     margin-bottom: 20px;
+
+    .pf-tab-label {
+
+    }
+
+    .pf-tab-content {
+        .lang-tag {
+            background-color: #1d8cf8;
+            color: white;
+            font-weight: normal;
+            font-size: 14px;
+            padding: 5px;
+            margin-left: 3px;
+            margin-right: 3px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .tech-tag {
+            background-color: #1d8cf8;
+            color: white;
+            font-weight: normal;
+            font-size: 14px;
+            padding: 5px;
+            margin-left: 3px;
+            margin-right: 3px;
+            border-radius: 20px;
+            text-align: center;
+        }
+    }
 }
 
 //내 질문 목록 탭

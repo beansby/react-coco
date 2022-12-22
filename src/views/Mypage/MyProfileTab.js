@@ -10,6 +10,7 @@ import {requestToken} from "../../redux/requestToken";
 import {Link} from "react-router-dom";
 import {confirmAlert} from "react-confirm-alert";
 import {Select} from "@mui/material";
+import {Viewer} from "@toast-ui/react-editor";
 
 
 function MyProfileTab(){
@@ -29,8 +30,7 @@ function MyProfileTab(){
                     params:{id:memberId}
                 })
             setMember(res.data);
-            console.log(res.data);
-            // dispatch({type:"MEMBERINFO", data:res.data})
+            // console.log(res.data);
         } catch(err){
             if(err.request.status == 401){
                 const rescode = err.response.data.rescode;
@@ -111,20 +111,21 @@ function MyProfileTab(){
 
     // 프로그래밍 언어
     const [langs, setLangs] = useState([]);
+    // const [langsShow, setLangsShow] = useState(false);
 
-    // 언어 추가
+    // 언어 선택
     const [lang, setLang] = useState('select lang');
     const selectLang = (e) => {
         setLang(e.target.value);
     }
-
+    // 언어 추가
     const addLang = () => {
         axios.post('http://localhost:8080/api/languages', null, {
             params:{language:lang, id:memberId}
         }).then((res)=>{
             setLangs([...langs, {language:lang}]);
             console.log('언어 추가 성공');
-            console.log(typeof(res.data));
+            console.log(res.data);
         }).catch((err)=>{
             console.log(err);
         })
@@ -136,13 +137,73 @@ function MyProfileTab(){
         }).then((res)=>{
             setLangs(res.data);
             console.log('언어 리스트 가져오기 성공');
+            console.log(res);
         }).catch((err)=>{
             console.log(err);
         })
     }, []);
 
+    // 언어 옵션
+    const [langOptions, setLangOptions] = useState([]);
+    // const [optionShow, setOptionShow] = useState(false);
 
+    useEffect( () => {
+        axios.get('http://localhost:8080/api/languages/list')
+            .then((res)=>{
+                setLangOptions(res.data);
+                console.log('언어 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+                console.log(err);
+        })
+    }, [])
 
+    // 기술 스택
+    const [techs, setTechs] = useState([]);
+
+    // 기술 선택
+    const [tech, setTech] = useState('select tech');
+    const selectTech = (e) => {
+        setTech(e.target.value);
+    }
+
+    const addTech = () => {
+        axios.post('http://localhost:8080/api/skills', null, {
+            params:{skill:tech, id:memberId}
+        }).then((res)=>{
+            setTechs([...techs, {skill:tech}]);
+            console.log('기술 추가 성공');
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    useEffect(()=>{
+        axios.get('http://localhost:8080/api/skills',{
+            params:{id:memberId}
+        }).then((res)=>{
+            setTechs(res.data);
+            console.log('기술 리스트 가져오기 성공');
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }, []);
+
+    // 기술 옵션
+    const [techOptions, setTechOptions] = useState([]);
+
+    useEffect( () => {
+        axios.get('http://localhost:8080/api/skills/list')
+            .then((res)=>{
+                setTechOptions(res.data);
+                console.log('기술 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+            console.log(err);
+        })
+    }, [])
 
     return(
         <div>
@@ -169,23 +230,6 @@ function MyProfileTab(){
 
             </Row>
 
-            {/*패스워드*/}
-            {/*<Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
-                    <label className='labels' htmlFor='#password'>
-                        <FontAwesomeIcon icon={faLock}/>
-                        <span> &nbsp; PASSWORD </span>
-                    </label>
-                </Col>
-
-                <Col className='align-self-center' md='8'>
-                    <FormGroup>
-                        <Input type='password' defaultValue='' id='password'
-                               name='password' required/>
-                    </FormGroup>
-                </Col>
-            </Row>*/}
-
             {/*프로그래밍 언어*/}
             <Row className='row-mypage-profile'>
                 <Col className='align-self-center pf-tab-label' md='3'>
@@ -204,14 +248,14 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center pf-tab-content' md='2'>
-
                     <select name="lang" id="lang" value={lang} onChange={selectLang} >
-                        <option> JAVA </option>
-                        <option> JAVASCRIPT </option>
-                        <option> PYTHON </option>
-                        <option> C++ </option>
+                        <option selected hidden> 언어를 선택해주세요 </option>
+                        {langOptions.map((opt) => {
+                            return (
+                                <option> {opt} </option>
+                            )
+                        })}
                     </select>
-
                 </Col>
 
                 <Col className='align-self-center' md='2'>
@@ -228,15 +272,27 @@ function MyProfileTab(){
                     </label>
                 </Col>
 
-                <Col className='align-self-center' md='8'>
-                    <TagsInput
-                        tagProps={{
-                            className: "react-tagsinput-tag bg-accent"
-                        }}
-                        value={techTags}
-                        onChange={(value) => setTechTags(value)}
-                        onlyUnique
-                    />
+                <Col className='align-self-center pf-tab-content' md='5'>
+                    {techs.map((stack)=>{
+                        return (
+                            <span className='tech-tag text-center'> {stack.skill} </span>
+                        )
+                    })}
+                </Col>
+
+                <Col className='align-self-center pf-tab-content' md='2'>
+                    <select name="tech" id="tech" value={tech} onChange={selectTech} >
+                        <option selected hidden> 스킬을 선택해주세요 </option>
+                        {techOptions.map((opt) => {
+                            return (
+                                <option> {opt} </option>
+                            )
+                        })}
+                    </select>
+                </Col>
+
+                <Col className='align-self-center' md='2'>
+                    <Button type='submit' onClick={addTech}> 추가 </Button>
                 </Col>
             </Row>
 
