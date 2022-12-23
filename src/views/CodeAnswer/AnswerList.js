@@ -27,7 +27,7 @@ function AnswerList() {
             })
             .catch((error) => {
                 console.log(error)
-            }, [])
+            })
     }
 
     useEffect(() => {
