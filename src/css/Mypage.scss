@@ -36,13 +36,26 @@
                 font-weight: bold;
             }
         }
+
+        .pf-settings {
+            .tag-input {
+                background: linear-gradient(45deg, rgba(62, 165, 250, 0.91), #189FEC);
+                color: white;
+                font-weight: normal;
+                font-size: 14px;
+                padding: 5px;
+                margin-left: 3px;
+                margin-right: 3px;
+                border-radius: 20px;
+                text-align: center;
+                line-height: 2rem;
+            }
+        }
     }
 }
 
-
-table {
-    margin: 0 auto;
-    padding-top: 100px;
+.coco-pf-tab {
+    padding-top: 4rem;
 }
 
 ///* change the colors */

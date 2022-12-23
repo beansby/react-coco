@@ -1,6 +1,6 @@
 import {Button, Col, FormGroup, Input, Row} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDisplay, faListCheck, faLock, faUserPen, faUserSlash} from "@fortawesome/free-solid-svg-icons";
+import {faDisplay, faImage, faListCheck, faLock, faUserPen, faUserSlash} from "@fortawesome/free-solid-svg-icons";
 import TagsInput from "../../components/TagsInput";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,8 +9,6 @@ import axios from "axios";
 import {requestToken} from "../../redux/requestToken";
 import {Link} from "react-router-dom";
 import {confirmAlert} from "react-confirm-alert";
-import {Select} from "@mui/material";
-import {Viewer} from "@toast-ui/react-editor";
 
 
 function MyProfileTab(){
@@ -47,9 +45,18 @@ function MyProfileTab(){
     }, [token]);
     // 토큰 보내기 끝
 
+    // 프로필 사진 저장/변경
+    const [pic, setPic] = useState('');
 
-    const [langTags, setLangTags] = useState([]);
-    const [techTags, setTechTags] = useState([]);
+    const savePic = () => {
+        axios.put('api', null, {    // put? post?
+            params: {id:memberId}
+        }).then((res)=>{
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
 
     // 닉네임 변경
     const [nickname, setNickname] = useState(member.nickname);
@@ -207,6 +214,30 @@ function MyProfileTab(){
 
     return(
         <div>
+            {/*프로필 이미지*/}
+            <Row className='row-mypage-profile'>
+                <Col className='align-self-center pf-tab-label' md='3'>
+                    <label className='labels' htmlFor='#picture'>
+                        <FontAwesomeIcon icon={faImage} />
+                        &nbsp;
+                        PROFILE IMAGE
+                    </label>
+                </Col>
+
+                <Col className='align-self-center' md='7'>
+                    <FormGroup>
+                        <Input type='file' id='picture' name='picture'
+                                 required/>
+                    </FormGroup>
+                </Col>
+
+                <Col className='align-self-center' md='2'>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit'> 저장 </button>
+                    </div>
+                </Col>
+            </Row>
+
             {/*닉네임*/}
             <Row className='row-mypage-profile'>
                 <Col className='align-self-center pf-tab-label' md='3'>
@@ -225,7 +256,9 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center' md='2'>
-                    <Button type='submit' onClick={saveChange}> 변경 </Button>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit' onClick={saveChange}> 변경 </button>
+                    </div>
                 </Col>
 
             </Row>
@@ -242,13 +275,13 @@ function MyProfileTab(){
                 <Col className='align-self-center pf-tab-content' md='5'>
                     {langs.map((language)=>{
                         return (
-                            <span className='lang-tag text-center'> {language.language} </span>
+                            <span className='tag-input text-center'> {language.language} </span>
                         )
                     })}
                 </Col>
 
                 <Col className='align-self-center pf-tab-content' md='2'>
-                    <select name="lang" id="lang" value={lang} onChange={selectLang} >
+                    <select className='form-select' name="lang" id="lang" value={lang} onChange={selectLang}>
                         <option selected hidden> 언어를 선택해주세요 </option>
                         {langOptions.map((opt) => {
                             return (
@@ -259,13 +292,15 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center' md='2'>
-                    <Button type='submit' onClick={addLang}> 추가 </Button>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit' onClick={addLang}> 추가 </button>
+                    </div>
                 </Col>
             </Row>
 
             {/*기술 스택*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='3'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels'>
                         <FontAwesomeIcon icon={faListCheck}/>
                         <span> &nbsp; TECH STACK </span>
@@ -275,13 +310,13 @@ function MyProfileTab(){
                 <Col className='align-self-center pf-tab-content' md='5'>
                     {techs.map((stack)=>{
                         return (
-                            <span className='tech-tag text-center'> {stack.skill} </span>
+                            <span className='tag-input text-center'> {stack.skill} </span>
                         )
                     })}
                 </Col>
 
                 <Col className='align-self-center pf-tab-content' md='2'>
-                    <select name="tech" id="tech" value={tech} onChange={selectTech} >
+                    <select className='form-select' name="tech" id="tech" value={tech} onChange={selectTech} >
                         <option selected hidden> 스킬을 선택해주세요 </option>
                         {techOptions.map((opt) => {
                             return (
@@ -292,13 +327,15 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center' md='2'>
-                    <Button type='submit' onClick={addTech}> 추가 </Button>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit' onClick={addTech}> 추가 </button>
+                    </div>
                 </Col>
             </Row>
 
             {/*회원탈퇴*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='3'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels' htmlFor='#withdrawal'>
                         <FontAwesomeIcon icon={faUserSlash}/>
                         <span> &nbsp; MEMBER WITHDRAWAL </span>
