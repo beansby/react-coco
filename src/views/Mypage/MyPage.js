@@ -10,8 +10,6 @@ import {requestToken} from "../../redux/requestToken";
 import TagsInput from "../../components/TagsInput";
 
 function MyPage() {
-    const [langTags, setLangTags] = useState([]);
-
     // 토큰 보내기 시작
     const token = useSelector(state => state.Authorization);
     const memberId = useSelector(state => state.MemberId);
@@ -28,8 +26,6 @@ function MyPage() {
                     params:{id:memberId}
                 })
             setMember(res.data);
-            console.log(res.data);
-            // dispatch({type:"MEMBERINFO", data:res.data})
         } catch(err){
             if(err.request.status == 401){
                 const rescode = err.response.data.rescode;
@@ -45,6 +41,34 @@ function MyPage() {
         requestUser();
     }, [token]);
     // 토큰 보내기 끝
+
+    // const [langTags, setLangTags] = useState([]);
+    // const [skills, setSkills] = useState([]);
+
+    const [langs, setLangs] = useState([]);
+    const [techs, setTechs] = useState([]);
+
+    useEffect(()=>{
+        axios.get('http://localhost:8080/api/languages',{
+            params:{id:memberId}
+        }).then((res)=>{
+            setLangs(res.data);
+            console.log('언어 리스트 가져오기 성공');
+            console.log(res);
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+        axios.get('http://localhost:8080/api/skills',{
+            params:{id:memberId}
+        }).then((res)=>{
+            setTechs(res.data);
+            console.log('기술 리스트 가져오기 성공');
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }, []);
 
     return (
         <main>
@@ -72,13 +96,8 @@ function MyPage() {
                         <div className='row'>
                             <div className='col-7 pf-progress my-auto'>
                                 <Progress max="100" value="60" id='pf-rating' className='progress-info'/>
-                                {/*<div className="progress" id='pf-rating'>*/}
-                                {/*    <div className="progress-bar bg-info" role="progressbar"*/}
-                                {/*         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">*/}
-                                {/*        qoffbdfasdnkl*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
-                                <UncontrolledTooltip delay={0}  target='pf-rating' style={{backgroundColor:"#b9bec4",color:'white'}}>
+
+                                <UncontrolledTooltip delay={0}  target='pf-rating' style={{backgroundColor:"#b9bec4",color:'white'}} placement='bottom'>
                                     만족도 점수는 60% 입니다. <br/> 코칭을 통해 만족도를 올려보세요.
                                 </UncontrolledTooltip>
                             </div>
@@ -88,15 +107,26 @@ function MyPage() {
                         </div>
 
                         <div className='row text-center my-auto'>
-                            <div className='col-8'>
-                                <TagsInput
-                                    tagProps={{
-                                        className: "react-tagsinput-tag bg-info"
-                                    }}
-                                    value={langTags}
-                                    onChange={(value) => setLangTags(value)}
-                                    onlyUnique
-                                />
+
+                            <div className='col-10 pf-settings'>
+                                {langs.map((item)=>{
+                                    return (
+                                        <span className='tag-input text-center'> {item.language} </span>
+                                    )
+                                })}
+                                {techs.map((item)=>{
+                                    return (
+                                        <span className='tag-input text-center'> {item.skill} </span>
+                                    )
+                                })}
+                                {/*<TagsInput*/}
+                                {/*    tagProps={{*/}
+                                {/*        className: "react-tagsinput-tag bg-info"*/}
+                                {/*    }}*/}
+                                {/*    value={langTags}*/}
+                                {/*    onChange={(value) => setLangTags(value)}*/}
+                                {/*    onlyUnique*/}
+                                {/*/>*/}
                             </div>
                         </div>
 
@@ -104,7 +134,9 @@ function MyPage() {
                 </div>
 
             </div>
-            <MyPageEdit/>
+            <div className='coco-pf-tab'>
+                <MyPageEdit/>
+            </div>
         </main>
     )
 }

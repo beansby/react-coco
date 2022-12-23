@@ -3,6 +3,8 @@
 /*    text-align: center;*/
 /*}*/
 $accent: #189FEC;
+$main: #484848;
+$pale : rgba(189, 189, 189, 0.13);
 
 .wrapper {
     margin: 0 auto;
@@ -111,3 +113,60 @@ $accent: #189FEC;
 //    color: #1d8cf8;
 //    transform: scale(1.1);
 //}
+
+// 내 질문 탭
+.container-my-tab {
+    padding: 2rem;
+
+    .table-title {
+        padding: 10px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    //.table-content-box {
+
+        .table-content {
+            height: 100px;
+            background: $pale;
+            border-radius: 30px;
+            color: $main;
+            padding: 20px;
+            font-weight: normal;
+
+            // 태그
+            .table-content-key {
+                //background: black;
+            }
+
+            // 제목&내용
+            .table-content-detail {
+                padding-left: 1rem;
+                //background: #2bffc6;
+
+                .detail-title {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: $accent;
+                }
+
+                .detail-content {
+                    color: $main;
+                }
+            }
+
+            // 날짜
+            .table-content-date {
+                //background: white;
+                padding: 10px;
+                color: $main;
+            }
+        }
+    //}
+
+}
+
+.table-content:hover{
+    background: rgba(72, 72, 72, 0.48);
+    color: white;
+}
