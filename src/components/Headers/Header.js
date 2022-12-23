@@ -22,29 +22,29 @@ function Header() {
         document.location.href="/";
     }
 
-    const hoverSearch = (e) => {
-        e.target.src = '/btn-search-k.png';
-    } 
-
-    const unhoverSearch = (e) => {
-        e.target.src = '/btn-search.png';
-    } 
-
-    const hoverCoco = (e) => {
-        e.target.src = '/btn-coco-k.png';
-    } 
-
-    const unhoverCoco = (e) => {
-        e.target.src = '/btn-coco.png';
-    } 
-
-    const hoverQ = (e) => {
-        e.target.src = '/btn-question-k.png';
-    } 
-
-    const unhoverQ = (e) => {
-        e.target.src = '/btn-question.png';
-    } 
+    // const hoverSearch = (e) => {
+    //     e.target.src = '/btn-search-k.png';
+    // }
+    //
+    // const unhoverSearch = (e) => {
+    //     e.target.src = '/btn-search.png';
+    // }
+    //
+    // const hoverCoco = (e) => {
+    //     e.target.src = '/btn-coco-k.png';
+    // }
+    //
+    // const unhoverCoco = (e) => {
+    //     e.target.src = '/btn-coco.png';
+    // }
+    //
+    // const hoverQ = (e) => {
+    //     e.target.src = '/btn-question-k.png';
+    // }
+    //
+    // const unhoverQ = (e) => {
+    //     e.target.src = '/btn-question.png';
+    // }
 
     return(
         <header style={style} id='nav-header' >
@@ -54,19 +54,19 @@ function Header() {
                         <img src='/btn-home.png' alt=''/>
                     </Link>
 
-                    <div className='nav-pageitems'>
-                        <Link to={'/search'} className='nav-item'>
-                            <img src='/btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>
-                        </Link>
+                    {/*<div className='nav-pageitems'>*/}
+                    {/*    <Link to={'/search'} className='nav-item'>*/}
+                    {/*        <img src='/btn-search.png' alt='' onMouseOver={hoverSearch} onMouseOut={unhoverSearch}/>*/}
+                    {/*    </Link>*/}
 
-                        <Link to={'/cocoform'} className='nav-item'>
-                            <img src='/btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>
-                        </Link>
+                    {/*    <Link to={'/cocoform'} className='nav-item'>*/}
+                    {/*        <img src='/btn-coco.png' alt='' onMouseOver={hoverCoco} onMouseOut={unhoverCoco}/>*/}
+                    {/*    </Link>*/}
 
-                        <Link to={'/question'} className='nav-item'>
-                            <img src='/btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>
-                        </Link>
-                    </div>
+                    {/*    <Link to={'/question'} className='nav-item'>*/}
+                    {/*        <img src='/btn-question.png' alt='' onMouseOver={hoverQ} onMouseOut={unhoverQ}/>*/}
+                    {/*    </Link>*/}
+                    {/*</div>*/}
 
                     {/*마이페이지/로그인&로그아웃 토글*/}
                     <UncontrolledDropdown nav >
@@ -109,11 +109,6 @@ function Header() {
                                 </Link>
                             )}
 
-                            {/*{memberId != '' && (*/}
-                            {/*    <DropdownItem className='dropdown-item'>*/}
-                            {/*        <Link to={'/mypage'}> MyPage </Link>*/}
-                            {/*    </DropdownItem>*/}
-                            {/*)}*/}
                         </DropdownMenu>
                     </UncontrolledDropdown>
 

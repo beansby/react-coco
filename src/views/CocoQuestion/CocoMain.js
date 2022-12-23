@@ -88,6 +88,17 @@ function CocoMain() {
                 <span className='title-accent-coco'> COCO </span>
             </header>
 
+            {/*일반 질문 게시판 이동*/}
+            <Link to={'/search'}>
+                <button className="move-page">
+                    <span className="circle" aria-hidden="true">
+                      <span className="icon arrow"> </span>
+                    </span>
+                    <span className="button-text">
+                        코드 질문 하러 가기
+                    </span>
+                </button>
+            </Link>
             
             <div className="folder-container-coco">
                 <div className="row folder-bar">
@@ -96,9 +107,9 @@ function CocoMain() {
                     </div>
 
                     <div className="col-1 my-auto btn-question-add">
-                        <Link to={'/cocoform'}>
+                        <Link to={'/cocoform'} style={{textDecoration:'none', color:'#189FEC'}}>
                             {/*<img src="icon-plusq.png" alt="" id="question-add" />*/}
-                            ADD
+                            ADD &nbsp;
                             <FontAwesomeIcon icon={faPenToSquare} />
                         </Link>
                     </div>

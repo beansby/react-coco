@@ -11,6 +11,7 @@ import {requestToken} from "../../redux/requestToken";
 import {confirmAlert} from "react-confirm-alert";
 import '@toast-ui/editor/dist/toastui-editor.css';
 import {Editor} from "@toast-ui/react-editor";
+import {Link} from "react-router-dom";
 
 
 function CocoForm() {
@@ -135,6 +136,19 @@ function CocoForm() {
                     QUESTION FOR.
                     <span className='title-accent-coco'> COCO </span>
                 </header>
+
+                {/*매칭 질문 폼 이동*/}
+                <Link to={'/question'}>
+                    <button className="move-page">
+                        <span className="circle" aria-hidden="true">
+                          <span className="icon arrow"> </span>
+                        </span>
+                        <span className="button-text">
+                            일반 질문 하러 가기
+                        </span>
+                    </button>
+                </Link>
+
                 <Form className="form-container-coco">
                     
                     {/* 기술 스택 카테고리 */}

@@ -6,6 +6,8 @@ import { UncontrolledDropdown, Dropdown, DropdownToggle, DropdownItem, DropdownM
 
 import ReactHtmlParser from 'react-html-parser';
 import SearchBar from "../../components/SearchBar";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -40,6 +42,18 @@ function QuestionSearch() {
                 <span className='title-accent-coco'> CODE </span>
             </header>
 
+            {/*코코 매칭 리스트 이동*/}
+            <Link to={'/'}>
+                <button className="move-page">
+                    <span className="circle" aria-hidden="true">
+                      <span className="icon arrow"> </span>
+                    </span>
+                    <span className="button-text">
+                        코코 매칭 하러 가기
+                    </span>
+                </button>
+            </Link>
+
             {/*검색창*/}
             <SearchBar />
 
@@ -51,8 +65,10 @@ function QuestionSearch() {
                     </div>
 
                     <div className="col-1 my-auto btn-question-add">
-                        <Link to={'/question'}>
-                            <img src="icon-plusq.png" alt="" id="question-add" />
+                        <Link to={'/question'} style={{textDecoration:'none', color:'#189FEC'}}>
+                            {/*<img src="icon-plusq.png" alt="" id="question-add" />*/}
+                            ADD &nbsp;
+                            <FontAwesomeIcon icon={faPenToSquare} />
                         </Link>
                     </div>
 
