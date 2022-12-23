@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../css/CocoMain.scss';
 import {Link} from 'react-router-dom';
-import {Button} from "reactstrap";
+import {Button, UncontrolledTooltip} from "reactstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
@@ -107,11 +107,15 @@ function CocoMain() {
                     </div>
 
                     <div className="col-1 my-auto btn-question-add">
-                        <Link to={'/cocoform'} style={{textDecoration:'none', color:'#189FEC'}}>
+                        <Link to={'/cocoform'} style={{textDecoration:'none', color:'#189FEC'}} id='add-c'>
                             {/*<img src="icon-plusq.png" alt="" id="question-add" />*/}
                             ADD &nbsp;
                             <FontAwesomeIcon icon={faPenToSquare} />
                         </Link>
+
+                        <UncontrolledTooltip delay={0}  target='add-c' style={{backgroundColor:"#b9bec4",color:'white', caretColor:'#b9bec4'}} flip>
+                            매칭 질문 등록하기
+                        </UncontrolledTooltip>
                     </div>
                 </div>
                
