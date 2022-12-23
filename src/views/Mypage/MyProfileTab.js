@@ -1,6 +1,6 @@
 import {Button, Col, FormGroup, Input, Row} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDisplay, faListCheck, faLock, faUserPen, faUserSlash} from "@fortawesome/free-solid-svg-icons";
+import {faDisplay, faImage, faListCheck, faLock, faUserPen, faUserSlash} from "@fortawesome/free-solid-svg-icons";
 import TagsInput from "../../components/TagsInput";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -28,8 +28,7 @@ function MyProfileTab(){
                     params:{id:memberId}
                 })
             setMember(res.data);
-            console.log(res.data);
-            // dispatch({type:"MEMBERINFO", data:res.data})
+            // console.log(res.data);
         } catch(err){
             if(err.request.status == 401){
                 const rescode = err.response.data.rescode;
@@ -46,12 +45,21 @@ function MyProfileTab(){
     }, [token]);
     // 토큰 보내기 끝
 
+    // 프로필 사진 저장/변경
+    const [pic, setPic] = useState('');
 
-    const [langTags, setLangTags] = useState([]);
-    const [techTags, setTechTags] = useState([]);
+    const savePic = () => {
+        axios.put('api', null, {    // put? post?
+            params: {id:memberId}
+        }).then((res)=>{
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
 
+    // 닉네임 변경
     const [nickname, setNickname] = useState(member.nickname);
-
     const changeNickname = (e) => {
         setNickname(e.target.value);
     }
@@ -108,14 +116,131 @@ function MyProfileTab(){
         });
     }
 
+    // 프로그래밍 언어
+    const [langs, setLangs] = useState([]);
+    // const [langsShow, setLangsShow] = useState(false);
 
+    // 언어 선택
+    const [lang, setLang] = useState('select lang');
+    const selectLang = (e) => {
+        setLang(e.target.value);
+    }
+    // 언어 추가
+    const addLang = () => {
+        axios.post('http://localhost:8080/api/languages', null, {
+            params:{language:lang, id:memberId}
+        }).then((res)=>{
+            setLangs([...langs, {language:lang}]);
+            console.log('언어 추가 성공');
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
 
+    useEffect(()=>{
+        axios.get('http://localhost:8080/api/languages',{
+            params:{id:memberId}
+        }).then((res)=>{
+            setLangs(res.data);
+            console.log('언어 리스트 가져오기 성공');
+            console.log(res);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }, []);
+
+    // 언어 옵션
+    const [langOptions, setLangOptions] = useState([]);
+    // const [optionShow, setOptionShow] = useState(false);
+
+    useEffect( () => {
+        axios.get('http://localhost:8080/api/languages/list')
+            .then((res)=>{
+                setLangOptions(res.data);
+                console.log('언어 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+                console.log(err);
+        })
+    }, [])
+
+    // 기술 스택
+    const [techs, setTechs] = useState([]);
+
+    // 기술 선택
+    const [tech, setTech] = useState('select tech');
+    const selectTech = (e) => {
+        setTech(e.target.value);
+    }
+
+    const addTech = () => {
+        axios.post('http://localhost:8080/api/skills', null, {
+            params:{skill:tech, id:memberId}
+        }).then((res)=>{
+            setTechs([...techs, {skill:tech}]);
+            console.log('기술 추가 성공');
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    useEffect(()=>{
+        axios.get('http://localhost:8080/api/skills',{
+            params:{id:memberId}
+        }).then((res)=>{
+            setTechs(res.data);
+            console.log('기술 리스트 가져오기 성공');
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }, []);
+
+    // 기술 옵션
+    const [techOptions, setTechOptions] = useState([]);
+
+    useEffect( () => {
+        axios.get('http://localhost:8080/api/skills/list')
+            .then((res)=>{
+                setTechOptions(res.data);
+                console.log('기술 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+            console.log(err);
+        })
+    }, [])
 
     return(
         <div>
+            {/*프로필 이미지*/}
+            <Row className='row-mypage-profile'>
+                <Col className='align-self-center pf-tab-label' md='3'>
+                    <label className='labels' htmlFor='#picture'>
+                        <FontAwesomeIcon icon={faImage} />
+                        &nbsp;
+                        PROFILE IMAGE
+                    </label>
+                </Col>
+
+                <Col className='align-self-center' md='7'>
+                    <FormGroup>
+                        <Input type='file' id='picture' name='picture'
+                                 required/>
+                    </FormGroup>
+                </Col>
+
+                <Col className='align-self-center' md='2'>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit'> 저장 </button>
+                    </div>
+                </Col>
+            </Row>
+
             {/*닉네임*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels' htmlFor='#nickname'>
                         <FontAwesomeIcon icon={faUserPen}/>
                         &nbsp;
@@ -123,80 +248,94 @@ function MyProfileTab(){
                     </label>
                 </Col>
 
-                <Col className='align-self-center' md='6'>
+                <Col className='align-self-center' md='7'>
                     <FormGroup>
                         <Input type='text' id='nickname' name='nickname'
                                value={nickname} onChange={changeNickname} required/>
                     </FormGroup>
                 </Col>
 
-                {/*<Col className='align-self-center' md='2'>
-                    <Button> 중복체크 </Button>
-                </Col>*/}
+                <Col className='align-self-center' md='2'>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit' onClick={saveChange}> 변경 </button>
+                    </div>
+                </Col>
+
             </Row>
-
-            {/*패스워드*/}
-            {/*<Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
-                    <label className='labels' htmlFor='#password'>
-                        <FontAwesomeIcon icon={faLock}/>
-                        <span> &nbsp; PASSWORD </span>
-                    </label>
-                </Col>
-
-                <Col className='align-self-center' md='8'>
-                    <FormGroup>
-                        <Input type='password' defaultValue='' id='password'
-                               name='password' required/>
-                    </FormGroup>
-                </Col>
-            </Row>*/}
 
             {/*프로그래밍 언어*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels'>
                         <FontAwesomeIcon icon={faDisplay}/>
                         <span> &nbsp; PROGRAMMING LANGUAGE </span>
                     </label>
                 </Col>
 
-                <Col className='align-self-center' md='8'>
-                    <TagsInput
-                        tagProps={{
-                            className: "react-tagsinput-tag bg-info"
-                        }}
-                        value={langTags}
-                        onChange={(value) => setLangTags(value)}
-                        onlyUnique
-                    />
+                <Col className='align-self-center pf-tab-content' md='5'>
+                    {langs.map((language)=>{
+                        return (
+                            <span className='tag-input text-center'> {language.language} </span>
+                        )
+                    })}
+                </Col>
+
+                <Col className='align-self-center pf-tab-content' md='2'>
+                    <select className='form-select' name="lang" id="lang" value={lang} onChange={selectLang}>
+                        <option selected hidden> 언어를 선택해주세요 </option>
+                        {langOptions.map((opt) => {
+                            return (
+                                <option> {opt} </option>
+                            )
+                        })}
+                    </select>
+                </Col>
+
+                <Col className='align-self-center' md='2'>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit' onClick={addLang}> 추가 </button>
+                    </div>
                 </Col>
             </Row>
 
             {/*기술 스택*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels'>
                         <FontAwesomeIcon icon={faListCheck}/>
                         <span> &nbsp; TECH STACK </span>
                     </label>
                 </Col>
 
-                <Col className='align-self-center' md='8'>
-                    <TagsInput
-                        tagProps={{
-                            className: "react-tagsinput-tag bg-accent"
-                        }}
-                        value={techTags}
-                        onChange={(value) => setTechTags(value)}
-                        onlyUnique
-                    />
+                <Col className='align-self-center pf-tab-content' md='5'>
+                    {techs.map((stack)=>{
+                        return (
+                            <span className='tag-input text-center'> {stack.skill} </span>
+                        )
+                    })}
+                </Col>
+
+                <Col className='align-self-center pf-tab-content' md='2'>
+                    <select className='form-select' name="tech" id="tech" value={tech} onChange={selectTech} >
+                        <option selected hidden> 스킬을 선택해주세요 </option>
+                        {techOptions.map((opt) => {
+                            return (
+                                <option> {opt} </option>
+                            )
+                        })}
+                    </select>
+                </Col>
+
+                <Col className='align-self-center' md='2'>
+                    <div className='btn-wrapper'>
+                        <button className='btn-edit' type='submit' onClick={addTech}> 추가 </button>
+                    </div>
                 </Col>
             </Row>
 
             {/*회원탈퇴*/}
             <Row className='row-mypage-profile'>
-                <Col className='align-self-center' md='4'>
+                <Col className='align-self-center pf-tab-label' md='3'>
                     <label className='labels' htmlFor='#withdrawal'>
                         <FontAwesomeIcon icon={faUserSlash}/>
                         <span> &nbsp; MEMBER WITHDRAWAL </span>
@@ -209,12 +348,12 @@ function MyProfileTab(){
             </Row>
 
             {/*버튼*/}
-            <Row className='mt-4 row-mypage-profile'>
-                <Col className='align-content-end' md='6'>
-                    <Button color='#189FEC' type='submit' onClick={saveChange}> 저장 </Button>
-                    <Button color='#189FEC' type='button'> 취소 </Button>
-                </Col>
-            </Row>
+            {/*<Row className='mt-4 row-mypage-profile'>*/}
+            {/*    <Col className='align-content-end' md='6'>*/}
+            {/*        <Button color='#189FEC' type='submit' onClick={saveChange}> 변경 </Button>*/}
+            {/*        <Button color='#189FEC' type='button'> 취소 </Button>*/}
+            {/*    </Col>*/}
+            {/*</Row>*/}
         </div>
     )
 }

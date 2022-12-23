@@ -10,6 +10,7 @@ import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import {Editor} from "@toast-ui/react-editor";
+import {Link} from "react-router-dom";
 
 function QuestionForm() {
     // 토큰 보내기 시작
@@ -128,6 +129,19 @@ function QuestionForm() {
                     ASK TO.
                     <span className='title-accent-coco'> COCO </span>
                 </header>
+
+                {/*매칭 질문 폼 이동*/}
+                <Link to={'/cocoform'}>
+                    <button className="move-page">
+                        <span className="circle" aria-hidden="true">
+                          <span className="icon arrow"> </span>
+                        </span>
+                        <span className="button-text">
+                            코코 매칭 하러 가기
+                        </span>
+                    </button>
+                </Link>
+
                 <Form className="form-container-coco">
                     
                     {/* 기술 스택 카테고리 */}

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../css/CocoMain.scss';
 import {Link} from 'react-router-dom';
-import {Button} from "reactstrap";
+import {Button, UncontrolledTooltip} from "reactstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
 function CocoMain() {
     // 토큰 보내기 시작
@@ -86,11 +88,35 @@ function CocoMain() {
                 <span className='title-accent-coco'> COCO </span>
             </header>
 
+            {/*일반 질문 게시판 이동*/}
+            <Link to={'/search'}>
+                <button className="move-page">
+                    <span className="circle" aria-hidden="true">
+                      <span className="icon arrow"> </span>
+                    </span>
+                    <span className="button-text">
+                        코드 질문 하러 가기
+                    </span>
+                </button>
+            </Link>
             
             <div className="folder-container-coco">
+                <div className="row folder-bar">
+                    <div className="col-1 text-center folder-name-coco">
+                            COCO
+                    </div>
 
-                <div className="folder-name-coco">
-                        Matching New
+                    <div className="col-1 my-auto btn-question-add">
+                        <Link to={'/cocoform'} style={{textDecoration:'none', color:'#189FEC'}} id='add-c'>
+                            {/*<img src="icon-plusq.png" alt="" id="question-add" />*/}
+                            ADD &nbsp;
+                            <FontAwesomeIcon icon={faPenToSquare} />
+                        </Link>
+
+                        <UncontrolledTooltip delay={0}  target='add-c' style={{backgroundColor:"#b9bec4",color:'white', caretColor:'#b9bec4'}} flip>
+                            매칭 질문 등록하기
+                        </UncontrolledTooltip>
+                    </div>
                 </div>
                
                 <div className="folder-content-coco">
@@ -100,27 +126,33 @@ function CocoMain() {
                             <div className="folder-item-coco" id={"folder_"+i} onMouseLeave={handelMouseOut}
                                  onMouseEnter={handleMouseOver} key={i}>
 
-                                {/* 매칭 상태 변경값 설정 필요 */}
-                                <div className="item-img-coco" id={"item-img_"+i}>
-                                    <img src="thumb-waiting.png" id={"img_"+i} alt=""/>
-                                </div>
-
-                                <div className="item-text-coco" id={"item-text_"+i}>
-                                    <span className="item-title-coco" id={"item-title_"+i}>
-                                        {cocos.title}
-                                    </span>
-
-                                    <div className="item-coin-coco" id={"item-coin_"+i}>
-                                        <img src="icon-coin.png"  id={"icon-coin_"+i} alt=""/>
-                                        &nbsp; {cocos.price}
+                                <div className='row' id={"item-row_"+i}>
+                                    {/* 매칭 상태 변경값 설정 필요 */}
+                                    <div className="item-img-coco col-4" id={"item-img_"+i}>
+                                        <img src="thumb-waiting.png" id={"img_"+i} alt=""/>
                                     </div>
 
-                                    <p className="item-content-coco" id={"item-content_"+i}>
-                                        {modifyText(cocos.content)}
-                                    </p>
+                                    <div className="item-text-coco col-8 " id={"item-text_"+i}>
+                                        <div className='row h-50' id={"item-title-row_"+i}>
+                                            <span className="item-title-coco col-10 my-auto" id={"item-title_"+i}>
+                                                {cocos.title}
+                                            </span>
+
+                                            <div className="item-coin-coco col-2 my-auto" id={"item-coin_"+i}>
+                                                <img src="icon-coin.png"  id={"icon-coin_"+i} alt=""/>
+                                                &nbsp; {cocos.price}
+                                            </div>
+                                        </div>
+
+                                        <div className='row' id={"item-row2_"+i}>
+                                            <p className="item-content-coco col-12" id={"item-content_"+i}>
+                                                {modifyText(cocos.content)}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <Button className='text-end' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>
+                                <Button className='text-end row' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>
                             </div>
                         )
                     })}

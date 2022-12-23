@@ -25,8 +25,8 @@ function MyAnswersTab(){
                     params:{id:memberId}
                 })
             setMember(res.data);
-            console.log('프로필탭 가져오기 성공')
-            console.log(res.data);
+            console.log('답변탭 가져오기 성공')
+            // console.log(res.data);
             // dispatch({type:"MEMBERINFO", data:res.data})
         } catch(err){
             if(err.request.status == 401){

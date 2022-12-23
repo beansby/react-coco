@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
@@ -17,7 +17,8 @@ import {PersistGate} from "redux-persist/integration/react";
 import AnswerForm from './views/CodeAnswer/AnswerForm';
 import AnswerList from './views/CodeAnswer/AnswerList';
 import QuestionDetail from './views/CodeQuestion/QuestionDetail';
-import ChangeTab from "./components/ChangeTab";
+import ScrollToTop from "./components/ScrollToTop";
+// import ChangeTab from "./components/ChangeTab";
 
 let persistor = persistStore(store);
 
@@ -27,6 +28,7 @@ function App() {
             <Provider store={store}>
                 <PersistGate persistor={persistor}>
                     <BrowserRouter>
+                        <ScrollToTop/>
                         <Header/>
                         {/*<ChangeTab/>*/}
                         <Routes>
