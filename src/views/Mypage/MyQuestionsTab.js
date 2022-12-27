@@ -25,7 +25,7 @@ function MyQuestionsTab(){
                     params:{id:memberId}
                 })
             setMember(res.data);
-            console.log('프로필탭 가져오기 성공')
+            console.log('질문탭 가져오기 성공')
             // console.log(res.data);
             // dispatch({type:"MEMBERINFO", data:res.data})
         } catch(err){
@@ -44,9 +44,9 @@ function MyQuestionsTab(){
     }, [token]);
     // 토큰 보내기 끝
 
+    // 질문 리스트 요청
     const [boards, setBoards] = useState([]);
 
-    // 질문 리스트 요청
     useEffect(() => {
         axios.get('http://localhost:8080/api/members/questions', {
             params:{id:memberId}
@@ -60,35 +60,42 @@ function MyQuestionsTab(){
         })
     }, []);
 
+    const modifyText = (string) => {
+        let newText = string.replace(/(<([^>]+)>)/ig, "");
+        newText = newText.replace(/&nbsp;/gi, " ");
+        newText = newText.replace(/<br\/>/ig, "\n");
+        return newText;
+    }
+
     return(
-        <Table className='align-items-center table-questions'>
-            <thead className="table-questions-col">
-                <tr>
-                    <th scope='col'> Coin</th>
-                    <th scope='col'> Title</th>
-                    <th scope='col'> Date</th>
-                </tr>
-            </thead>
-            <tbody>
-            {boards.map((questions) => (
-                    <tr key={questions.questionId}>
-                        <td>
-                            <span className='title-block'> {questions.price} </span>
-                        </td>
+        <div className='container-my-tab'>
 
-                        <td className='table-quesiton-title'>
-                            <Link to={'/question/'+questions.questionId} style={{textDecoration:"none", color:"#484848"}}> {questions.title} </Link>
-                        </td>
+            <div className='row text-center table-title'>
+                <div className='col-2'> keyword </div>
+                <div className='col-8'> Title </div>
+                <div className='col-2'> Date </div>
+            </div>
 
-                        <td>
-                            <span style={{color:"#484848"}}> {moment(questions.createdTime).format('YYYY.MM.DD')} </span>
-                        </td>
-                    </tr>
+
+            {/*내 질문 목록*/}
+            {boards.map((item)=>{
+                return (
+                    <div className='row text-center table-content my-3'>
+                        <a href={'/question/'+item.questionId} style={{textDecoration:"none"}} key={item.questionId} className='row text-center my-auto'>
+                            <div className='col-2 my-auto table-content-key'> JAVA </div>
+
+                            <div className='col-8 my-auto table-content-detail'>
+                                <div className='row detail-title'> {item.title} </div>
+                                <div className='row detail-content'> {modifyText(item.content)} </div>
+                            </div>
+
+                            <div className='col-2 my-auto text-center table-content-date'> {moment(item.createdTime).format('YYYY.MM.DD')} </div>
+                        </a>
+                    </div>
                 )
-            )}
+            })}
 
-            </tbody>
-        </Table>
+        </div>
     )
 }
 

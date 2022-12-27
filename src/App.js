@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
@@ -27,8 +27,8 @@ function App() {
             <Provider store={store}>
                 <PersistGate persistor={persistor}>
                     <BrowserRouter>
+                        <ScrollToTop/>
                         <Header/>
-                        {/*<ChangeTab/>*/}
                         <Routes>
                             {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
                             <Route exact path='/' element={<CocoMain/>}/>

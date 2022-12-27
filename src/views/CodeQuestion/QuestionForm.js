@@ -11,6 +11,8 @@ import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from "@toast-ui/react-editor";
+import {Link} from "react-router-dom";
+import Select from "react-select";
 
 function QuestionForm() {
     // 토큰 보내기 시작
@@ -53,8 +55,42 @@ function QuestionForm() {
         setQTitle(e.target.value);
     }
 
-    const qUrl = {params:{title:qTitle, content:qContent, id:memberId}}
-    const encodedQUrl = encodeURIComponent(qUrl);
+    // 옵션 리스트 : 서버에서 받아온 값
+    const [langOptions, setLangOptions] = useState([]);
+    const [techOptions, setTechOptions] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/languages/list')
+            .then((res) => {
+                setLangOptions(res.data);
+                console.log('언어 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err) => {
+            console.log(err);
+        })
+
+        axios.get('http://localhost:8080/api/skills/list')
+            .then((res) => {
+                setTechOptions(res.data);
+                console.log('기술 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err) => {
+            console.log(err);
+        })
+    }, [])
+
+    // 선택된 옵션 : 서버에 보낼 값
+    const [selectedLang, setSelectedLang] = useState('');
+    const [selectedTech, setSelectedTech] = useState('');
+    const handleChangeLang = (lang) => {
+        setSelectedLang(lang);
+        console.log(selectedLang);
+    }
+
+    const handleChangeTech = (tech) => {
+        setSelectedTech(tech);
+        console.log(selectedTech);
+    }
 
 
       // 토스트 에디터
@@ -67,11 +103,16 @@ function QuestionForm() {
 
     // 질문 등록 : DB 데이터 저장 
     const submit = () => {
+        const modselectedLang = selectedLang.map(item=>item.value);
+        const modselectedTech = selectedTech.map(item=>item.value);
         // e.preventDefault();
+
+        const qUrl = {params:{title:qTitle, content:qContent, languageList: modselectedLang.toString(), skillList: modselectedTech.toString(), id:memberId}}
+
         axios.post('http://localhost:8080/api/questions', null, qUrl)
         .then((response)=>{
-            setQContent(qContent);
-            setQTitle(qTitle);
+            // setQContent(qContent);
+            // setQTitle(qTitle);
             console.log(response.data);
             console.log('질문 등록 성공');
             alert("질문을 등록했습니다.")
@@ -129,6 +170,19 @@ function QuestionForm() {
                     ASK TO.
                     <span className='title-accent-coco'> COCO </span>
                 </header>
+
+                {/*매칭 질문 폼 이동*/}
+                <Link to={'/cocoform'}>
+                    <button className="move-page">
+                        <span className="circle" aria-hidden="true">
+                          <span className="icon arrow"> </span>
+                        </span>
+                        <span className="button-text">
+                            코코 매칭 하러 가기
+                        </span>
+                    </button>
+                </Link>
+
                 <Form className="form-container-coco">
                     
                     {/* 기술 스택 카테고리 */}
@@ -142,83 +196,53 @@ function QuestionForm() {
 
                     {/* 언어 선택 */}
                     <FormGroup row>
-                        <Label for='coco-lang' sm={2}>
+                        <Label for='coco-language' sm={2}>
                             프로그래밍 언어
                         </Label>
                         
-                        <Col sm={10}>
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Javascript &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Java &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; C++ &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; C# &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Python &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; R &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Kotlin &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Typescript &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; PHP &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Scala &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Swift &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Elixir &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Rescript &nbsp; &nbsp; </Label>
-                            </div>
-
-                            <div className="coco-lang">
-                                <Input type="checkbox"/>
-                                <Label check> &nbsp; Go &nbsp; &nbsp; </Label>
+                        <Col sm={4}>
+                            <div className="coco-language">
+                                <Select
+                                    isMulti
+                                    name='language'
+                                    placeholder='언어를 선택하세요'
+                                    value={selectedLang}
+                                    onChange={handleChangeLang}
+                                    options={langOptions.map((item) => {
+                                            return (
+                                                {value: item, label: item}
+                                            )
+                                        }
+                                    )}
+                                    className="basic-multi-select multi-select-lang"
+                                    classNamePrefix="select"
+                                />
                             </div>
                         </Col>
-                        
 
+                        <Label className='my-auto text-center' for='coco-tech' sm={2}>
+                            기술 스택
+                        </Label>
+
+                        <Col sm={4}>
+                            <div className="coco-tech">
+                                <Select
+                                    isMulti
+                                    name='skill'
+                                    placeholder='기술을 선택하세요'
+                                    value={selectedTech}
+                                    onChange={handleChangeTech}
+                                    options={techOptions.map((item) => {
+                                            return (
+                                                {value: item, label: item}
+                                            )
+                                        }
+                                    )}
+                                    className="basic-multi-select multi-select-tech"
+                                    classNamePrefix="select"
+                                />
+                            </div>
+                        </Col>
                     </FormGroup>
 
                     <Editor
