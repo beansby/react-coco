@@ -18,7 +18,6 @@ import AnswerForm from './views/CodeAnswer/AnswerForm';
 import AnswerList from './views/CodeAnswer/AnswerList';
 import QuestionDetail from './views/CodeQuestion/QuestionDetail';
 import ScrollToTop from "./components/ScrollToTop";
-// import ChangeTab from "./components/ChangeTab";
 
 let persistor = persistStore(store);
 
@@ -30,7 +29,6 @@ function App() {
                     <BrowserRouter>
                         <ScrollToTop/>
                         <Header/>
-                        {/*<ChangeTab/>*/}
                         <Routes>
                             {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
                             <Route exact path='/' element={<CocoMain/>}/>
