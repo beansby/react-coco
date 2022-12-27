@@ -1,115 +1,155 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import '../../css/QuestionDetail.css';
-import { Button, Col, FormGroup, Input, Row } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserNinja, faUserPen } from "@fortawesome/free-solid-svg-icons";
-import AnswerForm from "../CodeAnswer/AnswerForm";
+import "../../css/QuestionDetail.css";
+import { Form } from "reactstrap";
 import AnswerList from "../CodeAnswer/AnswerList";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { requestToken } from "../../redux/requestToken";
+import { confirmAlert } from "react-confirm-alert";
+import { Viewer } from "@toast-ui/react-editor";
 
 function QuestionDetail() {
+  // 토큰 시작
+  const token = useSelector((state) => state.Authorization);
+  const memberId = useSelector((state) => state.MemberId);
+  const dispatch = useDispatch();
 
-    // const token = useSelector(state => state.Authorization);
-    // const memberId = useSelector(state => state.MemberId);
-    // const dispatch = useDispatch();
+  const [member, setMember] = useState([]);
+  const [cookie, setCookie] = useCookies([]);
 
-    // const [member, setMember] = useState([]);
-    // const [cookie, setCookie] = useCookies([]);
-    // 
-    // const requestUser = async () => {
-    //     try {
-    //         const res = await axios.post('http://localhost:8080/api/members/profile', null,
-    //             {
-    //                 headers: { Authorization: token },
-    //                 params: { id: memberId }
-    //             })
-    //         setMember(res.data);
-    //     } catch (err) {
-    //         if (err.request.status == 401) {
-    //             const rescode = err.response.data.rescode;
+  const requestUser = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/api/members/profile",
+        null,
+        {
+          headers: { Authorization: token },
+          params: { id: memberId },
+        }
+      );
+      setMember(res.data);
+    } catch (err) {
+      if (err.request.status == 401) {
+        const rescode = err.response.data.rescode;
 
-    //             if (rescode == 100) {
-    //                 requestToken(token, dispatch, cookie, setCookie);
-    //             }
-    //         }
-    //     }
-    // }
+        if (rescode == 100) {
+          requestToken(token, dispatch, cookie, setCookie);
+        }
+      }
+    }
+  };
 
-    // useEffect(() => {
-    //     requestUser();
-    // }, [token]);
+  useEffect(() => {
+    requestUser();
+  }, [token]);
+  // 토큰 끝
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [nickname, setNickname] = useState('');
-    const [date, setDate] = useState('');
-    const { id } = useParams();
+  const [questionId, setQuestionId] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [date, setDate] = useState("");
+  const { id } = useParams();
+  const [show, setShow] = useState(false);
 
-    // let content_tag = document.getElementsByClassName('q-detail-text');
-    // let inner_text = content_tag[0].innerHTML;
+  // 기존 내용 가져오기
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/questions/${id}`)
+      .then((res) => {
+        const question = res.data;
+        setQuestionId(question.questionId);
+        setTitle(question.title);
+        console.log(question.content);
+        setContent(question.content);
+        setNickname(question.questionAuthor.nickname);
+        setDate(question.createdTime);
+        setShow(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-    useEffect(() => {
-        axios.get(`http://localhost:8080/api/questions/${id}`)
-            .then((res) => {
-                const question = res.data;
-                setTitle(question.title)
-                setContent(question.content)
-                setNickname(question.questionAuthor.nickname)
-                setDate(question.createdTime)
-            })
-            .catch((error) => {
-                console.log(error)
-            }, [])
-    })
+  // 게시글 삭제
+  const deleteQuestion = (e) => {
+    axios
+      .delete(`http://localhost:8080/api/questions/${id}`, null, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        alert("삭제가 완료되었습니다.");
+        document.location.href = "/";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-    return (
+  // 게시글 삭제 Alert
+  const deleteConfirm = (e) => {
+    e.preventDefault();
+    confirmAlert({
+      title: "삭제 하시겠습니까?",
+      message: "뒤로 돌아가려면 취소를 눌러주세요.",
+      buttons: [
+        {
+          label: "확인",
+          onClick: () => {
+            deleteQuestion();
+          },
+        },
+        {
+          label: "취소",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
 
-        <main>
-            <section>
-                <header className='title-coco'>
-                    QUESTION &
-                    <span className='title-accent-coco'> ANSWER </span>
-                </header>
+  return (
+    <main>
+      <section>
+        <header className="title-coco">
+          QUESTION &<span className="title-accent-coco"> ANSWER </span>
+        </header>
 
-                <div className='container container-question-detail'>
-
-
-                    {/* 제목 */}
-                    <div className='row h-75'>
-                        <div className='col-12 my-auto text-start my-auto q-detail-title'>
-                            <h3>{title}</h3>
-                        </div>
-                    </div>
-
-                    {/* 닉네임, 작성 날짜 */}
-                    <div className='row q-detail-info'>
-                        {/* 작성자 프로필*/}
-                        <div className="col-8">
-                            <img src="" alt="" />
-                            <span id="quser-nickname"> {nickname} </span>
-                        </div>
-                        {/* 작성 날짜 */}
-                        <div className="col-4 text-end">
-                            {date}
-                        </div>
-                    </div>
-
-                    {/* 컨텐츠 내용 */}
-                    <div className="row q-detail-content">
-                        <div className="col-12 text-start q-detail-text">
-                            {content}
-                        </div>
-                    </div>
-                    <AnswerList />
-                    <AnswerForm />
-                </div>
-            </section>
-        </main>
-    )
+        <Form className="a-detail-form-container">
+          <div className="container container-question-detail">
+            {/* 제목 */}
+            <div className="row">
+              <div className="col-12 my-auto text-start my-auto q-detail-title">
+                <h3>{title}</h3>
+              </div>
+            </div>
+            {/* 닉네임, 작성 날짜 */}
+            <div className="row q-detail-info">
+              {/* 작성자 프로필*/}
+              <div className="col-8">
+                <img src="" alt="" />
+                <span id="quser-nickname"> {nickname} </span>
+              </div>
+              {/* 작성 날짜 */}
+              <div className="col-4 text-end">{date}</div>
+            </div>
+            {/* 컨텐츠 내용 */}
+            <div className="row q-detail-content">
+              <div className="col-12 text-start q-detail-text">
+                {show && <Viewer initialValue={content} />}
+              </div>
+            </div>
+            <Link to={"/question/" + questionId + "/modify"} key={questionId}>
+              <button>수정</button>
+            </Link>
+            <button onClick={deleteConfirm}>삭제</button>
+          </div>
+        </Form>
+        <AnswerList />
+      </section>
+    </main>
+  );
 }
 
 export default QuestionDetail;

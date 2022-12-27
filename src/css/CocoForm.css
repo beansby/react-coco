@@ -20,10 +20,6 @@
     border-radius: 50px;
 }
 
-.coco-lang {
-    display: inline;
-    font-size: small;
-}
 
 .btn-form-coco {
     text-align: center;
@@ -34,4 +30,3 @@
 .ck-editor__editable { 
     height: 30rem;
 }
-

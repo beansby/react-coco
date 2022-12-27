@@ -1,6 +1,21 @@
-.container-answer-detail {
+span {
+    color: #189FEC;
+}
+
+.a-list-form-container {
     margin: 0 auto;
-    padding-top: 10rem;
+    /* padding-top: 10rem; */
+    width: 80%;
+}
+
+.a-detail-form-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #189FEC;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 30px;
 }
 
 .a-detail-info {
@@ -12,15 +27,33 @@
     color: #169fec;
 }
 
-
-
 .a-detail-content {
     background-color: white;
     border: solid 1px #169fec;
     border-radius: 30px;
-    height: 100px;
 }
 
 .a-detail-text {
     padding: 30px;
+}
+
+
+.coco-lang {
+    display: inline;
+    font-size: small;
+}
+
+.coco-btn {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.like-btn {
+    padding: 4px;
+    margin-top: 5px;
+}
+
+.btn-form-coco {
+    text-align: center;
+    margin: 0 auto;
 }
