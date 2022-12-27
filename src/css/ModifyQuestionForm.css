@@ -1,0 +1,15 @@
+.q-modify-form-container {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #189FEC;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.btn-q-modify {
+    text-align: center;
+    margin: 0 auto;
+
+}
