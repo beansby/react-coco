@@ -1,11 +1,13 @@
 .container-question-detail {
     margin: 0 auto;
-    padding-top: 1rem;
+
     
 }
 
 .q-detail-info {
-    padding: 20px;
+    width: 78%;
+    margin: 0 auto;
+    margin-top: 50px;
 
 }
 
@@ -14,11 +16,21 @@
     border: 1px solid #189FEC;
     width: 80%;
     margin: 0 auto;
-    margin-top: 50px;
-    padding: 20px;
+    margin-top: 5px;
+    padding: 10px;
     border-radius: 30px;
 }
 
 .q-detail-text {
-    padding: 30px;
+    padding: 20px;
+}
+
+.q-detail-title {
+    width: 78%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.btn-q-detail {
+    text-align: end;
 }
