@@ -72,6 +72,7 @@ function QuestionSearch() {
                     </div>
 
                     <div className="col-1 my-auto btn-question-add">
+                        {/*질문등록*/}
                         <Link to={'/question'} style={{textDecoration:'none', color:'#189FEC'}} id='add-q'>
                             {/*<img src="icon-plusq.png" alt="" id="question-add" />*/}
                             ADD &nbsp;
@@ -103,25 +104,50 @@ function QuestionSearch() {
                     {boards.map((questions) => {
                         return (
                             <div className="folder-item-question">
-                                <Link to={'/question/' + questions.questionId} key={questions.questionId}>
+                                <Link className='row' to={'/question/' + questions.questionId} key={questions.questionId} style={{textDecoration:'none'}}>
 
-                                    {/* 매칭 상태 변경값 설정 필요 */}
-                                    {/* <div className="coco-item-lang">
-                                    {`키워드 : ${question.lang}`}
-                                </div> */}
+                                    {/*언어&기술 태그*/}
+                                    <div className='col-2 item-tag-question'>
+                                        {(questions.languageList.filter((tag, index)=>{
+                                            return(
+                                                index == 0 || index == 1
+                                            )
+                                        })).map(item=>{
+                                            return(
+                                                <span className='tag-input'> {item} </span>
+                                            )
+                                        })
+                                        }
+                                        {(questions.skillList.filter((tag, index)=>{
+                                            return(
+                                                index == 0 || index == 1
+                                            )
+                                        })).map(item=>{
+                                            return(
+                                                <span className='tag-input'> {item} </span>
+                                            )
+                                        })}
+                                    </div>
 
-                                    <div className="item-text-question">
-                                        <span className="item-title-question">
-                                            {`${questions.title}`}
-                                        </span>
-                                        <span className='item-author-question'>
-                                            {questions.questionAuthor.nickname}
-                                        </span>
-
-                                        <div className="item-content-question">
-                                            {modifyText(questions.content)}
-                                            {/*{ReactHtmlParser(questions.content)}*/}
+                                    {/*제목, 내용, 작성자*/}
+                                    <div className="col-10 item-text-question">
+                                        <div className='row my-auto'>
+                                            <div className="col-10 my-auto item-title-question">
+                                                {`${questions.title}`}
+                                            </div>
+                                            <div className='col-2 my-auto text-end item-author-question'>
+                                                {questions.questionAuthor.nickname}
+                                            </div>
                                         </div>
+
+
+                                        <div className='row my-auto'>
+                                            <div className="col-12 item-content-question">
+                                                {modifyText(questions.content)}
+                                                {/*{ReactHtmlParser(questions.content)}*/}
+                                            </div>
+                                        </div>
+
 
                                         {/* <span> 답변 {questions.answerList.length} </span> */}
                                     </div>
