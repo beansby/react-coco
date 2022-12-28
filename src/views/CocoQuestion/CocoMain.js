@@ -126,33 +126,36 @@ function CocoMain() {
                             <div className="folder-item-coco" id={"folder_"+i} onMouseLeave={handelMouseOut}
                                  onMouseEnter={handleMouseOver} key={i}>
 
-                                <div className='row' id={"item-row_"+i}>
+                                <div className='row' id={"item-row_"+i} >
                                     {/* 매칭 상태 변경값 설정 필요 */}
-                                    <div className="item-img-coco col-4" id={"item-img_"+i}>
+                                    <div className="col-4 text-center item-img-coco" id={"item-img_"+i}>
                                         <img src="thumb-waiting.png" id={"img_"+i} alt=""/>
                                     </div>
 
-                                    <div className="item-text-coco col-8 " id={"item-text_"+i}>
+                                    <div className="col item-text-coco " id={"item-text_"+i}>
                                         <div className='row h-50' id={"item-title-row_"+i}>
-                                            <span className="item-title-coco col-10 my-auto" id={"item-title_"+i}>
+                                            <span className="col-10 my-auto item-title-coco" id={"item-title_"+i}>
                                                 {cocos.title}
                                             </span>
 
-                                            <div className="item-coin-coco col-2 my-auto" id={"item-coin_"+i}>
+                                            <div className="col-2 my-auto item-coin-coco" id={"item-coin_"+i}>
                                                 <img src="icon-coin.png"  id={"icon-coin_"+i} alt=""/>
                                                 &nbsp; {cocos.price}
                                             </div>
                                         </div>
 
                                         <div className='row' id={"item-row2_"+i}>
-                                            <p className="item-content-coco col-12" id={"item-content_"+i}>
+                                            <div className="col-12 item-content-coco" id={"item-content_"+i}>
                                                 {modifyText(cocos.content)}
-                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <Button className='text-end row' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>
+                                <div className='row btn-apply my-auto' id={"item-row3_"+i}>
+                                    <Button className='col-2 btn-apply-css' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>
+                                </div>
+                                {/*<Button className='text-end row' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>*/}
                             </div>
                         )
                     })}

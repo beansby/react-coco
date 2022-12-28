@@ -196,7 +196,7 @@ function QuestionForm() {
 
                     {/* 언어 선택 */}
                     <FormGroup row>
-                        <Label for='coco-language' sm={2}>
+                        <Label className='my-auto text-center' for='coco-language' sm={2}>
                             프로그래밍 언어
                         </Label>
                         
@@ -255,32 +255,6 @@ function QuestionForm() {
                         onChange={change}
                     />
 
-
-                        {/* //string : 태그 방식으로 가지고 있음
-                        // 이미지 태그 소스로 : 함수등록해서 보여주는 형태
-                        //보여줄때도 반드시 에디터로 보여줘야함 */}
-
-                    {/* <CKEditor
-                        editor={ ClassicEditor }
-                        data=""
-                        config={{placeholder:"질문 내용을 입력하세요."}}
-                        onReady={ editor => {
-                            // You can store the "editor" and use when it is needed.
-                            console.log( 'Editor is ready to use!', editor );
-                        } }
-                        onChange={ ( event, editor ) => {
-                            const data = editor.getData();
-                            setQContent(data);
-                            console.log( { data } );
-                            console.log(qContent);
-                        } }
-                        onBlur={ ( event, editor ) => {
-                            console.log( 'Blur.', editor );
-                        } }
-                        onFocus={ ( event, editor ) => {
-                            console.log( 'Focus.', editor );
-                        } }
-                    /> */}
                 </Form>
                 
                 <br/>

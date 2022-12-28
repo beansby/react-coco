@@ -4,7 +4,7 @@
 /*}*/
 $accent: #189FEC;
 $main: #484848;
-$pale : rgba(189, 189, 189, 0.13);
+$pale : rgba(192, 194, 204, 0.35);
 
 .wrapper {
     margin: 0 auto;
@@ -73,61 +73,24 @@ $pale : rgba(189, 189, 189, 0.13);
     }
 
     .pf-tab-content {
-        .tag-input {
-            background-color: rgba(24, 159, 236, 0.72);
-            color: white;
-            font-weight: normal;
-            font-size: 14px;
-            padding: 5px;
-            margin-left: 3px;
-            margin-right: 3px;
-            border-radius: 20px;
-            text-align: center;
-            line-height: 2rem;
-        }
+
     }
 }
-
-//내 질문 목록 탭
-.table-questions {
-    text-align: center;
-
-    .table-questions-col{
-        color: #189FEC;
-    }
-
-    tbody {
-        color: #484848;
-        font-weight: normal;
-    }
-}
-
-
-.table-question-title {
-    width: 100%;
-    text-align: left;
-
-}
-
-//.title-block:hover{
-//    color: #1d8cf8;
-//    transform: scale(1.1);
-//}
 
 // 내 질문 탭
 .container-my-tab {
     padding: 2rem;
 
     .table-title {
-        padding: 10px;
+        //padding: 10px;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     //.table-content-box {
 
         .table-content {
-            height: 100px;
+            height: 120px;
             background: $pale;
             border-radius: 30px;
             color: $main;
@@ -167,6 +130,14 @@ $pale : rgba(189, 189, 189, 0.13);
 }
 
 .table-content:hover{
-    background: rgba(72, 72, 72, 0.48);
+    background: rgba(141, 141, 141, 0.48);
     color: white;
+
+    .detail-title {
+        color: white;
+    }
+
+    .detail-content {
+        color: white;
+    }
 }

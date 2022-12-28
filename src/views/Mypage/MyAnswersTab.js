@@ -68,37 +68,53 @@ function MyAnswersTab(){
     }
 
     return(
-        <Table className='align-items-center table-questions'>
-            <thead className="table-questions-col">
-            <tr>
-                <th scope='col'> Coin</th>
-                <th scope='col'> Title</th>
-                <th scope='col'> Date</th>
-            </tr>
-            </thead>
-            <tbody>
-            {boards.map((answers) => (
-                    <tr key={answers.answerId}>
-                        <td>
-                            <span className='title-block'> {answers.price} </span>
-                        </td>
+        <div className='container-my-tab'>
 
-                        <td className='table-quesiton-title'>
-                            <Link to={'/question/'+answers.question.questionId} style={{textDecoration:"none", color:"#484848"}}>
-                                <div style={{color:'#189FEC'}}> <strong> {answers.question.title} </strong> </div>
-                                {modifyText(answers.content)}
-                            </Link>
-                        </td>
+            <div className='row text-center table-title'>
+                <div className='col-2'> 키워드 </div>
+                <div className='col-8'> 목록 </div>
+                <div className='col-2'> 작성일자 </div>
+            </div>
 
-                        <td className='my-auto'>
-                            <span style={{color:"#484848"}}> {moment(answers.createdTime).format('YYYY.MM.DD')} </span>
-                        </td>
-                    </tr>
+
+            {/*내 질문 목록*/}
+            {boards.map((item)=>{
+                return (
+                    <div className='row text-center table-content my-3'>
+                        <a href={'/question/'+item.question.questionId} style={{textDecoration:"none"}} key={item.answerId} className='row text-center'>
+                            <div className='col-2 my-auto table-content-key'>
+                                {(item.question.languageList.filter((tag,index)=>{
+                                    return(
+                                        index == 0
+                                    )
+                                })).map(item=> {
+                                    return(
+                                        <span className='tag-size'> {item} </span>
+                                    )
+                                })
+                                }
+                                {(item.question.skillList.filter((tag, index)=>{
+                                    return(
+                                        index == 0 || index == 1
+                                    )
+                                })).map(item=>{
+                                    return(
+                                        <span className='tag-size'> {item} </span>
+                                    )
+                                })}
+                            </div>
+
+                            <div className='col-8 table-content-detail'>
+                                <div className='row detail-title'> {item.question.title} </div>
+                                <div className='row detail-content'> {modifyText(item.content)} </div>
+                            </div>
+
+                            <div className='col-2 my-auto text-center table-content-date'> {moment(item.createdTime).format('YYYY.MM.DD')} </div>
+                        </a>
+                    </div>
                 )
-            )}
-
-            </tbody>
-        </Table>
+            })}
+        </div>
     )
 }
 

@@ -71,9 +71,9 @@ function MyQuestionsTab(){
         <div className='container-my-tab'>
 
             <div className='row text-center table-title'>
-                <div className='col-2'> keyword </div>
-                <div className='col-8'> Title </div>
-                <div className='col-2'> Date </div>
+                <div className='col-2'> 키워드 </div>
+                <div className='col-8'> 목록 </div>
+                <div className='col-2'> 작성일자 </div>
             </div>
 
 
@@ -81,10 +81,30 @@ function MyQuestionsTab(){
             {boards.map((item)=>{
                 return (
                     <div className='row text-center table-content my-3'>
-                        <a href={'/question/'+item.questionId} style={{textDecoration:"none"}} key={item.questionId} className='row text-center my-auto'>
-                            <div className='col-2 my-auto table-content-key'> JAVA </div>
+                        <a href={'/question/'+item.questionId} style={{textDecoration:"none"}} key={item.questionId} className='row text-center'>
+                            <div className='col-2 my-auto table-content-key'>
+                                {(item.languageList.filter((tag,index)=>{
+                                    return(
+                                        index == 0
+                                    )
+                                })).map(item=> {
+                                    return(
+                                        <span className='tag-size'> {item} </span>
+                                    )
+                                })
+                                }
+                                {(item.skillList.filter((tag, index)=>{
+                                    return(
+                                        index == 0 || index == 1
+                                    )
+                                })).map(item=>{
+                                    return(
+                                        <span className='tag-size'> {item} </span>
+                                    )
+                                })}
+                            </div>
 
-                            <div className='col-8 my-auto table-content-detail'>
+                            <div className='col-8 table-content-detail'>
                                 <div className='row detail-title'> {item.title} </div>
                                 <div className='row detail-content'> {modifyText(item.content)} </div>
                             </div>
@@ -94,7 +114,6 @@ function MyQuestionsTab(){
                     </div>
                 )
             })}
-
         </div>
     )
 }
