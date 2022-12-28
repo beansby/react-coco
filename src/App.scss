@@ -140,6 +140,32 @@ main {
   $form-select-bg: black;
 }
 
+// 태그
+.tag-input {
+  background-color: rgba(24, 159, 236, 0.72);
+  color: white;
+  font-weight: normal;
+  font-size: 14px;
+  padding: 5px;
+  margin-left: 3px;
+  margin-right: 3px;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 2rem;
+}
+
+.tag-size {
+  background-color: rgba(24, 159, 236, 0.72);
+  color: white;
+  font-weight: normal;
+  font-size: 12px;
+  padding: 5px;
+  margin: 0 3px;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 1.8rem;
+}
+
 
 :root {
   --blue: #5e72e4;

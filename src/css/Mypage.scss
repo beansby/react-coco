@@ -2,10 +2,13 @@
 
     /* 프로필 사진 */
     .pf-img {
-        img {
-            width: 150px;
-        }
+        //display: inline-block;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
     }
+
 
     .pf-text {
 
