@@ -63,6 +63,7 @@ function MyProfileTab(){
             console.log(res.data);
             console.log('프로필 업로드 성공');
             alert(res.data);
+            document.location.href='/mypage';
         }).catch((err)=>{
             alert(err.response.data);
         })
