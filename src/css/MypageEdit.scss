@@ -77,6 +77,11 @@ $pale : rgba(192, 194, 204, 0.35);
     }
 }
 
+.tag-delete:hover {
+    background-color: $accent;
+    cursor: pointer;
+}
+
 // 내 질문 탭
 .container-my-tab {
     padding: 2rem;
