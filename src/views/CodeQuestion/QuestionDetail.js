@@ -103,7 +103,7 @@ function QuestionDetail() {
         },
         {
           label: "취소",
-          onClick: () => {},
+          onClick: () => { },
         },
       ],
     });
@@ -112,39 +112,45 @@ function QuestionDetail() {
   return (
     <main>
       <section>
+
         <header className="title-coco">
           QUESTION &<span className="title-accent-coco"> ANSWER </span>
         </header>
 
+        {/* 제목 */}
+        <div className="q-detail-title">
+          <h3>{title}</h3>
+        </div>
+
+        {/* 닉네임, 작성 날짜 */}
+        <div className="row q-detail-info">
+          {/* 작성자 프로필*/}
+          <div className="col-8">
+            <img src="" alt="" />
+            <span id="quser-nickname"> {nickname} </span>
+          </div>
+          {/* 작성 날짜 */}
+          <div className="col-4 text-end">{date}</div>
+        </div>
+
         <Form className="a-detail-form-container">
           <div className="container container-question-detail">
-            {/* 제목 */}
-            <div className="row">
-              <div className="col-12 my-auto text-start my-auto q-detail-title">
-                <h3>{title}</h3>
-              </div>
-            </div>
-            {/* 닉네임, 작성 날짜 */}
-            <div className="row q-detail-info">
-              {/* 작성자 프로필*/}
-              <div className="col-8">
-                <img src="" alt="" />
-                <span id="quser-nickname"> {nickname} </span>
-              </div>
-              {/* 작성 날짜 */}
-              <div className="col-4 text-end">{date}</div>
-            </div>
+
             {/* 컨텐츠 내용 */}
             <div className="row q-detail-content">
               <div className="col-12 text-start q-detail-text">
                 {show && <Viewer initialValue={content} />}
               </div>
             </div>
-            <Link to={"/question/" + questionId + "/modify"} key={questionId}>
-              <button>수정</button>
-            </Link>
-            <button onClick={deleteConfirm}>삭제</button>
+            <div className="btn-q-detail">
+              <Link to={"/question/" + questionId + "/modify"} key={questionId}>
+                <button>수정</button>
+              </Link>
+              <button onClick={deleteConfirm}>삭제</button>
+            </div>
+            
           </div>
+
         </Form>
         <AnswerList />
       </section>

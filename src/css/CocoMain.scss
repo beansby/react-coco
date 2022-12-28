@@ -31,7 +31,7 @@ $accent: #189FEC;
         }
 
         .btn-question-add {
-            display: inline;
+            //display: inline;
             padding-left: 15px;
         }
 
@@ -73,11 +73,18 @@ $accent: #189FEC;
         margin: 0.5rem;
         height: 200px;
 
+        /* 썸네일 */
+        .item-img-coco {
+            display: inline-block;
+            //width: fit-content;
+
+        }
+
         /* 코코 제목, 내용 */
         .item-text-coco {
             display: inline-block;
             width: 80%;
-            padding-left:70px;
+            //padding-left:70px;
 
             .item-title-coco {
                 font-size: x-large;
@@ -95,6 +102,17 @@ $accent: #189FEC;
                 color: #484848;
             }
         }
+
+        .btn-apply {
+            justify-content: right;
+            padding-right: 20px;
+
+            .btn-apply-css {
+                border-radius: 30px;
+                background: $accent;
+            }
+        }
+
     }
 }
 
@@ -142,27 +160,26 @@ $accent: #189FEC;
 
     /* 질문 제목, 내용 */
     .item-text-question {
-        display: inline-block;
-        width: 80%;
-        padding-left:70px;
+        display: inline;
+        padding-left: 2rem;
 
         .item-title-question {
             font-size: x-large;
             font-weight: bold;
-            width: 50px;
-            height: 10px;
+            color: $accent;
+            //width: 50px;
         }
 
         .item-author-question {
             color: #484848;
-            padding-left: 10px;
+            padding-right: 20px;
             font-size: 12px;
         }
 
         .item-content-question {
             color: #484848;
             //background-color: #00bf9a;
-            width: 100%;
+            //width: 100%;
             height: 68px;
             overflow: clip;
             font-size: 15px;
@@ -187,12 +204,6 @@ $accent: #189FEC;
 }
 
 
-/* 썸네일 */
-.item-img-coco {
-    display: inline-block;
-    width: 20%;
-    
-}
 
 
 
