@@ -46,15 +46,25 @@ function MyProfileTab(){
     // 토큰 보내기 끝
 
     // 프로필 사진 저장/변경
-    const [pic, setPic] = useState('');
+    const [pic, setPic] = useState(null);
+
+    const picChange = (e) => {
+        setPic(e.target.files[0]);
+    }
 
     const savePic = () => {
-        axios.put('api', null, {    // put? post?
-            params: {id:memberId}
-        }).then((res)=>{
+
+        const formData = new FormData();
+        formData.append('id', memberId);
+        formData.append('file', pic);
+
+        axios.post('http://localhost:8080/api/members/profile/image', formData
+        ).then((res)=>{
             console.log(res.data);
+            console.log('프로필 업로드 성공');
+            alert(res.data);
         }).catch((err)=>{
-            console.log(err);
+            alert(err.response.data);
         })
     }
 
@@ -125,6 +135,7 @@ function MyProfileTab(){
     const selectLang = (e) => {
         setLang(e.target.value);
     }
+
     // 언어 추가
     const addLang = () => {
         axios.post('http://localhost:8080/api/languages', null, {
@@ -226,14 +237,13 @@ function MyProfileTab(){
 
                 <Col className='align-self-center' md='7'>
                     <FormGroup>
-                        <Input type='file' id='picture' name='picture'
-                                 required/>
+                        <Input type='file' id='picture' name='picture' accept='image/*' onChange={picChange}/>
                     </FormGroup>
                 </Col>
 
                 <Col className='align-self-center' md='2'>
                     <div className='btn-wrapper'>
-                        <button className='btn-edit' type='submit'> 저장 </button>
+                        <button className='btn-edit' type='submit' onClick={savePic}> 저장 </button>
                     </div>
                 </Col>
             </Row>

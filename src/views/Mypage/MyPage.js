@@ -18,6 +18,9 @@ function MyPage() {
     const [member, setMember] = useState({});
     const [cookie, setCookie] = useCookies([]);
 
+    // 프로필 이미지
+    const [imgUrl, setImgUrl] = useState('');
+
     const requestUser = async () => {
         try {
             const res = await axios.post('http://localhost:8080/api/members/profile', null,
@@ -26,6 +29,10 @@ function MyPage() {
                     params:{id:memberId}
                 })
             setMember(res.data);
+            console.log('프로필 조회 성공');
+            console.log(res.data);
+            setImgUrl('http://localhost:8080/img/'+res.data.filename);
+            console.log(imgUrl);
         } catch(err){
             if(err.request.status == 401){
                 const rescode = err.response.data.rescode;
@@ -42,9 +49,8 @@ function MyPage() {
     }, [token]);
     // 토큰 보내기 끝
 
-    // const [langTags, setLangTags] = useState([]);
-    // const [skills, setSkills] = useState([]);
 
+    // 언어, 기술 설정
     const [langs, setLangs] = useState([]);
     const [techs, setTechs] = useState([]);
 
@@ -76,7 +82,7 @@ function MyPage() {
                 <div className='row'>
                     {/*profile image*/}
                     <div className='col-4 my-auto text-end pf-img'>
-                        <img src="thumb-prof.png" alt=""/>
+                        <img src={imgUrl} alt=""/>
                     </div>
 
                     {/*profile info*/}

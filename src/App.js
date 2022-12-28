@@ -30,7 +30,6 @@ function App() {
                         <ScrollToTop/>
                         <Header/>
                         <Routes>
-                            {/* <Route exact path='/' element={<Main_cocoList/>}/> */}
                             <Route exact path='/' element={<CocoMain/>}/>
                             <Route exact path='/search' element={<QuestionSearch/>}/>
                             <Route exact path='/cocoform' element={<CocoForm/>}/>
