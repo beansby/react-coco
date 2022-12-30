@@ -429,28 +429,9 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center' md='8'>
-                    <Link onClick={deleteConfirm}> 회원 탈퇴하기 </Link>
+                    <Link onClick={deleteConfirm} style={{textDecoration:'none', color:'#484848'}}> 회원 탈퇴하기 </Link>
                 </Col>
             </Row>
-
-            {/*<Row>*/}
-            {/*    <TagsInput*/}
-            {/*        tagProps={{*/}
-            {/*            className: "react-tagsinput-tag bg-info"*/}
-            {/*        }}*/}
-            {/*        value={test}*/}
-            {/*        onChange={(value) => setTest(value)}*/}
-            {/*        onlyUnique*/}
-            {/*    />*/}
-            {/*</Row>*/}
-
-            {/*버튼*/}
-            {/*<Row className='mt-4 row-mypage-profile'>*/}
-            {/*    <Col className='align-content-end' md='6'>*/}
-            {/*        <Button color='#189FEC' type='submit' onClick={saveChange}> 변경 </Button>*/}
-            {/*        <Button color='#189FEC' type='button'> 취소 </Button>*/}
-            {/*    </Col>*/}
-            {/*</Row>*/}
         </div>
     )
 }

@@ -16,6 +16,7 @@ import TagsInput from "../../components/TagsInput";
 import MyProfileTab from "./MyProfileTab";
 import MyQuestionsTab from "./MyQuestionsTab";
 import MyAnswersTab from "./MyAnswersTab";
+import MyCoinTab from "./MyCoinTab";
 
 
 function MyPageEdit() {
@@ -108,7 +109,9 @@ function MyPageEdit() {
                                         <MyAnswersTab/>
                                     </TabPane>
 
-
+                                    <TabPane tabId='profile5' className='mypage-tab-item'>
+                                        <MyCoinTab/>
+                                    </TabPane>
 
                                 </TabContent>
                             </div>

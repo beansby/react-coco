@@ -155,3 +155,25 @@ $pale : rgba(192, 194, 204, 0.35);
         color: white;
     }
 }
+
+// 코인 탭
+.coin-tab-info {
+    margin-bottom: 50px;
+
+    .my-coin {
+        .member-coin {
+            color: $main;
+            font-weight: 500;
+        }
+    }
+
+}
+
+.table-coin {
+    font-size: 14px;
+    font-weight: normal;
+
+    .table-coin-header{
+        color: $accent;
+    }
+}
