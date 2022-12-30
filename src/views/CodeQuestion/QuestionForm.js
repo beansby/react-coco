@@ -107,9 +107,17 @@ function QuestionForm() {
         const modselectedTech = selectedTech.map(item=>item.value);
         // e.preventDefault();
 
-        const qUrl = {params:{title:qTitle, content:qContent, languageList: modselectedLang.toString(), skillList: modselectedTech.toString(), id:memberId}}
+        // const qUrl = {params:{title:qTitle, content:qContent, languageList: modselectedLang.toString(), skillList: modselectedTech.toString(), id:memberId}}
 
-        axios.post('http://localhost:8080/api/questions', null, qUrl)
+        const formData = new FormData();
+        formData.append('title', qTitle);
+        formData.append('content', qContent);
+        formData.append('languageList', modselectedLang.toString());
+        formData.append('skillList', modselectedTech.toString());
+        // formData.append('id', memberId);
+
+
+        axios.post('http://localhost:8080/api/questions', formData, {params:{id:memberId}})
         .then((response)=>{
             // setQContent(qContent);
             // setQTitle(qTitle);
