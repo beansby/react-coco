@@ -160,14 +160,13 @@ main {
 }
 
 // 그라디언트 버튼
-
 .btn-hover {
-  width: 100px;
+  width: 80px;
   font-size: 14px;
   color: #fff;
   cursor: pointer;
-  margin: 20px;
-  height: 40px;
+  margin: 0 40px;
+  height: 35px;
   text-align:center;
   border: none;
   background-size: 300% 100%;
@@ -212,8 +211,8 @@ main {
   background-color: rgba(24, 159, 236, 0.72);
   color: white;
   font-weight: normal;
-  font-size: 14px;
-  padding: 5px;
+  font-size: 13px;
+  padding: 2px 8px;
   //margin-left: 3px;
   margin-right: 5px;
   border-radius: 20px;
@@ -226,7 +225,7 @@ main {
   color: white;
   font-weight: normal;
   font-size: 12px;
-  padding: 5px;
+  padding: 2px 8px;
   margin: 0 3px;
   border-radius: 20px;
   text-align: center;
