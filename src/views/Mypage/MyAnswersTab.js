@@ -135,7 +135,7 @@ function MyAnswersTab(){
                                 </div>
                             </div>
 
-                            <div className='col-2 my-auto text-center table-content-date'> {moment(item.createdTime).format('YYYY.MM.DD')} </div>
+                            <div className='col-2 my-auto text-end table-content-date'> {moment(item.createdTime).format('YYYY.MM.DD')} </div>
                         </a>
                     </div>
                 )
