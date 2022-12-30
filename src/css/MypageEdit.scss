@@ -108,27 +108,27 @@ $pale : rgba(192, 194, 204, 0.35);
             background: $pale;
             border-radius: 30px;
             color: $main;
-            padding: 20px;
+            padding: 15px;
             font-weight: normal;
-
-            // 태그
-            .table-content-key {
-                //background: black;
-            }
 
             // 제목&내용
             .table-content-detail {
-                padding-left: 1rem;
+                //padding-left: 1rem;
                 //background: #2bffc6;
 
+
                 .detail-title {
-                    font-size: 20px;
+                    font-size: 18px;
                     font-weight: 600;
                     color: $accent;
                 }
 
                 .detail-content {
                     color: $main;
+                    font-size: 14px;
+                    line-height: 16px;
+                    height: 37px;
+                    overflow:scroll;
                 }
             }
 
