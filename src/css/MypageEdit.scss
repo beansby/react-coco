@@ -14,20 +14,25 @@ $pale : rgba(192, 194, 204, 0.35);
     //background: #00f2c3;
 }
 
+.container-box{
+    width: 1200px;
+
+    .mypage-tab-select{
+        text-align: center;
+        width: 200px;
+        margin: 0 auto;
+        border-right: 3px solid #189FEC;
+    }
+}
 
 /*프로필 탭 전체*/
 .nav-tabs-info {
-    border-right: 3px solid #189FEC;
-    padding-right: 100px;
     height: 400px;
-    width: 100%;
 
     /*프로필 탭 아이템*/
     .nav-item-mypage {
         width: 300px;
         color: #484848 !important;
-
-
     }
 
 }
@@ -35,7 +40,9 @@ $pale : rgba(192, 194, 204, 0.35);
 /*프로필 탭 컨텐츠*/
 .mypage-tab-content {
     height: 400px;
+    width: 850px;
     overflow: scroll;
+    margin: 0 auto;
 
     .mypage-tab-item {
         overflow: clip;
@@ -53,29 +60,31 @@ $pale : rgba(192, 194, 204, 0.35);
 }
 
 .active {
-    font-weight: bold;
+    font-weight: 600;
     color: #189FEC;
 }
 
 .labels {
     font-weight: normal;
-    padding-left: 20px;
+    //padding-left: 20px;
 }
 
 // 프로필 탭
 .row-mypage-profile {
     margin-top: 10px;
     margin-bottom: 20px;
-    padding: 10px;
+    //padding: 10px;
 
     .pf-tab-label {
-
+        width: 180px;
     }
 
     .pf-tab-content {
 
     }
 }
+
+
 
 .tag-delete:hover {
     background-color: $accent;
@@ -114,7 +123,7 @@ $pale : rgba(192, 194, 204, 0.35);
 
                 .detail-title {
                     font-size: 20px;
-                    font-weight: bold;
+                    font-weight: 600;
                     color: $accent;
                 }
 

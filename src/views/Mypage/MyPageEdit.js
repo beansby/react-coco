@@ -25,12 +25,12 @@ function MyPageEdit() {
     return (
         <div className='wrapper'>
             <div className='section'>
-                <Container>
-                    <Row>
-                        <Col md='2' >
+                <div className='container container-box'>
+                    <div className='row'>
+                        <div className='col-2 mypage-tab-select my-auto'>
                             <div className='section'>
                                 {/*프로필 변경 탭*/}
-                                <Nav className='flex-column nav-tabs-info' role='tablist'>
+                                <Nav className='flex-column nav-tabs-info my-auto' role='tablist'>
                                     <NavItem className='nav-item-mypage'>
                                         <NavLink className={classnames('inactive', {active: selectedTab === 1})}
                                                  onClick={(e) => {
@@ -88,9 +88,9 @@ function MyPageEdit() {
 
                                 </Nav>
                             </div>
-                        </Col>
+                        </div>
 
-                        <Col md='10' className='mypage-tab-content'>
+                        <div className='col-10 mypage-tab-content'>
                             <div className='section'>
                                 <TabContent activeTab={"profile" + selectedTab}>
 
@@ -112,9 +112,9 @@ function MyPageEdit() {
 
                                 </TabContent>
                             </div>
-                        </Col>
-                    </Row>
-                </Container>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
