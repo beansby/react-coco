@@ -126,14 +126,6 @@ function MyPage() {
                                         <span className='tag-input text-center'> {item.skill} </span>
                                     )
                                 })}
-                                {/*<TagsInput*/}
-                                {/*    tagProps={{*/}
-                                {/*        className: "react-tagsinput-tag bg-info"*/}
-                                {/*    }}*/}
-                                {/*    value={langTags}*/}
-                                {/*    onChange={(value) => setLangTags(value)}*/}
-                                {/*    onlyUnique*/}
-                                {/*/>*/}
                             </div>
                         </div>
 
