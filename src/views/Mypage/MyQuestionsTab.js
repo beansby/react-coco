@@ -71,8 +71,7 @@ function MyQuestionsTab(){
         <div className='container-my-tab'>
 
             <div className='row text-center table-title'>
-                <div className='col-2'> 키워드 </div>
-                <div className='col-8'> 목록 </div>
+                <div className='col'> 목록 </div>
                 <div className='col-2'> 작성일자 </div>
             </div>
 
@@ -80,36 +79,63 @@ function MyQuestionsTab(){
             {/*내 질문 목록*/}
             {boards.map((item)=>{
                 return (
-                    <div className='row text-center table-content my-3'>
-                        <a href={'/question/'+item.questionId} style={{textDecoration:"none"}} key={item.questionId} className='row text-center'>
-                            <div className='col-2 my-auto table-content-key'>
-                                {(item.languageList.filter((tag,index)=>{
-                                    return(
-                                        index == 0
-                                    )
-                                })).map(item=> {
-                                    return(
-                                        <span className='tag-size'> {item} </span>
-                                    )
-                                })
-                                }
-                                {(item.skillList.filter((tag, index)=>{
-                                    return(
-                                        index == 0 || index == 1
-                                    )
-                                })).map(item=>{
-                                    return(
-                                        <span className='tag-size'> {item} </span>
-                                    )
-                                })}
+                    <div className='row table-content my-3'>
+                        <a href={'/question/'+item.questionId} style={{textDecoration:"none"}} key={item.questionId} className='row'>
+                            {/*<div className='col-2 my-auto table-content-key'>*/}
+                            {/*    {(item.languageList.filter((tag,index)=>{*/}
+                            {/*        return(*/}
+                            {/*            index == 0*/}
+                            {/*        )*/}
+                            {/*    })).map(item=> {*/}
+                            {/*        return(*/}
+                            {/*            <span className='tag-size'> {item} </span>*/}
+                            {/*        )*/}
+                            {/*    })*/}
+                            {/*    }*/}
+                            {/*    {(item.skillList.filter((tag, index)=>{*/}
+                            {/*        return(*/}
+                            {/*            index == 0 || index == 1*/}
+                            {/*        )*/}
+                            {/*    })).map(item=>{*/}
+                            {/*        return(*/}
+                            {/*            <span className='tag-size'> {item} </span>*/}
+                            {/*        )*/}
+                            {/*    })}*/}
+                            {/*</div>*/}
+
+                            <div className='col table-content-detail'>
+                                <div className='row'>
+                                    <div className='col'>
+                                        {(item.languageList.filter((tag,index)=>{
+                                            return(
+                                                index == 0 || index == 1 || index == 2
+                                            )
+                                        })).map(item=> {
+                                            return(
+                                                <span className='tag-size'> {item} </span>
+                                            )
+                                        })
+                                        }
+                                        {(item.skillList.filter((tag, index)=>{
+                                            return(
+                                                index == 0 || index == 1 || index == 2
+                                            )
+                                        })).map(item=>{
+                                            return(
+                                                <span className='tag-size'> {item} </span>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                                <div className='row detail-title'>
+                                    <div className='col'> {item.title} </div>
+                                </div>
+                                <div className='row detail-content'>
+                                    <div className='col'> {modifyText(item.content)} </div>
+                                </div>
                             </div>
 
-                            <div className='col-8 table-content-detail'>
-                                <div className='row detail-title'> {item.title} </div>
-                                <div className='row detail-content'> {modifyText(item.content)} </div>
-                            </div>
-
-                            <div className='col-2 my-auto text-center table-content-date'> {moment(item.createdTime).format('YYYY.MM.DD')} </div>
+                            <div className='col-2 my-auto text-end table-content-date'> {moment(item.createdTime).format('YYYY.MM.DD')} </div>
                         </a>
                     </div>
                 )

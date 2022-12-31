@@ -14,20 +14,25 @@ $pale : rgba(192, 194, 204, 0.35);
     //background: #00f2c3;
 }
 
+.container-box{
+    width: 1200px;
+
+    .mypage-tab-select{
+        text-align: center;
+        width: 200px;
+        margin: 0 auto;
+        border-right: 3px solid #189FEC;
+    }
+}
 
 /*프로필 탭 전체*/
 .nav-tabs-info {
-    border-right: 3px solid #189FEC;
-    padding-right: 100px;
     height: 400px;
-    width: 100%;
 
     /*프로필 탭 아이템*/
     .nav-item-mypage {
         width: 300px;
         color: #484848 !important;
-
-
     }
 
 }
@@ -35,7 +40,9 @@ $pale : rgba(192, 194, 204, 0.35);
 /*프로필 탭 컨텐츠*/
 .mypage-tab-content {
     height: 400px;
+    width: 850px;
     overflow: scroll;
+    margin: 0 auto;
 
     .mypage-tab-item {
         overflow: clip;
@@ -53,28 +60,35 @@ $pale : rgba(192, 194, 204, 0.35);
 }
 
 .active {
-    font-weight: bold;
+    font-weight: 600;
     color: #189FEC;
 }
 
 .labels {
     font-weight: normal;
-    padding-left: 20px;
+    //padding-left: 20px;
 }
 
 // 프로필 탭
 .row-mypage-profile {
     margin-top: 10px;
     margin-bottom: 20px;
-    padding: 10px;
+    //padding: 10px;
 
     .pf-tab-label {
-
+        width: 180px;
     }
 
     .pf-tab-content {
 
     }
+}
+
+
+
+.tag-delete:hover {
+    background-color: $accent;
+    cursor: pointer;
 }
 
 // 내 질문 탭
@@ -83,7 +97,7 @@ $pale : rgba(192, 194, 204, 0.35);
 
     .table-title {
         //padding: 10px;
-        font-weight: bold;
+        font-weight: 600;
         font-size: 16px;
     }
 
@@ -94,27 +108,27 @@ $pale : rgba(192, 194, 204, 0.35);
             background: $pale;
             border-radius: 30px;
             color: $main;
-            padding: 20px;
+            padding: 15px;
             font-weight: normal;
-
-            // 태그
-            .table-content-key {
-                //background: black;
-            }
 
             // 제목&내용
             .table-content-detail {
-                padding-left: 1rem;
+                //padding-left: 1rem;
                 //background: #2bffc6;
 
+
                 .detail-title {
-                    font-size: 20px;
-                    font-weight: bold;
+                    font-size: 18px;
+                    font-weight: 600;
                     color: $accent;
                 }
 
                 .detail-content {
                     color: $main;
+                    font-size: 14px;
+                    line-height: 16px;
+                    height: 37px;
+                    overflow:scroll;
                 }
             }
 
@@ -139,5 +153,27 @@ $pale : rgba(192, 194, 204, 0.35);
 
     .detail-content {
         color: white;
+    }
+}
+
+// 코인 탭
+.coin-tab-info {
+    margin-bottom: 50px;
+
+    .my-coin {
+        .member-coin {
+            color: $main;
+            font-weight: 500;
+        }
+    }
+
+}
+
+.table-coin {
+    font-size: 14px;
+    font-weight: normal;
+
+    .table-coin-header{
+        color: $accent;
     }
 }

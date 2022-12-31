@@ -104,8 +104,9 @@
 }
 
 .react-tagsinput-tag a::before {
-  font-family: "Nucleo";
-  content: "\ea48";
+  /*font-family: "Nucleo";*/
+  /*content: "\ea48";*/
+  content: "\00d7";
   padding: 0px 2px;
 }
 

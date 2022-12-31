@@ -128,15 +128,33 @@ function CocoMain() {
 
                                 <div className='row' id={"item-row_"+i} >
                                     {/* 매칭 상태 변경값 설정 필요 */}
-                                    <div className="col-4 text-center item-img-coco" id={"item-img_"+i}>
-                                        <img src="thumb-waiting.png" id={"img_"+i} alt=""/>
-                                    </div>
+                                    {/*<div className="col-2 text-center item-img-coco" id={"item-img_"+i}>*/}
+                                    <img className='col-3 my-auto' src="thumb-waiting.png" id={"img_"+i} alt=""/>
+                                    {/*</div>*/}
 
                                     <div className="col item-text-coco " id={"item-text_"+i}>
-                                        <div className='row h-50' id={"item-title-row_"+i}>
-                                            <span className="col-10 my-auto item-title-coco" id={"item-title_"+i}>
-                                                {cocos.title}
-                                            </span>
+                                        <div className='row' id={"item-tag-row_"+i}>
+                                            <div className="col-10 my-auto item-tag-question" id={"item-tag_"+i}>
+                                                {(cocos.languageList.filter((tag, index)=>{
+                                                    return(
+                                                        index == 0 || index == 1 || index == 2
+                                                    )
+                                                })).map(item=>{
+                                                    return(
+                                                        <span className='tag-input'> {item} </span>
+                                                    )
+                                                })
+                                                }
+                                                {(cocos.skillList.filter((tag, index)=>{
+                                                    return(
+                                                        index == 0 || index == 1 || index == 2
+                                                    )
+                                                })).map(item=>{
+                                                    return(
+                                                        <span className='tag-input'> {item} </span>
+                                                    )
+                                                })}
+                                            </div>
 
                                             <div className="col-2 my-auto item-coin-coco" id={"item-coin_"+i}>
                                                 <img src="icon-coin.png"  id={"icon-coin_"+i} alt=""/>
@@ -144,16 +162,22 @@ function CocoMain() {
                                             </div>
                                         </div>
 
+                                        <div className='row' id={"item-title-row_"+i}>
+                                            <span className="col my-auto item-title-coco" id={"item-title_"+i}>
+                                                {cocos.title}
+                                            </span>
+                                        </div>
+
                                         <div className='row' id={"item-row2_"+i}>
-                                            <div className="col-12 item-content-coco" id={"item-content_"+i}>
+                                            <div className="col item-content-coco" id={"item-content_"+i}>
                                                 {modifyText(cocos.content)}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className='row btn-apply my-auto' id={"item-row3_"+i}>
-                                    <Button className='col-2 btn-apply-css' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>
+                                <div className='row btn-apply' id={"item-row3_"+i}>
+                                    <button className='col-2 btn-hover color-9' id={"btn_"+i} style={{display:'none'}}> 매 칭 신 청 </button>
                                 </div>
                                 {/*<Button className='text-end row' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>*/}
                             </div>

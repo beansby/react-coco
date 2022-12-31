@@ -64,17 +64,16 @@ function QuestionSearch() {
             {/*검색창*/}
             <SearchBar />
 
-            <div className="folder-container-coco">
+            <div className="folder-container-q">
 
-                <div className="row folder-bar">
-                    <div className="col-1 text-center folder-name-coco">
+                <div className="row folder-bar-q">
+                    <div className="col-1 text-center folder-name-q">
                         Question
                     </div>
 
-                    <div className="col-1 my-auto btn-question-add">
+                    <div className="col-1 my-auto btn-question-add-q">
                         {/*질문등록*/}
                         <Link to={'/question'} style={{textDecoration:'none', color:'#189FEC'}} id='add-q'>
-                            {/*<img src="icon-plusq.png" alt="" id="question-add" />*/}
                             ADD &nbsp;
                             <FontAwesomeIcon icon={faPenToSquare} />
                         </Link>
@@ -106,43 +105,50 @@ function QuestionSearch() {
                             <div className="folder-item-question">
                                 <Link className='row' to={'/question/' + questions.questionId} key={questions.questionId} style={{textDecoration:'none'}}>
 
-                                    {/*언어&기술 태그*/}
-                                    <div className='col-2 item-tag-question'>
-                                        {(questions.languageList.filter((tag, index)=>{
-                                            return(
-                                                index == 0 || index == 1
-                                            )
-                                        })).map(item=>{
-                                            return(
-                                                <span className='tag-input'> {item} </span>
-                                            )
-                                        })
-                                        }
-                                        {(questions.skillList.filter((tag, index)=>{
-                                            return(
-                                                index == 0 || index == 1
-                                            )
-                                        })).map(item=>{
-                                            return(
-                                                <span className='tag-input'> {item} </span>
-                                            )
-                                        })}
+                                    <div className='col'>
+                                        조회수
+                                        추천
                                     </div>
-
                                     {/*제목, 내용, 작성자*/}
-                                    <div className="col-10 item-text-question">
+                                    <div className="col-11 item-text-question">
                                         <div className='row my-auto'>
-                                            <div className="col-10 my-auto item-title-question">
-                                                {`${questions.title}`}
+                                            {/*언어&기술 태그*/}
+                                            <div className="col-10 my-auto item-tag-question">
+                                                {(questions.languageList.filter((tag, index)=>{
+                                                    return(
+                                                        index == 0 || index == 1 || index == 2
+                                                    )
+                                                })).map(item=>{
+                                                    return(
+                                                        <span className='tag-input'> {item} </span>
+                                                    )
+                                                })
+                                                }
+                                                {(questions.skillList.filter((tag, index)=>{
+                                                    return(
+                                                        index == 0 || index == 1 || index == 2
+                                                    )
+                                                })).map(item=>{
+                                                    return(
+                                                        <span className='tag-input'> {item} </span>
+                                                    )
+                                                })}
                                             </div>
+                                            {/*작성자*/}
                                             <div className='col-2 my-auto text-end item-author-question'>
                                                 {questions.questionAuthor.nickname}
                                             </div>
                                         </div>
 
+                                        <div className='row my-auto '>
+                                            <div className='col my-auto item-title-question'>
+                                                {`${questions.title}`}
+                                            </div>
+                                        </div>
+
 
                                         <div className='row my-auto'>
-                                            <div className="col-12 item-content-question">
+                                            <div className="col item-content-question">
                                                 {modifyText(questions.content)}
                                                 {/*{ReactHtmlParser(questions.content)}*/}
                                             </div>

@@ -144,9 +144,11 @@ function MyProfileTab(){
         }).then((res)=>{
             setLangs([...langs, {language:lang}]);
             console.log('언어 추가 성공');
-            console.log(res.data);
+            console.log(langs);
+            alert(res.data);
         }).catch((err)=>{
             console.log(err);
+            alert(err.response.data);
         })
     }
 
@@ -193,8 +195,10 @@ function MyProfileTab(){
             setTechs([...techs, {skill:tech}]);
             console.log('기술 추가 성공');
             console.log(res.data);
+            alert(res.data);
         }).catch((err)=>{
             console.log(err);
+            alert(err.response.data);
         })
     }
 
@@ -223,6 +227,75 @@ function MyProfileTab(){
             console.log(err);
         })
     }, [])
+
+    // 태그 삭제
+    const deleteLangTagConfirm = (e) => {
+        e.preventDefault();
+        // console.log(e.target.id);
+        // console.log(typeof(e.target.id));
+        confirmAlert({
+            // title: '태그를 삭제하시겠습니다',
+            message: `내 언어에서 ${e.target.id} 을(를) 삭제하시겠습니까?`,
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {
+                        deleteLangTag(e.target.id);
+                    }
+                },
+                {
+                    label: '취소',
+                    onClick: () => {
+                    }
+                }
+            ]
+        });
+    }
+
+    const deleteLangTag = (lang) => {
+        axios.delete('http://localhost:8080/api/languages', {
+            params:{language:lang, id:memberId}
+        }).then((res)=>{
+            alert(res.data);
+            document.location.href='/mypage';
+        }).catch((err)=>{
+            console.log(err);
+            alert(err.response.data);
+        })
+    }
+
+    const deleteTechTagConfirm = (e) => {
+        e.preventDefault();
+        confirmAlert({
+            // title: '태그를 삭제하시겠습니다',
+            message: `내 스킬에서 ${e.target.id} 을(를) 삭제하시겠습니까?`,
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {
+                        deleteTechTag(e.target.id);
+                    }
+                },
+                {
+                    label: '취소',
+                    onClick: () => {
+                    }
+                }
+            ]
+        });
+    }
+
+    const deleteTechTag = (tech) => {
+        axios.delete('http://localhost:8080/api/skills', {
+            params:{skill:tech, id:memberId}
+        }).then((res)=>{
+            alert(res.data);
+            document.location.href='/mypage';
+        }).catch((err)=>{
+            console.log(err);
+            alert(err.response.data);
+        })
+    }
 
     return(
         <div>
@@ -286,11 +359,12 @@ function MyProfileTab(){
                 <Col className='align-self-center pf-tab-content' md='5'>
                     {langs.map((language)=>{
                         return (
-                            <span className='tag-input text-center'> {language.language} </span>
+                            <span className='tag-input text-center tag-delete' onClick={deleteLangTagConfirm} id={language.language}> {language.language} </span>
                         )
                     })}
                 </Col>
 
+                {/*선택 옵션*/}
                 <Col className='align-self-center pf-tab-content' md='2'>
                     <select className='form-select' name="lang" id="lang" value={lang} onChange={selectLang}>
                         <option selected hidden> 언어를 선택해주세요 </option>
@@ -321,11 +395,12 @@ function MyProfileTab(){
                 <Col className='align-self-center pf-tab-content' md='5'>
                     {techs.map((stack)=>{
                         return (
-                            <span className='tag-input text-center'> {stack.skill} </span>
+                            <span className='tag-input text-center tag-delete' onClick={deleteTechTagConfirm} id={stack.skill}> {stack.skill} </span>
                         )
                     })}
                 </Col>
 
+                {/*선택 옵션*/}
                 <Col className='align-self-center pf-tab-content' md='2'>
                     <select className='form-select' name="tech" id="tech" value={tech} onChange={selectTech} >
                         <option selected hidden> 스킬을 선택해주세요 </option>
@@ -354,17 +429,9 @@ function MyProfileTab(){
                 </Col>
 
                 <Col className='align-self-center' md='8'>
-                    <Link onClick={deleteConfirm}> 회원 탈퇴하기 </Link>
+                    <Link onClick={deleteConfirm} style={{textDecoration:'none', color:'#484848'}}> 회원 탈퇴하기 </Link>
                 </Col>
             </Row>
-
-            {/*버튼*/}
-            {/*<Row className='mt-4 row-mypage-profile'>*/}
-            {/*    <Col className='align-content-end' md='6'>*/}
-            {/*        <Button color='#189FEC' type='submit' onClick={saveChange}> 변경 </Button>*/}
-            {/*        <Button color='#189FEC' type='button'> 취소 </Button>*/}
-            {/*    </Col>*/}
-            {/*</Row>*/}
         </div>
     )
 }

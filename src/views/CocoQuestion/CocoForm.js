@@ -129,20 +129,27 @@ function CocoForm() {
         const modselectedLang = selectedLang.map(item=>item.value);
         const modselectedTech = selectedTech.map(item=>item.value);
         // e.preventDefault();
-        const qUrl = {
-            params: {
-                title: cocoTitle,
-                content: cocoContent,
-                price: cocoPrice,
-                // languageList: selectedLang.toString(),
-                languageList: modselectedLang.toString(),
-                // skillList: techList.toString(),
-                skillList: modselectedTech.toString(),
-                id: memberId
-            }
-        }
+        // const qUrl = {
+        //     params: {
+        //         title: cocoTitle,
+        //         content: cocoContent,
+        //         price: cocoPrice,
+        //         // languageList: selectedLang.toString(),
+        //         languageList: modselectedLang.toString(),
+        //         // skillList: techList.toString(),
+        //         skillList: modselectedTech.toString(),
+        //         id: memberId
+        //     }
+        // }
 
-        axios.post('http://localhost:8080/api/cocos', null, qUrl)
+        const formData = new FormData();
+        formData.append('title', cocoTitle);
+        formData.append('content', cocoContent);
+        formData.append('price', cocoPrice);
+        formData.append('languageList', modselectedLang.toString());
+        formData.append('skillList', modselectedTech.toString());
+
+        axios.post('http://localhost:8080/api/cocos', formData, {params:{id:memberId}})
             .then((response) => {
                 // setCocoContent(cocoContent);
                 // setCocoTitle(cocoTitle);

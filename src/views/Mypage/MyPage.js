@@ -32,6 +32,7 @@ function MyPage() {
             console.log('프로필 조회 성공');
             console.log(res.data);
             setImgUrl('http://localhost:8080/img/'+res.data.filename);
+            console.log('프로필 이미지 가져오기 성공')
             console.log(imgUrl);
         } catch(err){
             if(err.request.status == 401){
@@ -125,14 +126,6 @@ function MyPage() {
                                         <span className='tag-input text-center'> {item.skill} </span>
                                     )
                                 })}
-                                {/*<TagsInput*/}
-                                {/*    tagProps={{*/}
-                                {/*        className: "react-tagsinput-tag bg-info"*/}
-                                {/*    }}*/}
-                                {/*    value={langTags}*/}
-                                {/*    onChange={(value) => setLangTags(value)}*/}
-                                {/*    onlyUnique*/}
-                                {/*/>*/}
                             </div>
                         </div>
 

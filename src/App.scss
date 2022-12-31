@@ -2,11 +2,36 @@ $accent: #189FEC;
 $main : #484848;
 $pale : #989898;
 
-
+// 폰트
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&family=Krona+One&family=Righteous&display=swap');
+//font-family: 'IBM Plex Sans KR', sans-serif;
+//font-family: 'Krona One', sans-serif;
+//font-family: 'Righteous', cursive;
 
 main {
   padding-top: 150px;
 }
+
+* {
+  font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+//상단 타이틀
+.title-coco {
+  margin: 0 auto;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  //font-family: 'Krona One', sans-serif;
+  font-family: 'Righteous', cursive;
+
+  .title-accent-coco {
+    color: #189FEC;
+    font-family: 'Righteous', cursive;
+  }
+}
+
+
 
 //페이지 이동 버튼
 @import url('https://fonts.googleapis.com/css?family=Mukta:700');
@@ -17,7 +42,7 @@ main {
 
 .move-page {
   margin-top: 10px;
-  margin-left: 42%;
+  margin-left: 43%;
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -102,7 +127,7 @@ main {
 
 // 툴팁
 
-// 버튼
+// 빛나는 버튼
 .btn-wrapper {
   height: 100%;
   display: flex;
@@ -134,6 +159,47 @@ main {
   transform: translateY(-7px);
 }
 
+// 그라디언트 버튼
+.btn-hover {
+  width: 80px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  margin: 0 40px;
+  height: 35px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-1 {
+  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+.btn-hover.color-9 {
+  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+
 // 셀렉트 옵션
 .form-select {
   $form-select-color: $accent;
@@ -145,10 +211,10 @@ main {
   background-color: rgba(24, 159, 236, 0.72);
   color: white;
   font-weight: normal;
-  font-size: 14px;
-  padding: 5px;
-  margin-left: 3px;
-  margin-right: 3px;
+  font-size: 13px;
+  padding: 2px 8px;
+  //margin-left: 3px;
+  margin-right: 5px;
   border-radius: 20px;
   text-align: center;
   line-height: 2rem;
@@ -159,7 +225,7 @@ main {
   color: white;
   font-weight: normal;
   font-size: 12px;
-  padding: 5px;
+  padding: 2px 8px;
   margin: 0 3px;
   border-radius: 20px;
   text-align: center;
