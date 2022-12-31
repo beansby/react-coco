@@ -1,7 +1,3 @@
-span {
-    color: #189FEC;
-}
-
 .a-list-form-container {
     margin: 0 auto;
     /* padding-top: 10rem; */
@@ -13,13 +9,14 @@ span {
     border: 1px solid #189FEC;
     width: 80%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 80px;
     padding: 20px;
     border-radius: 30px;
 }
 
 .a-detail-info {
-    padding: 20px;
+    padding: 10px;
+    margin-top: 10px;
 
 }
 
@@ -56,4 +53,26 @@ span {
 .btn-form-coco {
     text-align: center;
     margin: 0 auto;
+}
+
+.btn-a-list {
+    margin-bottom: 20px;
+}
+
+
+.a-list-info {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.pf-img-alist {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.a-list-nick-date {
+    width: 99%;
 }

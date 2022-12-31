@@ -9,6 +9,7 @@ import { useCookies } from "react-cookie";
 import { requestToken } from "../../redux/requestToken";
 import { confirmAlert } from "react-confirm-alert";
 import { Viewer } from "@toast-ui/react-editor";
+import moment from "moment/moment";
 
 function QuestionDetail() {
   // 토큰 시작
@@ -18,6 +19,9 @@ function QuestionDetail() {
 
   const [member, setMember] = useState([]);
   const [cookie, setCookie] = useCookies([]);
+
+  // 프로필 이미지
+  const [imgUrl, setImgUrl] = useState('');
 
   const requestUser = async () => {
     try {
@@ -30,6 +34,7 @@ function QuestionDetail() {
         }
       );
       setMember(res.data);
+      setImgUrl('http://localhost:8080/img/' + res.data.filename);
     } catch (err) {
       if (err.request.status == 401) {
         const rescode = err.response.data.rescode;
@@ -122,18 +127,26 @@ function QuestionDetail() {
           <h3>{title}</h3>
         </div>
 
-        {/* 닉네임, 작성 날짜 */}
-        <div className="row q-detail-info">
-          {/* 작성자 프로필*/}
-          <div className="col-8">
-            <img src="" alt="" />
-            <span id="quser-nickname"> {nickname} </span>
+
+        <div className="q-detail-info">
+          {/* <div className='col pf-img-qdetail'> */}
+          {/*profile image*/}
+          <div className="row q-detail-img-nik">
+            <div className='my-auto pf-img'>
+              <img src={imgUrl} alt="" className='pf-img-qdetail my-auto' />
+            </div>
+            <div className="row q-detail-nick-date">
+              {/* 닉네임 */}
+              <div className='col pf-nickname'>
+                {nickname}
+              </div>
+              {/* 작성 날짜 */}
+              <div className='col text-end table-content-date'> {moment(date.createdTime).format('YYYY.MM.DD')}</div>
+            </div>
           </div>
-          {/* 작성 날짜 */}
-          <div className="col-4 text-end">{date}</div>
         </div>
 
-        <Form className="a-detail-form-container">
+        <Form className="q-detail-form-container">
           <div className="container container-question-detail">
 
             {/* 컨텐츠 내용 */}
@@ -142,16 +155,28 @@ function QuestionDetail() {
                 {show && <Viewer initialValue={content} />}
               </div>
             </div>
-            <div className="btn-q-detail">
-              <Link to={"/question/" + questionId + "/modify"} key={questionId}>
-                <button>수정</button>
-              </Link>
-              <button onClick={deleteConfirm}>삭제</button>
-            </div>
-            
           </div>
-
         </Form>
+
+        {/* 수정&삭제 버튼 */}
+        {/* {memberId == questions.questrionAuthor.email && ( */}
+        <div className="btn-q-detail">
+          <Link to={"/question/" + questionId + "/modify"} key={questionId}>
+            <button>수정</button>
+          </Link>
+          <button onClick={deleteConfirm}>삭제</button>
+        </div>
+        {/* )} */}
+
+        {/* HorizonLine */}
+        <div style={{ display: "flex", alignItems: "center", width: "90%", margin: "0 auto", padding: "40px" }}>
+          <div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
+
+          <p style={{ margin: "0 10px" }}>ANSWER</p>
+
+          <div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
+        </div>
+
         <AnswerList />
       </section>
     </main>

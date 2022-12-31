@@ -1,14 +1,12 @@
 .container-question-detail {
-    margin: 0 auto;
-
-    
+    margin: 0 auto;    
 }
 
 .q-detail-info {
     width: 78%;
     margin: 0 auto;
-    margin-top: 50px;
-
+    margin-bottom: 5px;
+    margin-top: 20px;
 }
 
 .q-detail-form-container {
@@ -16,9 +14,9 @@
     border: 1px solid #189FEC;
     width: 80%;
     margin: 0 auto;
-    margin-top: 5px;
     padding: 10px;
     border-radius: 30px;
+    margin-top: 10px;
 }
 
 .q-detail-text {
@@ -26,11 +24,33 @@
 }
 
 .q-detail-title {
-    width: 78%;
+    width: 77%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 100px;
 }
 
 .btn-q-detail {
-    text-align: end;
+    text-align: center;
+    margin: 0 auto;
+    margin: 20px;
+}
+
+.pf-img-qdetail {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.pf-nickname {
+    padding-left: 20px;
+}
+
+.toastui-editor-contents p{
+    font-size: 22px;
+}
+
+.toastui-editor-contents code {
+    font-size: 20px;
 }
