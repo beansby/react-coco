@@ -55,6 +55,7 @@ function ModifyAnswerForm() {
   const aUrl = { params: { content: aContent, id: memberId } };
   const { id } = useParams();
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   // 기존 질문 가져오기
   useEffect(() => {
@@ -64,6 +65,8 @@ function ModifyAnswerForm() {
         const answer = res.data;
         console.log(answer);
         setAContent(answer.content);
+        editorRef.current?.getInstance().setHTML(aContent);
+        setShow(true);
       })
       .catch((error) => {
         console.log(error);
@@ -107,7 +110,7 @@ function ModifyAnswerForm() {
         },
         {
           label: "취소",
-          onClick: () => {},
+          onClick: () => { },
         },
       ],
     });
@@ -117,15 +120,15 @@ function ModifyAnswerForm() {
     <main>
       <section>
         <Form className="a-modify-form-container">
-          <Editor
+          {show && <Editor
             ref={editorRef}
-            // placeholder={aContent}
-            initialValue={aContent}
+            // initialValue=""
+            previewStyle="vertical"
             height="600px"
             initialEditType="markdown"
             useCommandShortcut={true}
             onChange={change}
-          />
+          />}
         </Form>
         <br />
         <div className="btn-a-modify">
