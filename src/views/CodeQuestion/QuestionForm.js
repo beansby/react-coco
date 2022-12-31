@@ -133,7 +133,7 @@ function QuestionForm() {
             buttons: [
                 {
                     label: '확인',
-                    onClick: () => {submit();}
+                    onClick: () => {submit()}
                 },
                 {
                     label: '취소',

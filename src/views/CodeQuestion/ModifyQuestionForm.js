@@ -61,6 +61,7 @@ function ModifyQuestionForm() {
   const qUrl = { params: { title: qTitle, content: qContent, id: memberId } };
   // const encodedQUrl = encodeURIComponent(qUrl);
   const { id } = useParams();
+  const [show, setShow] = useState(false);
 
   // 기존 질문 가져오기
   useEffect(() => {
@@ -70,6 +71,7 @@ function ModifyQuestionForm() {
         const question = res.data;
         setQTitle(question.title);
         setQContent(question.content);
+        setShow(true);
       })
       .catch((error) => {
         console.log(error);
@@ -162,7 +164,7 @@ function ModifyQuestionForm() {
             </Col>
           </FormGroup>
 
-          <Editor
+          {show && <Editor
             ref={editorRef}
             // placeholder='enter your question'
             initialValue={qContent}
@@ -170,7 +172,7 @@ function ModifyQuestionForm() {
             initialEditType="markdown"
             useCommandShortcut={true}
             onChange={change}
-          />
+          />}
         </Form>
         <br />
         <div className="btn-q-modify">
