@@ -55,11 +55,19 @@ $accent: #189FEC;
         height: 200px;
 
         /* 썸네일 */
-        .item-img-coco {
-            display: inline-block;
-            //width: fit-content;
+        .item-left-coco {
+            margin-left: 10px;
+            .item-img-coco {
+                display: inline-block;
+                //width: 234px;
+                //height: 160px;
+            }
 
+            .btn-apply {
+                margin-top: 30px;
+            }
         }
+
 
         /* 코코 제목, 내용 */
         .item-text-coco {
@@ -80,35 +88,46 @@ $accent: #189FEC;
                 padding-top: 5px;
             }
 
+            .item-author-coco {
+                color: #484848;
+                padding-right: 20px;
+                font-size: 12px;
+            }
+
             .item-content-coco {
                 color: #484848;
-                height: 100px;
+                height: 90px;
                 overflow: scroll;
             }
         }
 
-        .btn-apply {
-            margin-top: 45px;
-        }
 
     }
 }
 
 .folder-item-coco:hover{
-    background-color: rgba(0, 0, 0, 0.26);
-    height: 300px;
+    background-color: rgba(0, 0, 0, 0.58);
+    height: 270px;
 
-    .item-title-coco{
-        color: white;
+    .item-text-coco{
+        .item-coin-coco{
+            color: #e7e7e7;
+        }
+
+        .item-title-coco{
+            color: #e7e7e7;
+        }
+
+        .item-author-coco {
+            color: #e7e7e7;
+        }
+
+        .item-content-coco{
+            color: white;
+            height: 160px;
+        }
     }
 
-    .item-coin-coco{
-        color: #e7e7e7;
-    }
-
-    .item-content-coco{
-        color: #e7e7e7;
-    }
 }
 
 
@@ -203,7 +222,7 @@ $accent: #189FEC;
 }
 
 .folder-item-question:hover{
-    background-color: rgba(0, 0, 0, 0.26);
+    background-color: rgba(0, 0, 0, 0.58);
 
     .item-title-question {
         color: white;

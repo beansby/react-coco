@@ -129,8 +129,15 @@ function CocoMain() {
                                 <div className='row' id={"item-row_"+i} >
                                     {/* 매칭 상태 변경값 설정 필요 */}
                                     {/*<div className="col-2 text-center item-img-coco" id={"item-img_"+i}>*/}
-                                    <img className='col-3 my-auto' src="thumb-waiting.png" id={"img_"+i} alt=""/>
+                                    {/*<img className='col-3 my-0 item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>*/}
                                     {/*</div>*/}
+                                    <div className='col-3 item-left-coco ' id={"item-row4_"+i}>
+                                        <img className='row item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>
+                                        <div className='row btn-apply' id={"item-row3_"+i}>
+                                            <button className='col btn-hover color-9' id={"btn_"+i} style={{display:'none'}}> 매 칭 신 청 </button>
+                                        </div>
+                                    </div>
+
 
                                     <div className="col item-text-coco " id={"item-text_"+i}>
                                         <div className='row' id={"item-tag-row_"+i}>
@@ -166,6 +173,9 @@ function CocoMain() {
                                             <span className="col my-auto item-title-coco" id={"item-title_"+i}>
                                                 {cocos.title}
                                             </span>
+                                            <div className='col-2 my-auto text-end item-author-coco'>
+                                                {cocos.author.nickname}
+                                            </div>
                                         </div>
 
                                         <div className='row' id={"item-row2_"+i}>
@@ -176,9 +186,9 @@ function CocoMain() {
                                     </div>
                                 </div>
 
-                                <div className='row btn-apply' id={"item-row3_"+i}>
-                                    <button className='col-2 btn-hover color-9' id={"btn_"+i} style={{display:'none'}}> 매 칭 신 청 </button>
-                                </div>
+                                {/*<div className='row btn-apply' id={"item-row3_"+i}>*/}
+                                {/*    <button className='col-2 btn-hover color-9' id={"btn_"+i} style={{display:'none'}}> 매 칭 신 청 </button>*/}
+                                {/*</div>*/}
                                 {/*<Button className='text-end row' id={"btn_"+i} style={{display:'none'}}> 신청하기 </Button>*/}
                             </div>
                         )
