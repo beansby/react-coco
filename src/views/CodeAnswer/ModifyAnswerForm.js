@@ -132,7 +132,7 @@ function ModifyAnswerForm() {
         </Form>
         <br />
         <div className="btn-a-modify">
-          <Button onClick={modifyConfirm}> 수정완료 </Button>
+          <Button className='btn-edit' onClick={modifyConfirm}> 수정완료 </Button>
         </div>
         <br></br>
       </section>

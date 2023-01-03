@@ -146,7 +146,7 @@ function QuestionDetail() {
               </div>
               <div className="col row h-50">
                 {/*언어&기술 태그*/}
-                <span className="col-10 my-auto item-tag-question">
+                <span className="col-10 my-auto item-tag-q-detail">
                   {(languageList.filter((tag, index) => {
                     return (
                       index == 0 || index == 1 || index == 2
