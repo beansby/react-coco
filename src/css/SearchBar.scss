@@ -1,3 +1,5 @@
+$accent : #189FEC;
+
 .search-container {
   padding-top: 3rem;
   padding-bottom: 20px;
@@ -139,4 +141,36 @@
 //  //box-shadow: 0 0 10px #189FEC;
 //  //border-color: #189FEC;
 //}
+
+/*--------------------------------------------------------------
+1.0 - BASE SITE STYLES
+--------------------------------------------------------------*/
+//*,*:after,*:before {
+//  box-sizing:border-box;
+//  -moz-box-sizing:border-box;
+//  -webkit-box-sizing:border-box;
+//}
+
+
+
+//body {
+//  background: #3aaae8;
+//  color: #fff;
+//  font:12px/18px 'HelveticaNeue', Helvetica, Arial, sans-serif;
+//}
+
+.cf:before,
+.cf:after {
+  content:"";
+  display:table;
+}
+.cf:after {
+  clear:both;
+}
+
+/*--------------------------------------------------------------
+2.0 - SEARCH FORM
+--------------------------------------------------------------*/
+
+
 

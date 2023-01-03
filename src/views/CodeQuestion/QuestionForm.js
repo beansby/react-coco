@@ -267,9 +267,9 @@ function QuestionForm() {
                 
                 <br/>
                 <div className="btn-form-coco">
-                    <Button onClick={saveConfirm} > 등록 </Button>
+                    <button className='btn-edit' onClick={saveConfirm} > 등록 </button>
                     &nbsp; &nbsp; 
-                    <Button onClick={cancel} > 취소 </Button>
+                    <button className='btn-edit' onClick={cancel} > 취소 </button>
                 </div>
                 
                 

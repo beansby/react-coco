@@ -30,9 +30,9 @@
 }
 
 .btn-q-detail {
-    text-align: center;
-    margin: 0 auto;
-    margin: 20px;
+    float: right;
+    padding-right: 170px;
+    margin-top: 10px;
 }
 
 .pf-img-qdetail {
@@ -48,9 +48,31 @@
 }
 
 .toastui-editor-contents p{
-    font-size: 22px;
+    font-size: 14px;
 }
 
 .toastui-editor-contents code {
-    font-size: 20px;
+    font-size: 14px;
 }
+
+.toastui-editor-contents code:hover {
+    color: white;
+}
+
+.pf-img-qdetail {
+    width: 60px;
+    height: 60px;
+}
+
+.pf-nickname-qdetail {
+    margin-left: -18px;
+}
+
+.item-tag-q-detail {
+    margin-left: -20px;
+}
+
+.btn-q-detail > a {
+    text-decoration: none;
+}
+

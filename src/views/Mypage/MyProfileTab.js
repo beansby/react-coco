@@ -46,7 +46,7 @@ function MyProfileTab(){
     // 토큰 보내기 끝
 
     // 프로필 사진 저장/변경
-    const [pic, setPic] = useState(null);
+    const [pic, setPic] = useState('');
 
     const picChange = (e) => {
         setPic(e.target.files[0]);
@@ -359,7 +359,7 @@ function MyProfileTab(){
                 <Col className='align-self-center pf-tab-content' md='5'>
                     {langs.map((language)=>{
                         return (
-                            <span className='tag-input text-center tag-delete' onClick={deleteLangTagConfirm} id={language.language}> {language.language} </span>
+                            <span className='tag-input tag-input-lang text-center tag-delete' onClick={deleteLangTagConfirm} id={language.language}> {language.language} </span>
                         )
                     })}
                 </Col>
@@ -395,7 +395,7 @@ function MyProfileTab(){
                 <Col className='align-self-center pf-tab-content' md='5'>
                     {techs.map((stack)=>{
                         return (
-                            <span className='tag-input text-center tag-delete' onClick={deleteTechTagConfirm} id={stack.skill}> {stack.skill} </span>
+                            <span className='tag-input tag-input-tech text-center tag-delete' onClick={deleteTechTagConfirm} id={stack.skill}> {stack.skill} </span>
                         )
                     })}
                 </Col>

@@ -58,6 +58,11 @@ function QuestionDetail() {
   const [date, setDate] = useState("");
   const { id } = useParams();
   const [show, setShow] = useState(false);
+  const [languageList, setLanguageList] = useState([]);
+  const [skillList, setSkillList] = useState([]);
+  const [author, setAuthor] = useState('');
+  const [filename, setFilename] = useState('');
+
 
   // 기존 내용 가져오기
   useEffect(() => {
@@ -71,6 +76,11 @@ function QuestionDetail() {
         setContent(question.content);
         setNickname(question.questionAuthor.nickname);
         setDate(question.createdTime);
+        setAuthor(question.questionAuthor);
+        console.log(author.filename)
+        setLanguageList(question.languageList);
+        setSkillList(question.skillList);
+        setFilename('http://localhost:8080/img/' + question.questionAuthor.filename);
         setShow(true);
       })
       .catch((error) => {
@@ -117,9 +127,8 @@ function QuestionDetail() {
   return (
     <main>
       <section>
-
         <header className="title-coco">
-          QUESTION &<span className="title-accent-coco"> ANSWER </span>
+          QUESTION &<span className="title-accent-coco"> ANSWERS </span>
         </header>
 
         {/* 제목 */}
@@ -127,28 +136,53 @@ function QuestionDetail() {
           <h3>{title}</h3>
         </div>
 
+        <div className="row">
+          <div className="q-detail-info">
 
-        <div className="q-detail-info">
-          {/* <div className='col pf-img-qdetail'> */}
-          {/*profile image*/}
-          <div className="row q-detail-img-nik">
-            <div className='my-auto pf-img'>
-              <img src={imgUrl} alt="" className='pf-img-qdetail my-auto' />
-            </div>
-            <div className="row q-detail-nick-date">
-              {/* 닉네임 */}
-              <div className='col pf-nickname'>
-                {nickname}
+            {/*profile image*/}
+            <div className="row h-100">
+              <div className='col-1 pf-img-q'>
+                <img src={filename} alt="" className='pf-img-qdetail my-auto' />
               </div>
-              {/* 작성 날짜 */}
-              <div className='col text-end table-content-date'> {moment(date.createdTime).format('YYYY.MM.DD')}</div>
+              <div className="col row h-50">
+                {/*언어&기술 태그*/}
+                <span className="col-10 my-auto item-tag-q-detail">
+                  {(languageList.filter((tag, index) => {
+                    return (
+                      index == 0 || index == 1 || index == 2
+                    )
+                  })).map(item => {
+                    return (
+                      <span className='tag-input'> {item} </span>
+                    )
+                  })
+                  }
+                  {(skillList.filter((tag, index) => {
+                    return (
+                      index == 0 || index == 1 || index == 2
+                    )
+                  })).map(item => {
+                    return (
+                      <span className='tag-input'> {item} </span>
+                    )
+                  })}
+                </span>
+                {/* 닉네임 */}
+                <div className='col-9 pf-nickname-qdetail'>
+                  {nickname}
+                </div>
+
+                {/* 작성 날짜 */}
+                <span className='col text-end table-content-date'> {moment(date.createdTime).format('YYYY.MM.DD HH:MM')}</span>
+
+              </div>
             </div>
           </div>
         </div>
 
+
         <Form className="q-detail-form-container">
           <div className="container container-question-detail">
-
             {/* 컨텐츠 내용 */}
             <div className="row q-detail-content">
               <div className="col-12 text-start q-detail-text">
@@ -159,17 +193,21 @@ function QuestionDetail() {
         </Form>
 
         {/* 수정&삭제 버튼 */}
-        {/* {memberId == questions.questrionAuthor.email && ( */}
-        <div className="btn-q-detail">
-          <Link to={"/question/" + questionId + "/modify"} key={questionId}>
-            <button>수정</button>
-          </Link>
-          <button onClick={deleteConfirm}>삭제</button>
-        </div>
-        {/* )} */}
+        {memberId == author.email && (
+          <span className="btn-q-detail">
+            <Link to={"/question/" + questionId + "/modify"} key={questionId}>
+              <span >
+                <button className='btn-edit'> 수정 </button>
+              </span>
+            </Link>
+            <span >
+                <button className='btn-edit' id={questionId} onClick={deleteConfirm}>삭제</button>
+              </span>
+          </span>
+        )}
 
         {/* HorizonLine */}
-        <div style={{ display: "flex", alignItems: "center", width: "90%", margin: "0 auto", padding: "40px" }}>
+        <div style={{ display: "flex", alignItems: "center", width: "85%", margin: "0 auto", padding: "60px",  }}>
           <div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
 
           <p style={{ margin: "0 10px" }}>ANSWER</p>

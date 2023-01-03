@@ -12,7 +12,6 @@ import {
 } from 'reactstrap';
 
 import ReactHtmlParser from 'react-html-parser';
-import SearchBar from "../../components/SearchBar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
@@ -41,6 +40,40 @@ function QuestionSearch() {
             })
     }, []);
 
+    // 검색 옵션
+    const [langOptions, setLangOptions] = useState([]);
+    const [techOptions, setTechOptions] = useState([]);
+
+    useEffect( () => {
+        axios.get('http://localhost:8080/api/languages/list')
+            .then((res)=>{
+                setLangOptions(res.data);
+                console.log('언어 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+            console.log(err);
+        })
+
+        axios.get('http://localhost:8080/api/skills/list')
+            .then((res)=>{
+                setTechOptions(res.data);
+                console.log('기술 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+            console.log(err);
+        })
+    }, [])
+
+    // 검색
+    const search = () => {
+        axios.get('api', null, {params:{}})
+            .then((res)=> {
+
+            }).catch((err)=>{
+                console.log(err);
+        })
+
+    }
 
     return (
         <main>
@@ -62,7 +95,28 @@ function QuestionSearch() {
             </Link>
 
             {/*검색창*/}
-            <SearchBar />
+            <div className='search-bar'>
+                <form className="searchform cf my-auto">
+                    <select className='my-auto text-end'>
+                        {/*This is how we can do "placeholder" options.*/}
+                        {/*note: "required" attribute is on the select*/}
+                        <option value="" hidden caret> Category </option>
+                        {langOptions.map((opt)=>{
+                            return (
+                                <option value={opt}> {opt} </option>
+                            )
+                        })}
+                        {techOptions.map((opt)=>{
+                            return (
+                                <option value={opt}> {opt} </option>
+                            )
+                        })}
+                    </select>
+
+                    <input type="text" placeholder="검색할 내용을 입력하세요."/>
+                    <button type="submit" onClick={search}> SEARCH </button>
+                </form>
+            </div>
 
             <div className="folder-container-q">
 
@@ -120,7 +174,7 @@ function QuestionSearch() {
                                                     )
                                                 })).map(item=>{
                                                     return(
-                                                        <span className='tag-input'> {item} </span>
+                                                        <span className='tag-input tag-input-lang'> {item} </span>
                                                     )
                                                 })
                                                 }
@@ -130,7 +184,7 @@ function QuestionSearch() {
                                                     )
                                                 })).map(item=>{
                                                     return(
-                                                        <span className='tag-input'> {item} </span>
+                                                        <span className='tag-input tag-input-tech'> {item} </span>
                                                     )
                                                 })}
                                             </div>
@@ -161,9 +215,6 @@ function QuestionSearch() {
                             </div>
                         )
                     })}
-
-
-
                 </div>
 
             </div>
