@@ -77,8 +77,8 @@ function ModifyQuestionForm() {
         const question = res.data;
         setQTitle(question.title);
         setQContent(question.content);
-        editorRef.current.getInstance().setHTML(question.content) 
-        setShow(true);
+        editorRef.current.getInstance().setHTML(question.content);
+        // setShow(true);
       })
       .catch((error) => {
         console.log(error);
@@ -164,7 +164,7 @@ function ModifyQuestionForm() {
             </Col>
           </FormGroup>
 
-          {show && <Editor
+          <Editor
             ref={editorRef}
             // placeholder='enter your question'
             // initialValue={}
@@ -172,11 +172,11 @@ function ModifyQuestionForm() {
             initialEditType="markdown"
             useCommandShortcut={true}
             onChange={change}
-          />}
+          />
         </Form>
         <br />
         <div className="btn-q-modify">
-          <Button className='btn-edit' onClick={modifyConfirm}> 수정완료 </Button>
+          <button className='btn-edit' onClick={modifyConfirm}> 수정완료 </button>
         </div>
         <br></br>
       </section>

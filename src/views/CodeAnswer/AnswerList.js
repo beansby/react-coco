@@ -68,9 +68,10 @@ function AnswerList() {
 	// 토큰 보내기 끝
 
 	const [aContent, setAContent] = useState("");
-	const aUrl = { params: { content: aContent, id: memberId } };
 	const [answers, setAnswers] = useState([]);
 	const { id } = useParams();
+	const formData = new FormData();
+	formData.append('content', aContent);
 
 	// 토스트 에디터
 	const editorRef = useRef();
@@ -82,7 +83,7 @@ function AnswerList() {
 	// 답변 등록 : DB 데이터 저장
 	const submit = () => {
 		axios
-			.post(`http://localhost:8080/api/questions/${id}/answers`, null, aUrl)
+			.post(`http://localhost:8080/api/questions/${id}/answers`, formData, {params:{id:memberId}})
 			.then((response) => {
 				setAnswers([...answers, response.data]);
 				console.log("답변 등록 성공");
