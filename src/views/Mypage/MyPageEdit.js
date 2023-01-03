@@ -17,6 +17,7 @@ import MyProfileTab from "./MyProfileTab";
 import MyQuestionsTab from "./MyQuestionsTab";
 import MyAnswersTab from "./MyAnswersTab";
 import MyCoinTab from "./MyCoinTab";
+import MyCocoTab from "./MyCocoTab";
 
 
 function MyPageEdit() {
@@ -98,6 +99,10 @@ function MyPageEdit() {
                                     {/*My Profile 탭*/}
                                     <TabPane tabId='profile1' className='mypage-tab-item'>
                                         <MyProfileTab />
+                                    </TabPane>
+
+                                    <TabPane tabId='profile2' className='mypage-tab-item'>
+                                        <MyCocoTab/>
                                     </TabPane>
 
                                     {/*My Questions 탭*/}

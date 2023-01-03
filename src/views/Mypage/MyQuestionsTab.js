@@ -122,7 +122,7 @@ function MyQuestionsTab(){
                                             )
                                         })).map(item=>{
                                             return(
-                                                <span className='tag-size'> {item} </span>
+                                                <span className='tag-size tag-size-tech'> {item} </span>
                                             )
                                         })}
                                     </div>
