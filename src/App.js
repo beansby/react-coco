@@ -18,6 +18,8 @@ import QuestionDetail from "./views/CodeQuestion/QuestionDetail";
 import ModifyAnswerForm from "./views/CodeAnswer/ModifyAnswerForm";
 import ModifyQuestionForm from "./views/CodeQuestion/ModifyQuestionForm";
 import ScrollToTop from "./components/ScrollToTop";
+import ReadChat from "./ReadChat";
+import StompMessage from "./StompMessage";
 
 let persistor = persistStore(store);
 
@@ -48,6 +50,8 @@ function App() {
                 path="/question/:id/modify"
                 element={<ModifyQuestionForm />}
               />
+              <Route exact path="/chat" element={<ReadChat />} />
+              <Route exact path="/message" element={<StompMessage />} />
             </Routes>
             <Footer />
           </BrowserRouter>
