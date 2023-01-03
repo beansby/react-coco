@@ -58,17 +58,13 @@
     object-fit: cover;
 }
 
-.pf-nickname {
+.a-list-nick {
     margin-top: 25px;
-    margin-left: -30px;
+    margin-left: -25px;
+ 
 }
 
 .pf-img {
     margin-bottom: 10px;
 }
 
-
-.a-list-nick {
-    margin-left: -25px;;
-    
-}

@@ -37,7 +37,6 @@ function MyPage() {
         } catch(err){
             if(err.request.status == 401){
                 const rescode = err.response.data.rescode;
-
                 if(rescode == 100){
                     requestToken(token, dispatch, cookie, setCookie);
                 }
@@ -113,17 +112,17 @@ function MyPage() {
                             </div>
                         </div>
 
-                        <div className='row text-center my-auto'>
+                        <div className='row my-auto'>
 
                             <div className='col pf-settings'>
                                 {langs.map((item)=>{
                                     return (
-                                        <span className='tag-input text-center'> {item.language} </span>
+                                        <span className='tag-input'> {item.language} </span>
                                     )
                                 })}
                                 {techs.map((item)=>{
                                     return (
-                                        <span className='tag-input text-center'> {item.skill} </span>
+                                        <span className='skill-btn'> {item.skill} </span>
                                     )
                                 })}
                             </div>

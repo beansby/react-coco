@@ -163,7 +163,7 @@ function QuestionDetail() {
                     )
                   })).map(item => {
                     return (
-                      <span className='tag-input'> {item} </span>
+                      <span className='skill-btn'> {item} </span>
                     )
                   })}
                 </span>

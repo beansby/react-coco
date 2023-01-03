@@ -42,6 +42,8 @@
         }
 
         .pf-settings {
+            margin-left: 20px;
+            
             .tag-input {
                 background: linear-gradient(45deg, rgba(62, 165, 250, 0.91), #189FEC);
                 color: white;
@@ -61,6 +63,21 @@
 .coco-pf-tab {
     padding-top: 4rem;
 }
+
+.skill-btn {
+    background: linear-gradient(45deg, #5c8eb3, #5c8eb3);
+                color: white;
+                font-weight: normal;
+                font-size: 13px;
+                padding: 2px 8px;
+                margin-left: 3px;
+                margin-right: 3px;
+                border-radius: 20px;
+                text-align: center;
+                line-height: 2rem;
+}
+
+
 
 ///* change the colors */
 //$primary: rebeccapurple;

@@ -62,6 +62,12 @@ function ModifyQuestionForm() {
   // const encodedQUrl = encodeURIComponent(qUrl);
   const { id } = useParams();
   const [show, setShow] = useState(false);
+  // 토스트 에디터
+  const editorRef = useRef();
+  const change = () => {
+    const data = editorRef.current.getInstance().getHTML();
+    setQContent(data);
+  };
 
   // 기존 질문 가져오기
   useEffect(() => {
@@ -71,6 +77,7 @@ function ModifyQuestionForm() {
         const question = res.data;
         setQTitle(question.title);
         setQContent(question.content);
+        editorRef.current.getInstance().setHTML(question.content) 
         setShow(true);
       })
       .catch((error) => {
@@ -98,13 +105,6 @@ function ModifyQuestionForm() {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  // 토스트 에디터
-  const editorRef = useRef();
-  const change = () => {
-    const data = editorRef.current.getInstance().getHTML();
-    setQContent(data);
   };
 
   // const save = (e) => {
@@ -135,7 +135,7 @@ function ModifyQuestionForm() {
         },
         {
           label: "취소",
-          onClick: () => {},
+          onClick: () => { },
         },
       ],
     });
@@ -167,7 +167,7 @@ function ModifyQuestionForm() {
           {show && <Editor
             ref={editorRef}
             // placeholder='enter your question'
-            initialValue={qContent}
+            // initialValue={}
             height="600px"
             initialEditType="markdown"
             useCommandShortcut={true}
@@ -176,7 +176,7 @@ function ModifyQuestionForm() {
         </Form>
         <br />
         <div className="btn-q-modify">
-          <Button className='btn-edit'onClick={modifyConfirm}> 수정완료 </Button>
+          <Button className='btn-edit' onClick={modifyConfirm}> 수정완료 </Button>
         </div>
         <br></br>
       </section>

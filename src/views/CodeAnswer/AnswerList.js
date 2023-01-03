@@ -87,7 +87,9 @@ function AnswerList() {
 				setAnswers([...answers, response.data]);
 				console.log("답변 등록 성공");
 				console.log(response.data);
-				// 질문 등록 후 질문 리스트 or 질문 상세 페이지 이동
+
+				const reUrl = answers[0].question.questionId;
+				document.location.href = "/question/" + reUrl;
 			})
 			.catch((err) => {
 				console.log(err);
@@ -216,7 +218,7 @@ function AnswerList() {
 									<div className="col-11 my-auto nik-date">
 										{/* 작성 날짜 */}
 										<div className="row my-auto">
-											<div className="col a-list-nick">
+											<div className="col my-auto a-list-nick">
 											 {answers.answerAuthor.nickname}
 											</div>
 											<span className='col text-end a-list-date'>
@@ -272,7 +274,7 @@ function AnswerList() {
 			</Form>
 			<br />
 			<div className="btn-form-coco">
-				<button className="btn-edit" onClick={saveConfirm}> 등록 </button>
+				<button className="btn-edit" onClick={saveConfirm}> 댓글등록 </button>
 			</div>
 			<br></br>
 		</section >
