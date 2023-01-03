@@ -18,6 +18,7 @@ import QuestionDetail from "./views/CodeQuestion/QuestionDetail";
 import ModifyAnswerForm from "./views/CodeAnswer/ModifyAnswerForm";
 import ModifyQuestionForm from "./views/CodeQuestion/ModifyQuestionForm";
 import ScrollToTop from "./components/ScrollToTop";
+import SearchResult from "./views/CodeQuestion/SearchResult";
 
 let persistor = persistStore(store);
 
@@ -32,6 +33,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<CocoMain />} />
               <Route exact path="/search" element={<QuestionSearch />} />
+              {/*<Route exact path="/search/:keyword" element={<SearchResult />} />*/}
               <Route exact path="/cocoform" element={<CocoForm />} />
               <Route exact path="/question" element={<QuestionForm />} />
               <Route exact path="/mypage" element={<MyPage />} />
