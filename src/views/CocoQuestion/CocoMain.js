@@ -8,6 +8,8 @@ import {useCookies} from "react-cookie";
 import {requestToken} from "../../redux/requestToken";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
+import { Viewer } from "@toast-ui/react-editor";
+
 
 function CocoMain() {
     // 토큰 보내기 시작
@@ -180,7 +182,8 @@ function CocoMain() {
 
                                         <div className='row' id={"item-row2_"+i}>
                                             <div className="col item-content-coco" id={"item-content_"+i}>
-                                                {modifyText(cocos.content)}
+                                                {/* {modifyText(cocos.content)} */}
+                                                <Viewer initialValue={cocos.content} />
                                             </div>
                                         </div>
                                     </div>
