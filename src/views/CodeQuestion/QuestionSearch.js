@@ -12,7 +12,6 @@ import {
 } from 'reactstrap';
 
 import ReactHtmlParser from 'react-html-parser';
-import SearchBar from "../../components/SearchBar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
@@ -62,7 +61,24 @@ function QuestionSearch() {
             </Link>
 
             {/*검색창*/}
-            <SearchBar />
+            <div className='search-bar'>
+                <form className="searchform cf my-auto">
+                    <select className='my-auto'>
+                        {/*This is how we can do "placeholder" options.*/}
+                        {/*note: "required" attribute is on the select*/}
+                        <option value="" hidden caret> Category </option>
+
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                        <option value="5">Option 5</option>
+                    </select>
+
+                    <input type="text" placeholder="검색할 내용을 입력하세요."/>
+                    <button type="submit"> SEARCH </button>
+                </form>
+            </div>
 
             <div className="folder-container-q">
 
