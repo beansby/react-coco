@@ -40,6 +40,40 @@ function QuestionSearch() {
             })
     }, []);
 
+    // 검색 옵션
+    const [langOptions, setLangOptions] = useState([]);
+    const [techOptions, setTechOptions] = useState([]);
+
+    useEffect( () => {
+        axios.get('http://localhost:8080/api/languages/list')
+            .then((res)=>{
+                setLangOptions(res.data);
+                console.log('언어 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+            console.log(err);
+        })
+
+        axios.get('http://localhost:8080/api/skills/list')
+            .then((res)=>{
+                setTechOptions(res.data);
+                console.log('기술 옵션 가져오기 성공');
+                console.log(res.data);
+            }).catch((err)=>{
+            console.log(err);
+        })
+    }, [])
+
+    // 검색
+    const search = () => {
+        axios.get('api', null, {params:{}})
+            .then((res)=> {
+
+            }).catch((err)=>{
+                console.log(err);
+        })
+
+    }
 
     return (
         <main>
@@ -63,20 +97,24 @@ function QuestionSearch() {
             {/*검색창*/}
             <div className='search-bar'>
                 <form className="searchform cf my-auto">
-                    <select className='my-auto'>
+                    <select className='my-auto text-end'>
                         {/*This is how we can do "placeholder" options.*/}
                         {/*note: "required" attribute is on the select*/}
                         <option value="" hidden caret> Category </option>
-
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                        <option value="5">Option 5</option>
+                        {langOptions.map((opt)=>{
+                            return (
+                                <option value={opt}> {opt} </option>
+                            )
+                        })}
+                        {techOptions.map((opt)=>{
+                            return (
+                                <option value={opt}> {opt} </option>
+                            )
+                        })}
                     </select>
 
                     <input type="text" placeholder="검색할 내용을 입력하세요."/>
-                    <button type="submit"> SEARCH </button>
+                    <button type="submit" onClick={search}> SEARCH </button>
                 </form>
             </div>
 
@@ -177,9 +215,6 @@ function QuestionSearch() {
                             </div>
                         )
                     })}
-
-
-
                 </div>
 
             </div>

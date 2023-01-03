@@ -243,7 +243,7 @@ main {
 
 // 검색창
 .search-bar{
-  margin: 35px 0 20px 0;
+  margin: 35px 0 50px 0;
 }
 .searchform {
   //background:#f4f4f4;
@@ -255,7 +255,7 @@ main {
   //margin: -22px 0 0 -170px;
   margin: 0 auto;
   //top: 50%;
-  width:600px;
+  width:700px;
 }
 
 .searchform select {
@@ -266,6 +266,7 @@ main {
   padding: 10px 10px;
   margin: 0 10px;
   color: $accent;
+  width: 150px;
 }
 
 .searchform input, .searchform button, .searchform select {
