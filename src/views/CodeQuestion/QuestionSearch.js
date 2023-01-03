@@ -65,14 +65,23 @@ function QuestionSearch() {
     }, [])
 
     // 검색
-    const search = () => {
-        axios.get('api', null, {params:{}})
-            .then((res)=> {
+    const [keyword, setKeyword] = useState('');
 
+    const changeKeyword = (e) => {
+        setKeyword(e.target.value);
+        console.log(keyword);
+    }
+    const search = async () => {
+        // window.location.href = "/search/" + keyword;
+        axios.get('http://localhost:8080/api/search/'+ keyword)
+            .then((res)=>{
+                console.log(res.data);
+                console.log('검색 성공');
+                setBoards(res.data);
+                // console.log(boards);
             }).catch((err)=>{
-                console.log(err);
+            console.log(err);
         })
-
     }
 
     return (
@@ -97,7 +106,7 @@ function QuestionSearch() {
             {/*검색창*/}
             <div className='search-bar'>
                 <form className="searchform cf my-auto">
-                    <select className='my-auto text-end'>
+                    <select className='my-auto text-end' name='type'>
                         {/*This is how we can do "placeholder" options.*/}
                         {/*note: "required" attribute is on the select*/}
                         <option value="" hidden caret> Category </option>
@@ -113,8 +122,8 @@ function QuestionSearch() {
                         })}
                     </select>
 
-                    <input type="text" placeholder="검색할 내용을 입력하세요."/>
-                    <button type="submit" onClick={search}> SEARCH </button>
+                    <input type="text" name='keyword' placeholder="검색할 내용을 입력하세요." onChange={changeKeyword}/>
+                    <button type="button" onClick={search}> SEARCH </button>
                 </form>
             </div>
 

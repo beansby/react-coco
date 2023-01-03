@@ -34,6 +34,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<CocoMain />} />
               <Route exact path="/search" element={<QuestionSearch />} />
+              {/*<Route exact path="/search/:keyword" element={<SearchResult />} />*/}
               <Route exact path="/cocoform" element={<CocoForm />} />
               <Route exact path="/question" element={<QuestionForm />} />
               <Route exact path="/mypage" element={<MyPage />} />
