@@ -148,7 +148,7 @@ function CocoMain() {
                                                     )
                                                 })).map(item=>{
                                                     return(
-                                                        <span className='tag-input'> {item} </span>
+                                                        <span className='tag-input tag-input-lang'> {item} </span>
                                                     )
                                                 })
                                                 }
@@ -158,7 +158,7 @@ function CocoMain() {
                                                     )
                                                 })).map(item=>{
                                                     return(
-                                                        <span className='tag-input'> {item} </span>
+                                                        <span className='tag-input tag-input-tech'> {item} </span>
                                                     )
                                                 })}
                                             </div>

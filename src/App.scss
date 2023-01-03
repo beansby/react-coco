@@ -2,6 +2,9 @@ $accent: #189FEC;
 $main : #484848;
 $pale : #989898;
 
+$lang : rgba(24, 159, 236, 0.72);
+$tech : rgba(15, 99, 150, 0.72);
+
 // 폰트
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&family=Krona+One&family=Righteous&display=swap');
 //font-family: 'IBM Plex Sans KR', sans-serif;
@@ -220,6 +223,10 @@ main {
   border-radius: 20px;
   text-align: center;
   line-height: 2rem;
+}
+
+.tag-input-tech {
+  background-color: $tech;
 }
 
 .tag-size {
