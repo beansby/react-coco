@@ -337,9 +337,9 @@ function CocoForm() {
 
                 <br/>
                 <div className="btn-form-coco">
-                    <Button onClick={saveConfirm}> 등록 </Button>
+                    <button className='btn-edit' onClick={saveConfirm}> 등록 </button>
                     &nbsp; &nbsp;
-                    <Button onClick={cancelConfirm}> 취소 </Button>
+                    <button className='btn-edit' onClick={cancelConfirm}> 취소 </button>
                 </div>
 
 
