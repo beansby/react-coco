@@ -143,7 +143,7 @@ function CocoMain() {
 
                                     <div className="col item-text-coco " id={"item-text_"+i}>
                                         <div className='row' id={"item-tag-row_"+i}>
-                                            <div className="col-10 my-auto item-tag-question" id={"item-tag_"+i}>
+                                            <div className="col my-auto item-tag-question" id={"item-tag_"+i}>
                                                 {(cocos.languageList.filter((tag, index)=>{
                                                     return(
                                                         index == 0 || index == 1 || index == 2
@@ -175,7 +175,7 @@ function CocoMain() {
                                             <span className="col my-auto item-title-coco" id={"item-title_"+i}>
                                                 {cocos.title}
                                             </span>
-                                            <div className='col-2 my-auto text-end item-author-coco'>
+                                            <div className='col-2 my-auto text-end item-author-coco' id={"item-nickname_"+i}>
                                                 {cocos.author.nickname}
                                             </div>
                                         </div>
@@ -183,7 +183,7 @@ function CocoMain() {
                                         <div className='row' id={"item-row2_"+i}>
                                             <div className="col item-content-coco" id={"item-content_"+i}>
                                                 {/* {modifyText(cocos.content)} */}
-                                                <Viewer initialValue={cocos.content} />
+                                                <Viewer initialValue={cocos.content} id={"item-viewer_"+i}/>
                                             </div>
                                         </div>
                                     </div>
