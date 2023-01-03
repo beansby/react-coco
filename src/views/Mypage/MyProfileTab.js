@@ -46,8 +46,7 @@ function MyProfileTab(){
     // 토큰 보내기 끝
 
     // 프로필 사진 저장/변경
-    const defaultImg = '/pf-img.png'
-    const [pic, setPic] = useState(defaultImg);
+    const [pic, setPic] = useState('');
 
     const picChange = (e) => {
         setPic(e.target.files[0]);
