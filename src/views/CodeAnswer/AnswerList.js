@@ -83,7 +83,7 @@ function AnswerList() {
 	// 답변 등록 : DB 데이터 저장
 	const submit = () => {
 		axios
-			.post(`http://localhost:8080/api/questions/${id}/answers`, formData, {params:{id:memberId}})
+			.post(`http://localhost:8080/api/questions/${id}/answers`, formData, { params: { id: memberId } })
 			.then((response) => {
 				setAnswers([...answers, response.data]);
 				console.log("답변 등록 성공");
@@ -184,6 +184,43 @@ function AnswerList() {
 		});
 	};
 
+	const [recommends, setRecommends] = useState([]);
+
+	useEffect(() => {
+		axios.get('http://localhost:8080/api/recommends')
+			.then((res) => {
+				console.log(res.data)
+				setRecommends(res.data)
+			})
+	}, [])
+
+	const recommend = async (e) => {
+		e.preventDefault();
+		console.log(e.target.id);
+		const id = e.target.id;
+		await axios.post(`http://localhost:8080/api/recommends/${id}`, null, {
+			params: {
+				id: memberId,
+			}
+		})
+			.then((res) => {
+				console.log(res.data);
+				document.getElementById(e.target.id).textContent = "추천 " + res.data;
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+		// axios.get(`http://localhost:8080/api/recommends/${id}`, null, {
+		// 	params: {
+		// 		id: memberId,
+		// 	}
+		// })
+		// 	.then((res) => {
+		// 		setRecommends(res.data);
+		// 		console.log(res.data);
+		// 	});
+	}
+
 	return (
 		<section>
 			<Form className="a-list-form-container">
@@ -220,7 +257,7 @@ function AnswerList() {
 										{/* 작성 날짜 */}
 										<div className="row my-auto">
 											<div className="col my-auto a-list-nick">
-											 {answers.answerAuthor.nickname}
+												{answers.answerAuthor.nickname}
 											</div>
 											<span className='col text-end a-list-date'>
 												{moment(answers.createdTime).format('YYYY.MM.DD HH:MM')}
@@ -237,13 +274,12 @@ function AnswerList() {
 									</div>
 								</div>
 
-
-
 								<div>
 									{/* Like Button */}
-									<span>
-										<LikeButtonCompoent />
-									</span>
+										<span>
+											{/* <LikeButtonCompoent /> */}
+											<button id={answers.answerId} onClick={recommend} value="추천">추천</button>
+										</span>
 									{/* AnswerList 수정&삭제 버튼 */}
 									{memberId == answers.answerAuthor.email && (
 										<span className="btn-a-list text-end">
