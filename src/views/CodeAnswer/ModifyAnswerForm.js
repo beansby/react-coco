@@ -44,7 +44,6 @@ function ModifyAnswerForm() {
       }
     }
   };
-
   useEffect(() => {
     requestUser();
   }, [token]);
@@ -55,7 +54,14 @@ function ModifyAnswerForm() {
   const aUrl = { params: { content: aContent, id: memberId } };
   const { id } = useParams();
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
+
+  // 토스트 에디터
+  const editorRef = useRef();
+  const change = () => {
+    const data = editorRef.current.getInstance().getHTML();
+    setAContent(data);
+  };
 
   // 기존 질문 가져오기
   useEffect(() => {
@@ -65,14 +71,13 @@ function ModifyAnswerForm() {
         const answer = res.data;
         console.log(answer);
         setAContent(answer.content);
-        editorRef.current?.getInstance().setHTML(aContent);
-        setShow(true);
+        editorRef.current?.getInstance().setHTML(answer.content)
+        // setShow(true);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
   // 답변 수정 : DB 데이터 저장
   const save = () => {
     // e.preventDefault();
@@ -87,14 +92,6 @@ function ModifyAnswerForm() {
         console.log(err);
       });
   };
-
-  // 토스트 에디터
-  const editorRef = useRef();
-  const change = () => {
-    const data = editorRef.current.getInstance().getHTML();
-    setAContent(data);
-  };
-
   // 질문 등록 확인
   const modifyConfirm = (e) => {
     e.preventDefault();
@@ -115,12 +112,11 @@ function ModifyAnswerForm() {
       ],
     });
   };
-
   return (
     <main>
       <section>
         <Form className="a-modify-form-container">
-          {show && <Editor
+          <Editor
             ref={editorRef}
             // initialValue=""
             previewStyle="vertical"
@@ -128,11 +124,11 @@ function ModifyAnswerForm() {
             initialEditType="markdown"
             useCommandShortcut={true}
             onChange={change}
-          />}
+          />
         </Form>
         <br />
         <div className="btn-a-modify">
-          <Button className='btn-edit' onClick={modifyConfirm}> 수정완료 </Button>
+          <button className='btn-edit' onClick={modifyConfirm}>수정완료</button>
         </div>
         <br></br>
       </section>

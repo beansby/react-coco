@@ -131,50 +131,50 @@ function QuestionDetail() {
           QUESTION &<span className="title-accent-coco"> ANSWERS </span>
         </header>
 
-        {/* 제목 */}
-        <div className="q-detail-title">
-          <h3>{title}</h3>
-        </div>
+        <div className="row tech-lan-box">
+          {/*언어&기술 태그*/}
+          <div className="col-12 my-auto item-tag-q-detail">
+            {(languageList.filter((tag, index) => {
+              return (
+                index == 0 || index == 1 || index == 2
+              )
+            })).map(item => {
+              return (
+                <span className='tag-input'> {item} </span>
+              )
+            })
+            }
+            {(skillList.filter((tag, index) => {
+              return (
+                index == 0 || index == 1 || index == 2
+              )
+            })).map(item => {
+              return (
+                <span className='skill-btn'> {item} </span>
+              )
+            })}
+          </div>
 
-        <div className="row">
-          <div className="q-detail-info">
-
-            {/*profile image*/}
-            <div className="row h-100">
-              <div className='col-1 pf-img-q'>
-                <img src={filename} alt="" className='pf-img-qdetail my-auto' />
-              </div>
-              <div className="col row h-50">
-                {/*언어&기술 태그*/}
-                <span className="col-10 my-auto item-tag-q-detail">
-                  {(languageList.filter((tag, index) => {
-                    return (
-                      index == 0 || index == 1 || index == 2
-                    )
-                  })).map(item => {
-                    return (
-                      <span className='tag-input'> {item} </span>
-                    )
-                  })
-                  }
-                  {(skillList.filter((tag, index) => {
-                    return (
-                      index == 0 || index == 1 || index == 2
-                    )
-                  })).map(item => {
-                    return (
-                      <span className='skill-btn'> {item} </span>
-                    )
-                  })}
-                </span>
-                {/* 닉네임 */}
-                <div className='col-9 pf-nickname-qdetail'>
-                  {nickname}
+          {/* 제목 */}
+          <div className="q-detail-title">
+            <h3>{title}</h3>
+          </div>
+          <div className="row">
+            <div className="q-detail-info">
+              {/*profile image*/}
+              <div className="row">
+                <div className='col-1 pf-img-q'>
+                  <img src={filename} alt="" className='pf-img-qdetail my-auto' />
                 </div>
+                <div className="col row my-auto nik-date-qdetail">
+                  {/* 닉네임 */}
+                  <div className='col my-auto pf-nickname-qdetail'>
+                    {nickname}
+                  </div>
 
-                {/* 작성 날짜 */}
-                <span className='col text-end table-content-date'> {moment(date.createdTime).format('YYYY.MM.DD HH:MM')}</span>
-
+                  {/* 작성 날짜 */}
+                  <span className='col my-auto text-end table-content-date'> {moment(date.createdTime).format('YYYY.MM.DD hh:mm')}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -194,27 +194,17 @@ function QuestionDetail() {
 
         {/* 수정&삭제 버튼 */}
         {memberId == author.email && (
-          <span className="btn-q-detail">
+          <div className="btn-q-detail">
             <Link to={"/question/" + questionId + "/modify"} key={questionId}>
               <span >
                 <button className='btn-edit'> 수정 </button>
               </span>
             </Link>
             <span >
-                <button className='btn-edit' id={questionId} onClick={deleteConfirm}>삭제</button>
-              </span>
-          </span>
+              <button className='btn-edit' id={questionId} onClick={deleteConfirm}>삭제</button>
+            </span>
+          </div>
         )}
-
-        {/* HorizonLine */}
-        <div style={{ display: "flex", alignItems: "center", width: "85%", margin: "0 auto", padding: "60px",  }}>
-          <div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
-
-          <p style={{ margin: "0 10px" }}>ANSWER</p>
-
-          <div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
-        </div>
-
         <AnswerList />
       </section>
     </main>
