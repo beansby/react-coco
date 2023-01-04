@@ -281,16 +281,6 @@ function CocoForm() {
                                     className="basic-multi-select multi-select-lang"
                                     classNamePrefix="select"
                                 />
-                                {/*<select*/}
-                                {/*    multiple*/}
-                                {/*    value={selectedLang}*/}
-                                {/*    onChange={handleLang}>*/}
-                                {/*    {langOptions.map(option => (*/}
-                                {/*        <option key={option} value={option}>*/}
-                                {/*            {option}*/}
-                                {/*        </option>*/}
-                                {/*    ))}*/}
-                                {/*</select>*/}
                             </div>
                         </Col>
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import "../../css/ModifyQuestionForm.css";
 import { useState, useRef } from "react";
 import { Form, FormGroup, Input, Button, Col } from "reactstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { requestToken } from "../../redux/requestToken";
@@ -52,14 +52,9 @@ function ModifyQuestionForm() {
   // 토큰 보내기 끝
 
   // 내용 입력
-
-  // const changePrice = (e) => {
-  //     setQPrice(e.target.value);
-  // }
   const [qTitle, setQTitle] = useState("");
   const [qContent, setQContent] = useState("");
   const qUrl = { params: { title: qTitle, content: qContent, id: memberId } };
-  // const encodedQUrl = encodeURIComponent(qUrl);
   const { id } = useParams();
   const [show, setShow] = useState(false);
   // 토스트 에디터
@@ -88,6 +83,7 @@ function ModifyQuestionForm() {
   const changeTitle = (e) => {
     setQTitle(e.target.value);
   };
+  const navigate = useNavigate();
 
   // 질문 수정 : DB 데이터 저장
   const save = () => {
@@ -97,6 +93,7 @@ function ModifyQuestionForm() {
       .then((response) => {
         setQTitle(qTitle);
         setQContent(qContent);
+        navigate(-1);
         console.log(response.data);
         console.log("답변 등록 성공");
         document.location.href = "/question/" + id;
@@ -107,18 +104,6 @@ function ModifyQuestionForm() {
       });
   };
 
-  // const save = (e) => {
-  //     e.preventDefault();
-  //     axios.put(`http://localhost:8080/api/questions/${id}`, null,
-  //         { params: { content: qContent } })
-  //         .then((response) => {
-  //             alert(response.data);
-  //             document.location.href = '/';
-  //         })
-  //         .catch((error) => {
-  //             console.log(error);
-  //         });
-  // }
 
   // 질문 등록 확인
   const modifyConfirm = (e) => {
@@ -168,6 +153,7 @@ function ModifyQuestionForm() {
             ref={editorRef}
             // placeholder='enter your question'
             // initialValue={}
+            previewStyle="vertical"
             height="600px"
             initialEditType="markdown"
             useCommandShortcut={true}

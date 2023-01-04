@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import "../../css/AnswerList.css";
 import { useState, useRef } from "react";
-import {
+import { 
 	Form, Button,
 	UncontrolledDropdown,
 	Dropdown,
@@ -22,13 +22,13 @@ import { Editor } from "@toast-ui/react-editor";
 import { Viewer } from "@toast-ui/react-editor";
 import moment from "moment/moment";
 import LikeButtonCompoent from "../../components/LikeButton";
+import PageList from "../../components/PageList";
 
 function AnswerList() {
 	// 토큰 보내기 시작
 	const token = useSelector((state) => state.Authorization);
 	const memberId = useSelector((state) => state.MemberId);
 	const dispatch = useDispatch();
-
 	const [member, setMember] = useState({});
 	const [cookie, setCookie] = useCookies([]);
 	const [answerId, setAnswerId] = useState('');
@@ -61,7 +61,6 @@ function AnswerList() {
 			}
 		}
 	};
-
 	useEffect(() => {
 		requestUser();
 	}, [token]);
@@ -72,6 +71,7 @@ function AnswerList() {
 	const { id } = useParams();
 	const formData = new FormData();
 	formData.append('content', aContent);
+	const[visible,setVisible] = useState(false);
 
 	// 토스트 에디터
 	const editorRef = useRef();
@@ -141,7 +141,6 @@ function AnswerList() {
 
 	// 댓글 삭제
 	const deleteAnswer = (id) => {
-
 		axios
 			.delete(`http://localhost:8080/api/answers/${id}`
 			).then((res) => {
@@ -150,9 +149,7 @@ function AnswerList() {
 				console.log('댓글 삭제 성공');
 				console.log(answers);
 				fetchData();
-
 				alert("삭제가 완료되었습니다.");
-
 				const reUrl = answers[0].question.questionId;
 				document.location.href = "/question/" + reUrl;
 			})
@@ -160,7 +157,6 @@ function AnswerList() {
 				console.log(error);
 			});
 	};
-
 
 	// 댓글 삭제 Alert
 	const deleteConfirm = (e) => {
@@ -225,9 +221,15 @@ function AnswerList() {
 		<section>
 			<Form className="a-list-form-container">
 
+				{/* HorizonLine
+				<div style={{ display: "flex", alignItems: "center", width: "85%", margin: "0 auto", padding: "60px", }}>
+					<div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
+					<p style={{ margin: "0 10px" }}>ANSWER</p>
+					<div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
+				</div> */}
 
 				{/* 정렬 드롭다운 */}
-				<div className="text-end btn-sort">
+				<div className="col text-end btn-sort-alist">
 					<UncontrolledDropdown>
 						<DropdownToggle caret>
 							Sort by
@@ -235,11 +237,9 @@ function AnswerList() {
 						<DropdownMenu dark>
 							<DropdownItem> 최신순 </DropdownItem>
 							<DropdownItem> 인기순 </DropdownItem>
-
 						</DropdownMenu>
 					</UncontrolledDropdown>
 				</div>
-
 
 				<div className="folder-content-answer">
 					{answers.map((answers) => {
@@ -260,7 +260,7 @@ function AnswerList() {
 												{answers.answerAuthor.nickname}
 											</div>
 											<span className='col text-end a-list-date'>
-												{moment(answers.createdTime).format('YYYY.MM.DD HH:MM')}
+												{moment(answers.createdTime).format('YYYY.MM.DD hh:mm')}
 											</span>
 										</div>
 									</div>
@@ -296,6 +296,10 @@ function AnswerList() {
 					})}
 				</div>
 			</Form>
+
+			<div className="my-auto text-center pagelist">
+				<PageList />
+			</div>
 
 			{/* Answer Detail Form */}
 			<Form className="a-detail-form-container">
