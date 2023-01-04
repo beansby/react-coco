@@ -84,6 +84,26 @@ function QuestionSearch() {
         })
     }
 
+    const listByViewCount = () => {
+        axios.get('http://localhost:8080/api/questions/view')
+        .then((res)=>{
+            setBoards(res.data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
+
+    const listByDate = () => {
+        axios.get('http://localhost:8080/api/questions')
+        .then((res)=>{
+            setBoards(res.data);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
+
     return (
         <main>
             <header className='title-coco'>
@@ -153,8 +173,8 @@ function QuestionSearch() {
                                 Sort by
                             </DropdownToggle>
                             <DropdownMenu dark>
-                                <DropdownItem> 최신순 </DropdownItem>
-                                <DropdownItem> 인기순 </DropdownItem>
+                                <DropdownItem onClick={listByDate}> 최신순 </DropdownItem>
+                                <DropdownItem onClick={listByViewCount}> 인기순 </DropdownItem>
 
                             </DropdownMenu>
                         </UncontrolledDropdown>

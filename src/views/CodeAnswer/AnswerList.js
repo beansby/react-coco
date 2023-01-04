@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import "../../css/AnswerList.css";
 import { useState, useRef } from "react";
-import { 
+import {
 	Form, Button,
 	UncontrolledDropdown,
 	Dropdown,
@@ -71,7 +71,7 @@ function AnswerList() {
 	const { id } = useParams();
 	const formData = new FormData();
 	formData.append('content', aContent);
-	const[visible,setVisible] = useState(false);
+	const [visible, setVisible] = useState(false);
 
 	// 토스트 에디터
 	const editorRef = useRef();
@@ -206,15 +206,17 @@ function AnswerList() {
 			.catch((error) => {
 				console.log(error);
 			});
-		// axios.get(`http://localhost:8080/api/recommends/${id}`, null, {
-		// 	params: {
-		// 		id: memberId,
-		// 	}
-		// })
-		// 	.then((res) => {
-		// 		setRecommends(res.data);
-		// 		console.log(res.data);
-		// 	});
+	}
+
+	const listByRecommend = () => {
+		axios.get(`http://localhost:8080/api/questions/${id}/answers/recommend`)
+		.then((res)=>{
+			console.log(res.data)
+			setAnswers([...res.data])
+		})
+		.catch((error)=>{
+			console.log(error)
+		})
 	}
 
 	return (
@@ -236,7 +238,7 @@ function AnswerList() {
 						</DropdownToggle>
 						<DropdownMenu dark>
 							<DropdownItem> 최신순 </DropdownItem>
-							<DropdownItem> 인기순 </DropdownItem>
+							<DropdownItem onClick={listByRecommend}> 인기순 </DropdownItem>
 						</DropdownMenu>
 					</UncontrolledDropdown>
 				</div>
@@ -276,10 +278,13 @@ function AnswerList() {
 
 								<div>
 									{/* Like Button */}
-										<span>
-											{/* <LikeButtonCompoent /> */}
-											<button id={answers.answerId} onClick={recommend} value="추천">추천</button>
-										</span>
+									<span>
+										{/* <LikeButtonCompoent /> */}
+										<button id={answers.answerId} onClick={recommend} value="추천">추천</button>
+										{recommends.map(() => {
+											<span>{recommends.length}</span>
+										})}
+									</span>
 									{/* AnswerList 수정&삭제 버튼 */}
 									{memberId == answers.answerAuthor.email && (
 										<span className="btn-a-list text-end">
