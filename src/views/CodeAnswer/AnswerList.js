@@ -246,7 +246,7 @@ function AnswerList() {
 							</DropdownToggle>
 							<DropdownMenu dark>
 								<DropdownItem> 최신순 </DropdownItem>
-								<DropdownItem> 인기순 </DropdownItem>
+								<DropdownItem onClick={listByRecommend}> 인기순 </DropdownItem>
 							</DropdownMenu>
 						</UncontrolledDropdown>
 					</div>
