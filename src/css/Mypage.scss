@@ -22,13 +22,14 @@
 
             .member-coin {
                 color: #484848;
-                font-weight: bold;
+                font-weight: 500;
             }
         }
 
         //만족도 점수
         .pf-progress {
             padding-left: 40px;
+            width: 500px;
         }
 
         .pf-progress-per {
@@ -42,20 +43,24 @@
         }
 
         .pf-settings {
-            margin-left: 20px;
+            margin-left: 30px;
+            justify-content: center;
+            align-items: center;
+
             
-            .tag-input {
-                background: linear-gradient(45deg, rgba(62, 165, 250, 0.91), #189FEC);
-                color: white;
-                font-weight: normal;
-                font-size: 13px;
-                padding: 2px 8px;
-                margin-left: 3px;
-                margin-right: 3px;
-                border-radius: 20px;
-                text-align: center;
-                line-height: 2rem;
-            }
+            //.tag-input {
+            //    background: linear-gradient(45deg, rgba(62, 165, 250, 0.91), #189FEC);
+            //    color: white;
+            //    font-weight: normal;
+            //    font-size: 13px;
+            //    padding: 2px 8px;
+            //    margin: 0 auto;
+            //    margin-left: 3px;
+            //    margin-right: 3px;
+            //    border-radius: 20px;
+            //    //text-align: center;
+            //    //line-height: 2rem;
+            //}
         }
     }
 }
