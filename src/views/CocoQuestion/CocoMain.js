@@ -10,6 +10,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import { Viewer } from "@toast-ui/react-editor";
 import {confirmAlert} from "react-confirm-alert";
+import RatingStar from "../../components/RatingStar";
 
 
 function CocoMain() {
@@ -46,6 +47,7 @@ function CocoMain() {
     // 토큰 보내기 끝
 
     const [boards, setBoards] = useState([]);
+    const [status, setStatus] = useState('');
     const modifyText = (string) => {
         let newText = string.replace(/(<([^>]+)>)/ig, "");
         newText = newText.replace(/&nbsp;/gi, " ");
@@ -89,6 +91,7 @@ function CocoMain() {
         confirmAlert({
             title: '매칭을 신청하시겠습니까?',
             message: '이전 화면으로 돌아가려면 취소를 눌러주세요.',
+                // <RatingStar/>,
             buttons: [
                 {
                     label: '확인',
@@ -157,9 +160,13 @@ function CocoMain() {
                                     {/*<img className='col-3 my-0 item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>*/}
                                     {/*</div>*/}
                                     <div className='col-3 item-left-coco ' id={"item-row4_"+i}>
-                                        <img className='row item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>
+                                        {/*썸네일 변경*/}
+                                        {cocos.status == "WAITING" && <img className='row item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>}
+                                        {cocos.status == "COACHING" && <img className='row item-img-coco' src="thumb-match.png" id={"img_"+i} alt=""/>}
+
                                         <div className='row btn-apply' id={"item-row3_"+i}>
-                                            <button className='col btn-hover color-9' id={"btn_"+i} style={{display:'none'}} onClick={applyConfirm}> 매 칭 신 청 </button>
+                                            {cocos.status == "WAITING" && <button className='col btn-hover color-9' id={"btn_"+i} style={{display:'none'}} onClick={applyConfirm}> 매 칭 신 청 </button>}
+                                            {cocos.status == "COACHING" && <button className='col btn-hover color-11' id={"btn_"+i} style={{display:'none'}} disabled> 코 칭 중 </button>}
                                         </div>
                                     </div>
 
