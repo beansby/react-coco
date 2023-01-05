@@ -50,7 +50,7 @@ const Login = () => {
       document.location.href='/'
     } catch (e) {
       // 서버에서 받은 에러 메시지 출력
-      toast.error(e.response.data.message + "😭", {
+      toast.error("비밀번호를 다시 확인해주세요" + "😭", {
         position: "top-center",
       });
     }
