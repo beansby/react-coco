@@ -100,7 +100,12 @@
   }
 .btn-sort-alist{
     margin-left: 1px;
-
+    width: 100%;
 }
+
+.dropbar-alist {
+    margin-left: -85px;
+}
+
 
 

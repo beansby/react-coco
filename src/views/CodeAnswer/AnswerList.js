@@ -236,7 +236,7 @@ function AnswerList() {
 				{/* 정렬 드롭다운 */}
 
 				<div className="row btn-sort-alist">
-					<div className="col-2 my-auto count-ans">
+					<div className="col-3 my-auto count-ans">
 						<b> Answers ( {answers.length} ) </b>
 					</div>
 
