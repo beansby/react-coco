@@ -161,7 +161,7 @@ function CocoForm() {
                 console.log('매칭 등록 성공');
                 alert("매칭을 등록했습니다.")
                 // 질문 등록 후 personal coco session 이동
-                document.location.href ='/';
+                document.location.href ='http://localhost:3001';
             }).catch((err) => {
             console.log(err);
         })

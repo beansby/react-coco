@@ -96,7 +96,7 @@ function CocoMain() {
                 {
                     label: '확인',
                     onClick: () => {
-
+                        document.location.href = "http://localhost:3001"
                     }
                 },
                 {
