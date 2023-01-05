@@ -74,7 +74,7 @@ function QuestionSearch() {
     }
     const changeKeyword = (e) => {
         setKeyword(e.target.value);
-        console.log(keyword);
+        // console.log(keyword);
     }
     const search = async () => {
         // window.location.href = "/search/" + keyword;
