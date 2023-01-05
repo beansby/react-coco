@@ -155,12 +155,8 @@ function CocoMain() {
                                  onMouseEnter={handleMouseOver} key={i}>
 
                                 <div className='row' id={"item-row_"+i} >
-                                    {/* 매칭 상태 변경값 설정 필요 */}
-                                    {/*<div className="col-2 text-center item-img-coco" id={"item-img_"+i}>*/}
-                                    {/*<img className='col-3 my-0 item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>*/}
-                                    {/*</div>*/}
                                     <div className='col-3 item-left-coco ' id={"item-row4_"+i}>
-                                        {/*썸네일 변경*/}
+                                        {/* 매칭 상태 썸네일 변경*/}
                                         {cocos.status == "WAITING" && <img className='row item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>}
                                         {cocos.status == "COACHING" && <img className='row item-img-coco' src="thumb-match.png" id={"img_"+i} alt=""/>}
 
