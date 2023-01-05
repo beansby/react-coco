@@ -85,11 +85,19 @@ function ModifyQuestionForm() {
   };
   const navigate = useNavigate();
 
+  const formData = new FormData();
+  formData.append('title', qTitle);
+  formData.append('content', qContent);
+
   // 질문 수정 : DB 데이터 저장
   const save = () => {
     // e.preventDefault();
     axios
-      .put(`http://localhost:8080/api/questions/${id}`, null, qUrl)
+      .put(`http://localhost:8080/api/questions/${id}`, formData, {
+        params: {
+          id: memberId,
+        }
+      })
       .then((response) => {
         setQTitle(qTitle);
         setQContent(qContent);
