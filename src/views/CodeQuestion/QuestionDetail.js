@@ -156,10 +156,10 @@ function QuestionDetail() {
           </div>
 
           {/* 제목 */}
-          <div className="q-detail-title">
+          <div className="col-12 q-detail-title">
             <h3>{title}</h3>
           </div>
-          <div className="row">
+          <div className="row-12">
             <div className="q-detail-info">
               {/*profile image*/}
               <div className="row">
@@ -171,7 +171,6 @@ function QuestionDetail() {
                   <div className='col my-auto pf-nickname-qdetail'>
                     {nickname}
                   </div>
-
                   {/* 작성 날짜 */}
                   <span className='col my-auto text-end table-content-date'> {moment(date.createdTime).format('YYYY.MM.DD hh:mm')}</span>
                 </div>
@@ -194,15 +193,11 @@ function QuestionDetail() {
 
         {/* 수정&삭제 버튼 */}
         {memberId == author.email && (
-          <div className="btn-q-detail">
+          <div className="text-end btn-q-detail">
             <Link to={"/question/" + questionId + "/modify"} key={questionId}>
-              <span >
                 <button className='btn-edit'> 수정 </button>
-              </span>
             </Link>
-            <span >
               <button className='btn-edit' id={questionId} onClick={deleteConfirm}>삭제</button>
-            </span>
           </div>
         )}
         <AnswerList />

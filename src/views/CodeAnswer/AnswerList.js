@@ -214,13 +214,13 @@ function AnswerList() {
 
 	const listByRecommend = () => {
 		axios.get(`http://localhost:8080/api/questions/${id}/answers/recommend`)
-		.then((res)=>{
-			console.log(res.data)
-			setAnswers([...res.data])
-		})
-		.catch((error)=>{
-			console.log(error)
-		})
+			.then((res) => {
+				console.log(res.data)
+				setAnswers([...res.data])
+			})
+			.catch((error) => {
+				console.log(error)
+			})
 	}
 
 	return (
@@ -245,8 +245,7 @@ function AnswerList() {
 							<DropdownToggle caret>
 							</DropdownToggle>
 							<DropdownMenu dark>
-								<DropdownItem> 최신순 </DropdownItem>
-								<DropdownItem onClick={listByRecommend}> 인기순 </DropdownItem>
+								<DropdownItem onClick={listByRecommend}> 추천순 </DropdownItem>
 							</DropdownMenu>
 						</UncontrolledDropdown>
 					</div>
@@ -255,22 +254,21 @@ function AnswerList() {
 				<div className="folder-content-answer">
 					{answers.map((answers) => {
 						return (
-							<div className="col a-detail-info" key={answers.answerId}>
-								<div className="row">
+							<div className="col-12 a-detail-info" key={answers.answerId}>
+								<div className="row-12">
 									{/*profile image*/}
-									<div className="col pf-img">
-										<img src={('http://localhost:8080/img/' + answers.answerAuthor.filename)
-										} alt="" className='pf-img-alist my-auto' />
-									</div>
-
-									{/* Nickname */}
-									<div className="col-11 my-auto nik-date">
-										{/* 작성 날짜 */}
-										<div className="row my-auto">
+									<div className="row">
+										<div className="col-1 pf-img">
+											<img src={('http://localhost:8080/img/' + answers.answerAuthor.filename)
+											} alt="" className='pf-img-alist my-auto' />
+										</div>
+										<div className="col row my-auto">
+											{/* 닉네임 */}
 											<div className="col my-auto a-list-nick">
 												{answers.answerAuthor.nickname}
 											</div>
-											<span className='col text-end a-list-date'>
+											{/* 작성 날짜 */}
+											<span className='col my-auto text-end a-list-date'>
 												{moment(answers.createdTime).format('YYYY.MM.DD hh:mm')}
 											</span>
 										</div>
@@ -291,7 +289,7 @@ function AnswerList() {
 										className={"like-button" + (isLike ? "liked" : "")} id={answers.answerId}
 										onClick={recommend} value="추천"
 									>
-										{"추천"} {like}
+										{"추천"} {answers.recommendCount}
 									</button>
 
 									{/* AnswerList 수정&삭제 버튼 */}
