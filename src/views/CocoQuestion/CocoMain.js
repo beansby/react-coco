@@ -9,6 +9,7 @@ import {requestToken} from "../../redux/requestToken";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import { Viewer } from "@toast-ui/react-editor";
+import {confirmAlert} from "react-confirm-alert";
 
 
 function CocoMain() {
@@ -82,6 +83,28 @@ function CocoMain() {
         //e.target.lastChild.setAttribute('style', "display:none");
     }
 
+    // 매칭 신청 확인
+    const applyConfirm = (e) => {
+        e.preventDefault();
+        confirmAlert({
+            title: '매칭을 신청하시겠습니까?',
+            message: '이전 화면으로 돌아가려면 취소를 눌러주세요.',
+            buttons: [
+                {
+                    label: '확인',
+                    onClick: () => {
+
+                    }
+                },
+                {
+                    label: '취소',
+                    onClick: () => {
+                    }
+                }
+            ]
+        });
+    };
+
 
     return(
         <main>
@@ -136,7 +159,7 @@ function CocoMain() {
                                     <div className='col-3 item-left-coco ' id={"item-row4_"+i}>
                                         <img className='row item-img-coco' src="thumb-waiting.png" id={"img_"+i} alt=""/>
                                         <div className='row btn-apply' id={"item-row3_"+i}>
-                                            <button className='col btn-hover color-9' id={"btn_"+i} style={{display:'none'}}> 매 칭 신 청 </button>
+                                            <button className='col btn-hover color-9' id={"btn_"+i} style={{display:'none'}} onClick={applyConfirm}> 매 칭 신 청 </button>
                                         </div>
                                     </div>
 
@@ -182,8 +205,8 @@ function CocoMain() {
 
                                         <div className='row' id={"item-row2_"+i}>
                                             <div className="col item-content-coco" id={"item-content_"+i}>
-                                                {/* {modifyText(cocos.content)} */}
-                                                <Viewer initialValue={cocos.content} id={"item-viewer_"+i}/>
+                                                 {modifyText(cocos.content)}
+                                                {/*<Viewer initialValue={cocos.content} id={"item-viewer_"+i}/>*/}
                                             </div>
                                         </div>
                                     </div>
