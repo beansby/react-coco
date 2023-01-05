@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import "../../css/AnswerList.css";
 import { useState, useRef } from "react";
-import { 
+import {
 	Form, Button,
 	UncontrolledDropdown,
 	Dropdown,
@@ -71,7 +71,7 @@ function AnswerList() {
 	const { id } = useParams();
 	const formData = new FormData();
 	formData.append('content', aContent);
-	const[visible,setVisible] = useState(false);
+	const [visible, setVisible] = useState(false);
 
 	// 토스트 에디터
 	const editorRef = useRef();
@@ -180,7 +180,10 @@ function AnswerList() {
 		});
 	};
 
+	// Like button
 	const [recommends, setRecommends] = useState([]);
+	const [like, setLike] = useState(0);
+	const [isLike, setIsLike] = useState(false);
 
 	useEffect(() => {
 		axios.get('http://localhost:8080/api/recommends')
@@ -201,26 +204,17 @@ function AnswerList() {
 		})
 			.then((res) => {
 				console.log(res.data);
-				document.getElementById(e.target.id).textContent = "추천 " + res.data;
+				document.getElementById(e.target.id).textContent = "추천 " + res.data
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-		// axios.get(`http://localhost:8080/api/recommends/${id}`, null, {
-		// 	params: {
-		// 		id: memberId,
-		// 	}
-		// })
-		// 	.then((res) => {
-		// 		setRecommends(res.data);
-		// 		console.log(res.data);
-		// 	});
+
 	}
 
 	return (
 		<section>
 			<Form className="a-list-form-container">
-
 				{/* HorizonLine
 				<div style={{ display: "flex", alignItems: "center", width: "85%", margin: "0 auto", padding: "60px", }}>
 					<div style={{ flex: 1, backgroundColor: "#3a3a3a", height: "1px" }} />
@@ -229,16 +223,22 @@ function AnswerList() {
 				</div> */}
 
 				{/* 정렬 드롭다운 */}
-				<div className="col text-end btn-sort-alist">
-					<UncontrolledDropdown>
-						<DropdownToggle caret>
-							Sort by
-						</DropdownToggle>
-						<DropdownMenu dark>
-							<DropdownItem> 최신순 </DropdownItem>
-							<DropdownItem> 인기순 </DropdownItem>
-						</DropdownMenu>
-					</UncontrolledDropdown>
+
+				<div className="row btn-sort-alist">
+					<div className="col-2 my-auto count-ans">
+						<b> Answers ( {answers.length} ) </b>
+					</div>
+
+					<div className="col-1 dropbar-alist">
+						<UncontrolledDropdown>
+							<DropdownToggle caret>
+							</DropdownToggle>
+							<DropdownMenu dark>
+								<DropdownItem> 최신순 </DropdownItem>
+								<DropdownItem> 인기순 </DropdownItem>
+							</DropdownMenu>
+						</UncontrolledDropdown>
+					</div>
 				</div>
 
 				<div className="folder-content-answer">
@@ -276,16 +276,18 @@ function AnswerList() {
 
 								<div>
 									{/* Like Button */}
-										<span>
-											{/* <LikeButtonCompoent /> */}
-											<button id={answers.answerId} onClick={recommend} value="추천">추천</button>
-										</span>
+									<button
+										className={"like-button" + (isLike ? "liked" : "")} id={answers.answerId}
+										onClick={recommend} value="추천"
+									>
+										{"추천"} {like}
+									</button>
+
 									{/* AnswerList 수정&삭제 버튼 */}
 									{memberId == answers.answerAuthor.email && (
 										<span className="btn-a-list text-end">
 											<Link to={"/answer/" + answers.answerId + "/modify"}>
 												<button className="btn-edit">수정</button>
-
 											</Link>
 											<button className="btn-edit" id={answers.answerId} onClick={deleteConfirm}>삭제</button>
 										</span>
