@@ -145,7 +145,7 @@ function MyProfileTab(){
             setLangs([...langs, {language:lang}]);
             console.log('언어 추가 성공');
             console.log(langs);
-            alert(res.data);
+            // alert(res.data);
         }).catch((err)=>{
             console.log(err);
             alert(err.response.data);
@@ -195,7 +195,7 @@ function MyProfileTab(){
             setTechs([...techs, {skill:tech}]);
             console.log('기술 추가 성공');
             console.log(res.data);
-            alert(res.data);
+            // alert(res.data);
         }).catch((err)=>{
             console.log(err);
             alert(err.response.data);
@@ -256,7 +256,7 @@ function MyProfileTab(){
         axios.delete('http://localhost:8080/api/languages', {
             params:{language:lang, id:memberId}
         }).then((res)=>{
-            alert(res.data);
+            // alert(res.data);
             document.location.href='/mypage';
         }).catch((err)=>{
             console.log(err);
@@ -289,7 +289,7 @@ function MyProfileTab(){
         axios.delete('http://localhost:8080/api/skills', {
             params:{skill:tech, id:memberId}
         }).then((res)=>{
-            alert(res.data);
+            // alert(res.data);
             document.location.href='/mypage';
         }).catch((err)=>{
             console.log(err);

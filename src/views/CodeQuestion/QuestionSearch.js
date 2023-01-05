@@ -66,14 +66,19 @@ function QuestionSearch() {
 
     // 검색
     const [keyword, setKeyword] = useState('');
+    const [category, setCategory] = useState('');
 
+    const handleSelect = (e) => {
+        console.log(e.target.value);
+        setCategory(e.target.value);
+    }
     const changeKeyword = (e) => {
         setKeyword(e.target.value);
-        console.log(keyword);
+        // console.log(keyword);
     }
     const search = async () => {
         // window.location.href = "/search/" + keyword;
-        axios.get('http://localhost:8080/api/search/'+ keyword)
+        axios.get('http://localhost:8080/api/search/'+ keyword, {params:{type:category}})
             .then((res)=>{
                 console.log(res.data);
                 console.log('검색 성공');
@@ -104,6 +109,12 @@ function QuestionSearch() {
         })
     }
 
+    const handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            search();
+        }
+    }
+
     return (
         <main>
             <header className='title-coco'>
@@ -126,7 +137,7 @@ function QuestionSearch() {
             {/*검색창*/}
             <div className='search-bar'>
                 <form className="searchform cf my-auto">
-                    <select className='my-auto text-end' name='type'>
+                    <select className='my-auto text-end' name='type' onChange={handleSelect} >
                         {/*This is how we can do "placeholder" options.*/}
                         {/*note: "required" attribute is on the select*/}
                         <option value="" hidden caret> Category </option>
@@ -154,7 +165,7 @@ function QuestionSearch() {
                         Question
                     </div>
 
-                    <div className="col-1 my-auto btn-question-add-q">
+                    <div className="col my-auto btn-question-add-q">
                         {/*질문등록*/}
                         <Link to={'/question'} style={{textDecoration:'none', color:'#189FEC'}} id='add-q'>
                             ADD &nbsp;
@@ -188,9 +199,9 @@ function QuestionSearch() {
                             <div className="folder-item-question">
                                 <Link className='row' to={'/question/' + questions.questionId} key={questions.questionId} style={{textDecoration:'none'}}>
 
-                                    <div className='col'>
-                                        조회수
-                                        추천
+                                    <div className='col item-mini-info'>
+                                        조회수 {questions.viewCount} <br/>
+                                        댓글 7
                                     </div>
                                     {/*제목, 내용, 작성자*/}
                                     <div className="col-11 item-text-question">

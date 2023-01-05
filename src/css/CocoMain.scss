@@ -162,7 +162,8 @@ $accent: #189FEC;
         .btn-sort {
             display: inline;
             /* float: right; */
-            margin-right: 12%;
+            margin-right: 15%;
+            background-color: transparent;
         }
 
     }
@@ -192,6 +193,12 @@ $accent: #189FEC;
     padding-bottom: 20px;
     border-radius: 15px;
     margin: 0.5rem;
+
+    .item-mini-info{
+        color: #484848;
+        font-size: 13px;
+        margin-top: 80px;
+    }
 
     /* 질문 제목, 내용 */
     .item-text-question {
@@ -235,6 +242,10 @@ $accent: #189FEC;
     }
 
     .item-content-question{
+        color: #e7e7e7;
+    }
+
+    .item-mini-info{
         color: #e7e7e7;
     }
 }

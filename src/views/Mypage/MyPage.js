@@ -89,12 +89,12 @@ function MyPage() {
                     <div className='col pf-text'>
                         {/*닉네임, 보유코인*/}
                         <div className='row h-50'>
-                            <div className='col-7 my-auto pf-nickname'>
+                            <div className='col my-auto pf-nickname'>
                                 {member.nickname}
                             </div>
                             <div className='col-4 my-auto pf-coin text-start'>
                                 <img src="icon-coin.png" alt=""/>
-                                <span className='member-coin'> 2000 </span>
+                                <span className='member-coin'> 5500 </span>
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@ function MyPage() {
                                     만족도 점수는 60% 입니다. <br/> 코칭을 통해 만족도를 올려보세요.
                                 </UncontrolledTooltip>
                             </div>
-                            <div className='col-4 pf-progress-per my-auto'>
+                            <div className='col-3 pf-progress-per my-auto'>
                                 <span id='accent-value'> 60 </span> %
                             </div>
                         </div>
@@ -120,6 +120,7 @@ function MyPage() {
                                         <span className='tag-input'> {item.language} </span>
                                     )
                                 })}
+                                <br/>
                                 {techs.map((item)=>{
                                     return (
                                         <span className='skill-btn'> {item.skill} </span>
