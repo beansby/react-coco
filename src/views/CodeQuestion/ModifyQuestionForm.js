@@ -162,7 +162,7 @@ function ModifyQuestionForm() {
             // placeholder='enter your question'
             // initialValue={}
             previewStyle="vertical"
-            height="600px"
+            height="500px"
             initialEditType="markdown"
             useCommandShortcut={true}
             onChange={change}
