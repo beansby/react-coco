@@ -335,7 +335,7 @@ function MyProfileTab(){
                 <Col className='align-self-center' md='7'>
                     <FormGroup>
                         <Input type='text' id='nickname' name='nickname'
-                               value={nickname} onChange={changeNickname} required/>
+                               value={nickname} onChange={changeNickname} placeholder={member.nickname} required/>
                     </FormGroup>
                 </Col>
 
