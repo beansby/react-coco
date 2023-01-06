@@ -14,7 +14,7 @@ const PageList = () => {
     <div className='pagelist'>
     <Stack spacing={2}>
       {/* <Typography>Page: {page}</Typography> */}
-      <Pagination count={5} page={page} onChange={handleChange} />
+      <Pagination count={2} page={page} onChange={handleChange} />
     </Stack>
     </div>
   );
