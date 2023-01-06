@@ -103,7 +103,7 @@ function MyPage() {
                             <div className='col pf-progress my-auto'>
                                 <Progress max="100" value="60" id='pf-rating' className='progress-info'/>
 
-                                <UncontrolledTooltip delay={0}  target='pf-rating' style={{backgroundColor:"#b9bec4",color:'white'}} placement='bottom'>
+                                <UncontrolledTooltip delay={0}  target='pf-rating' style={{backgroundColor:"rgba(58,58,59,0.86)",color:'white'}} placement='bottom'>
                                     만족도 점수는 60% 입니다. <br/> 코칭을 통해 만족도를 올려보세요.
                                 </UncontrolledTooltip>
                             </div>

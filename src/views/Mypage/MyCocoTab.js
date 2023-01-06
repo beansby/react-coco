@@ -53,39 +53,39 @@ function MyCoinTab(){
                 </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td> 2022.11.25 </td>
+                        <td className='text-start my-auto'>
+                            <span className='tag-size tag-size-tech'> SPRING </span>
+                            <span className='tag-size tag-size-tech'> SPRINGBOOT </span>
+                            <br/>
+                            <strong> Coding Coach, COCO! </strong> <br/>
+                            코코 매칭 히스토리입니다.
+                        </td>
+                        <td> 1500 </td>
+                        <td> 부기 </td>
+                    </tr>
+
                     <tr className='my-auto'>
                         <td className='my-auto'> 2022.12.31 </td>
                         <td className='text-start my-auto'>
                             <span className='tag-size'> JAVASCRIPT </span>
                             <span className='tag-size tag-size-tech'> REACTJS </span>
                             <br/>
-                            <strong> 코코 질문 1 </strong> <br/>
-                            질문 내용입니다.
+                            <strong> react 개발 중인데 질문이있어요! </strong> <br/>
+                            안녕하세요 신입개발자입니다원래는 java spring이 주이지만 이번에 react 공부를 하라고 하셔서공부 중입니다..과제를 하나 내주셨는데 아예 손도 못대고 잇어서요..!간단한것들은 했는데 마지막 어려운 미션이 남았네요 저에겐..반응형 정사각형이 있고 그안에 내접하는 반응형 원이 있습니다.
                         </td>
                         <td className='my-auto'> 2000 </td>
-                        <td className='my-auto'> 차차 </td>
+                        <td className='my-auto'> 예빈 </td>
                     </tr>
 
                     <tr>
-                        <td> 2023.01.01 </td>
+                        <td> 2023.01.07 </td>
                         <td className='text-start my-auto'>
-                            <span className='tag-size tag-size-tech'> SPRING </span>
-                            <span className='tag-size tag-size-tech'> SPRINGBOOT </span>
+                            <span className='tag-size'> C </span>
                             <br/>
-                            <strong> 코코 질문 2 </strong> <br/>
-                            질문 내용입니다.
-                        </td>
-                        <td> 3000 </td>
-                        <td> 부기 </td>
-                    </tr>
-
-                    <tr>
-                        <td> 2023.01.01 </td>
-                        <td className='text-start my-auto'>
-                            <span className='tag-size'> REACTJS </span>
-                            <br/>
-                            <strong> 코코 질문 3 </strong> <br/>
-                            질문 내용입니다.
+                            <strong> c언어에서 문자열을 입력받으려고 하는데 자꾸 오류가 생깁니다 </strong> <br/>
+                            문자열을 입력하려고 하는데 자꾸 오류가 발생을 하는데 뭐가 문제일까요???#include int main()  int i, no; char s[20][128];
                         </td>
                         <td> 500 </td>
                         <td> 지현 </td>
