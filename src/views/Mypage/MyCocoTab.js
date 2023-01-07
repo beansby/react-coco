@@ -75,20 +75,21 @@ function MyCoinTab(){
                             <strong> react 개발 중인데 질문이있어요! </strong> <br/>
                             안녕하세요 신입개발자입니다원래는 java spring이 주이지만 이번에 react 공부를 하라고 하셔서공부 중입니다..과제를 하나 내주셨는데 아예 손도 못대고 잇어서요..!간단한것들은 했는데 마지막 어려운 미션이 남았네요 저에겐..반응형 정사각형이 있고 그안에 내접하는 반응형 원이 있습니다.
                         </td>
-                        <td className='my-auto'> 2000 </td>
+                        <td className='my-auto'> 500 </td>
                         <td className='my-auto'> 예빈 </td>
                     </tr>
 
                     <tr>
                         <td> 2023.01.07 </td>
                         <td className='text-start my-auto'>
-                            <span className='tag-size'> C </span>
+                            <span className='tag-size'> JAVASCRIPT </span>
+                            <span className='tag-size tag-size-tech'> REACTJS </span>
                             <br/>
-                            <strong> c언어에서 문자열을 입력받으려고 하는데 자꾸 오류가 생깁니다 </strong> <br/>
-                            문자열을 입력하려고 하는데 자꾸 오류가 발생을 하는데 뭐가 문제일까요???#include int main()  int i, no; char s[20][128];
+                            <strong> hover시 버튼이 나타나지 않습니다ㅠㅠ </strong> <br/>
+                            hover effect를 준 요소에 마우스 오버시 버튼이 나타나야하는데 중간중간 누락됩니다.
                         </td>
-                        <td> 500 </td>
-                        <td> 지현 </td>
+                        <td> 2000 </td>
+                        <td> coco </td>
                     </tr>
                 </tbody>
             </Table>

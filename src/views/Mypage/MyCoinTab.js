@@ -93,13 +93,13 @@ function MyCoinTab(){
                     <tr>
                         <td> 2023.01.01 </td>
                         <td> 코코 코칭 </td>
-                        <td> +2000 </td>
+                        <td> +500 </td>
                     </tr>
 
                     <tr>
                         <td> 2023.01.07 </td>
                         <td> 코코 매칭(지현) </td>
-                        <td> -500 </td>
+                        <td> -2000 </td>
                     </tr>
 
                 </tbody>
